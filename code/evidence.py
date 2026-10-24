@@ -98,12 +98,12 @@ class Index:
         return [o for o in self.by_user.get(user_id, [])
                 if self.in_window(o.captured_at, at, since)]
 
-    def files_covering(self, system_id, at=None):
+    def files_covering(self, system_id, at=None, since=None):
         """Files that looked at this system, newest first."""
         out = [(self.manifest[f]["captured_at"], f)
                for f, systems in self.coverage.items()
                if system_id in systems
-               and (at is None or self.manifest[f]["captured_at"] <= at)]
+               and self.in_window(self.manifest[f]["captured_at"], at, since)]
         return [f for _, f in sorted(out, reverse=True)]
 
 
@@ -308,22 +308,25 @@ def vision_records(file_id, alias, captured, stem, directory):
             entry = (named, ())
         read.append((record, entry))
     if alias and not any(entry for _, entry in read):
-        read = [(record, next((e for key, e in alias.items()
-                               if key in json.dumps(record,
-                                                    ensure_ascii=False)),
-                              None))
-                for record, _ in read]
+        read = [(record, next(
+            (e for key, e in alias.items()
+             if re.search(rf"(?<!\w){re.escape(key)}(?!\w)",
+                          json.dumps(record, ensure_ascii=False))), None))
+            for record, _ in read]
     out = []
     for record, entry in read:
         if not entry:
             continue
         resource, named = entry
+        values = record.get("fields")
+        if not isinstance(values, dict):
+            continue
         stated = set()
         for value in named:
             stated |= directory.owners_of(value)
         out.append((str(record.get("source") or stem), resource,
                     str(record.get("observed_at") or captured),
-                    scalars(record.get("fields") or {}),
+                    scalars(values),
                     json.dumps(record, ensure_ascii=False)[:400],
                     frozenset(stated)))
     return out

@@ -134,19 +134,32 @@ def state_of(obs, prefix, directory, user_id):
     return "PRESENT"
 
 
+def retained(resource):
+    """A record policy keeps is never re-observed after the request, so the
+    case window must not hide it."""
+    prefix = policy.prefix_of(resource)
+    return bool(prefix) and policy.TABLE[prefix][2] == "RETAIN"
+
+
 def resource_states(index, directory, user_id, audit_at,
                     since=None):
     """One state per resource, from the newest usable observation."""
     out = {}
     owned = index.resources_of(user_id, audit_at, since)
+    for resource, files in index.resources_of(user_id, audit_at).items():
+        if retained(resource):
+            owned.setdefault(resource, set()).update(files)
     # Newest file per resource, then every record of that resource in that
     # file merged: a readback trace writes the lookup on one line and its
     # result on the next, and only the pair states the whole truth.
     newest, groups = {}, {}
-    for obs in index.for_user(user_id, audit_at, since):
+    usable = [o for o in index.for_user(user_id, audit_at)
+              if retained(o.resource_id)
+              or index.in_window(o.captured_at, audit_at, since)]
+    for obs in usable:
         if obs.captured_at >= newest.get(obs.resource_id, ""):
             newest[obs.resource_id] = obs.captured_at
-    for obs in index.for_user(user_id, audit_at, since):
+    for obs in usable:
         if obs.captured_at == newest[obs.resource_id]:
             groups.setdefault(obs.resource_id, []).append(obs)
     seen = {}
@@ -167,7 +180,8 @@ def resource_states(index, directory, user_id, audit_at,
         if entry is None:
             # Referenced but never seen: the record is gone, as long as some
             # file looked at that system in time.
-            if index.files_covering(policy.TABLE[prefix][0], audit_at):
+            if index.files_covering(policy.TABLE[prefix][0], audit_at,
+                                    None if retained(resource) else since):
                 out[resource] = ("ABSENT", None, files)
             continue
         obs = entry[1]
@@ -175,13 +189,16 @@ def resource_states(index, directory, user_id, audit_at,
     return out
 
 
-def cite(index, resource, state, obs, files, audit_at):
-    """The newest file at or before audit_at that proves this step."""
+def cite(index, resource, state, obs, files, audit_at, since=None):
+    """The newest file inside the case window that proves this step."""
     if state == "ABSENT":
-        covering = index.files_covering(policy.system_of(resource), audit_at)
+        covering = index.files_covering(
+            policy.system_of(resource), audit_at,
+            None if retained(resource) else since)
         return covering[0] if covering else ""
     usable = [(index.manifest[f]["captured_at"], f) for f in files
-              if index.manifest[f]["captured_at"] <= audit_at]
+              if index.in_window(index.manifest[f]["captured_at"], audit_at,
+                                 None if retained(resource) else since)]
     if obs is not None and obs.file_id in files:
         usable.append((obs.captured_at, obs.file_id))
     return max(usable)[1] if usable else ""
@@ -197,7 +214,8 @@ def plan(index, directory, user_id, audit_at, since=None):
         prefix = policy.prefix_of(resource)
         system = policy.TABLE[prefix][0]
         action = policy.TABLE[prefix][2]
-        evidence_id = cite(index, resource, state, obs, files, audit_at)
+        evidence_id = cite(index, resource, state, obs, files,
+                           audit_at, since)
         here = (system, resource, evidence_id)
 
         if action == "DELETE":
@@ -274,6 +292,17 @@ def selftest():
     assert steps[4]["operation"] == "DISABLE_DATA_FLOW", steps[4]
     assert steps[8]["resource_id"] == "account_4248", steps[8]
     assert all(s["evidence_id"] == "" for s in steps[4:]), "future work cites"
+
+    # The case window hides what happened before the person asked, but a
+    # record policy keeps is never re-observed, so it must survive.
+    windowed, kept = plan(index, directory, "user_11",
+                          "2026-10-01T12:00:00Z", "2026-09-24T00:00:00Z")
+    assert windowed == "INCOMPLETE", windowed
+    held = [s for s in kept
+            if s["operation"] == "VERIFY_RECORD_PRESENT"
+            and s["resource_id"] == "audit_record_3753"]
+    assert held, "the window dropped a retained record"
+    assert len(kept) < len(steps), "the window hid nothing at all"
     print("selftest: PASS")
     return 0
 
