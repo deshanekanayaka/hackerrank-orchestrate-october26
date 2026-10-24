@@ -1,0 +1,2752 @@
+{
+ "case_01": {
+  "authorizes_deletion": true,
+  "fingerprint": "902e3a41303cf3bd",
+  "kind": "deletion"
+ },
+ "case_02": {
+  "authorizes_deletion": true,
+  "fingerprint": "3dce26fb1d5dd070",
+  "kind": "deletion"
+ },
+ "case_03": {
+  "authorizes_deletion": true,
+  "fingerprint": "96a952a09e469f00",
+  "kind": "deletion"
+ },
+ "case_04": {
+  "authorizes_deletion": true,
+  "fingerprint": "aff0a816031e2373",
+  "kind": "deletion"
+ },
+ "case_05": {
+  "authorizes_deletion": true,
+  "fingerprint": "41c1fd4bd33d1012",
+  "kind": "deletion"
+ },
+ "case_06": {
+  "authorizes_deletion": true,
+  "fingerprint": "ff18629c6b1e6519",
+  "kind": "deletion"
+ },
+ "case_07": {
+  "authorizes_deletion": true,
+  "fingerprint": "0a14059fb768f2c8",
+  "kind": "deletion"
+ },
+ "case_08": {
+  "authorizes_deletion": true,
+  "fingerprint": "9effdd22fbce6037",
+  "kind": "deletion"
+ },
+ "case_09": {
+  "authorizes_deletion": true,
+  "fingerprint": "ee0a8c465c08f47c",
+  "kind": "deletion"
+ },
+ "case_10": {
+  "authorizes_deletion": true,
+  "fingerprint": "9ee7f9ffc62dc808",
+  "kind": "deletion"
+ },
+ "case_100": {
+  "authorizes_deletion": true,
+  "fingerprint": "bc464007e6662f5c",
+  "kind": "deletion"
+ },
+ "case_101": {
+  "authorizes_deletion": true,
+  "fingerprint": "067f07ea872347bf",
+  "kind": "deletion"
+ },
+ "case_102": {
+  "authorizes_deletion": true,
+  "fingerprint": "7b83d8bf2630a839",
+  "kind": "deletion"
+ },
+ "case_103": {
+  "authorizes_deletion": true,
+  "fingerprint": "98d5aee62747dc70",
+  "kind": "deletion"
+ },
+ "case_104": {
+  "authorizes_deletion": true,
+  "fingerprint": "65e1ff1a2845ddec",
+  "kind": "deletion"
+ },
+ "case_105": {
+  "authorizes_deletion": true,
+  "fingerprint": "519765b04f059e5e",
+  "kind": "deletion"
+ },
+ "case_106": {
+  "authorizes_deletion": true,
+  "fingerprint": "2c21f76163bb64a0",
+  "kind": "deletion"
+ },
+ "case_107": {
+  "authorizes_deletion": true,
+  "fingerprint": "6b1021abe1652724",
+  "kind": "deletion"
+ },
+ "case_108": {
+  "authorizes_deletion": true,
+  "fingerprint": "4687d498ac735f35",
+  "kind": "deletion"
+ },
+ "case_109": {
+  "authorizes_deletion": true,
+  "fingerprint": "5cec9fa59482c576",
+  "kind": "deletion"
+ },
+ "case_11": {
+  "authorizes_deletion": true,
+  "fingerprint": "d7cb81260a2c16c3",
+  "kind": "deletion"
+ },
+ "case_110": {
+  "authorizes_deletion": true,
+  "fingerprint": "55d9f6ba408fb65e",
+  "kind": "deletion"
+ },
+ "case_111": {
+  "authorizes_deletion": true,
+  "fingerprint": "f4514a0dbfc21c6e",
+  "kind": "deletion"
+ },
+ "case_112": {
+  "authorizes_deletion": true,
+  "fingerprint": "13643b5d168cd666",
+  "kind": "deletion"
+ },
+ "case_113": {
+  "authorizes_deletion": true,
+  "fingerprint": "85537180eefc54c3",
+  "kind": "deletion"
+ },
+ "case_114": {
+  "authorizes_deletion": true,
+  "fingerprint": "0921cc13f9d017e8",
+  "kind": "deletion"
+ },
+ "case_115": {
+  "authorizes_deletion": true,
+  "fingerprint": "81d32c1de9694b8a",
+  "kind": "deletion"
+ },
+ "case_116": {
+  "authorizes_deletion": true,
+  "fingerprint": "de1df2d3335fab91",
+  "kind": "deletion"
+ },
+ "case_117": {
+  "authorizes_deletion": true,
+  "fingerprint": "b5dcbe3626620e59",
+  "kind": "deletion"
+ },
+ "case_118": {
+  "authorizes_deletion": true,
+  "fingerprint": "bb301d87ffa1dbf9",
+  "kind": "deletion"
+ },
+ "case_119": {
+  "authorizes_deletion": true,
+  "fingerprint": "6a0f9178c8770ca2",
+  "kind": "deletion"
+ },
+ "case_12": {
+  "authorizes_deletion": true,
+  "fingerprint": "215928d9830b2c61",
+  "kind": "deletion"
+ },
+ "case_120": {
+  "authorizes_deletion": true,
+  "fingerprint": "3eedd238623fb0ce",
+  "kind": "deletion"
+ },
+ "case_121": {
+  "authorizes_deletion": true,
+  "fingerprint": "0c364222c0575bd0",
+  "kind": "deletion"
+ },
+ "case_122": {
+  "authorizes_deletion": true,
+  "fingerprint": "a6773389e3432b6f",
+  "kind": "deletion"
+ },
+ "case_123": {
+  "authorizes_deletion": true,
+  "fingerprint": "96a952a09e469f00",
+  "kind": "deletion"
+ },
+ "case_124": {
+  "authorizes_deletion": true,
+  "fingerprint": "be2617a5b4d04eb0",
+  "kind": "deletion"
+ },
+ "case_125": {
+  "authorizes_deletion": true,
+  "fingerprint": "03937480f6c03ba2",
+  "kind": "deletion"
+ },
+ "case_126": {
+  "authorizes_deletion": true,
+  "fingerprint": "140c5e28f3125088",
+  "kind": "deletion"
+ },
+ "case_127": {
+  "authorizes_deletion": true,
+  "fingerprint": "a0afed736de48d7f",
+  "kind": "deletion"
+ },
+ "case_128": {
+  "authorizes_deletion": true,
+  "fingerprint": "ee76503d239b0dbf",
+  "kind": "deletion"
+ },
+ "case_129": {
+  "authorizes_deletion": true,
+  "fingerprint": "ad23146d68bcee6b",
+  "kind": "deletion"
+ },
+ "case_13": {
+  "authorizes_deletion": true,
+  "fingerprint": "bcf56fb55e0325d0",
+  "kind": "deletion"
+ },
+ "case_130": {
+  "authorizes_deletion": true,
+  "fingerprint": "18bd80907fea992e",
+  "kind": "deletion"
+ },
+ "case_131": {
+  "authorizes_deletion": true,
+  "fingerprint": "69af9d58d9b57efc",
+  "kind": "deletion"
+ },
+ "case_132": {
+  "authorizes_deletion": true,
+  "fingerprint": "526523758a6cef72",
+  "kind": "deletion"
+ },
+ "case_133": {
+  "authorizes_deletion": true,
+  "fingerprint": "08015d19d613827b",
+  "kind": "deletion"
+ },
+ "case_134": {
+  "authorizes_deletion": true,
+  "fingerprint": "addcda9520586a07",
+  "kind": "deletion"
+ },
+ "case_135": {
+  "authorizes_deletion": true,
+  "fingerprint": "67237b9018979614",
+  "kind": "deletion"
+ },
+ "case_136": {
+  "authorizes_deletion": true,
+  "fingerprint": "3a231bb6fa93e360",
+  "kind": "deletion"
+ },
+ "case_137": {
+  "authorizes_deletion": true,
+  "fingerprint": "3de7c888e48ce2d4",
+  "kind": "deletion"
+ },
+ "case_138": {
+  "authorizes_deletion": true,
+  "fingerprint": "75d72d0db15c7a3e",
+  "kind": "deletion"
+ },
+ "case_139": {
+  "authorizes_deletion": true,
+  "fingerprint": "365781b2a17adeea",
+  "kind": "deletion"
+ },
+ "case_14": {
+  "authorizes_deletion": true,
+  "fingerprint": "b5dcbe3626620e59",
+  "kind": "deletion"
+ },
+ "case_140": {
+  "authorizes_deletion": true,
+  "fingerprint": "e4918891279dcad9",
+  "kind": "deletion"
+ },
+ "case_141": {
+  "authorizes_deletion": true,
+  "fingerprint": "29ddc8065113537d",
+  "kind": "deletion"
+ },
+ "case_142": {
+  "authorizes_deletion": true,
+  "fingerprint": "2b2162b47dd56acc",
+  "kind": "deletion"
+ },
+ "case_143": {
+  "authorizes_deletion": true,
+  "fingerprint": "341ee2374fe815f2",
+  "kind": "deletion"
+ },
+ "case_144": {
+  "authorizes_deletion": true,
+  "fingerprint": "519765b04f059e5e",
+  "kind": "deletion"
+ },
+ "case_145": {
+  "authorizes_deletion": true,
+  "fingerprint": "ca318283948a0601",
+  "kind": "deletion"
+ },
+ "case_146": {
+  "authorizes_deletion": true,
+  "fingerprint": "1a7ad9f6f48f622e",
+  "kind": "deletion"
+ },
+ "case_147": {
+  "authorizes_deletion": true,
+  "fingerprint": "4687d498ac735f35",
+  "kind": "deletion"
+ },
+ "case_148": {
+  "authorizes_deletion": true,
+  "fingerprint": "33fb733cbc090daf",
+  "kind": "deletion"
+ },
+ "case_149": {
+  "authorizes_deletion": true,
+  "fingerprint": "d5b921e389571cd4",
+  "kind": "deletion"
+ },
+ "case_15": {
+  "authorizes_deletion": true,
+  "fingerprint": "170c3253dbfb4d83",
+  "kind": "deletion"
+ },
+ "case_150": {
+  "authorizes_deletion": true,
+  "fingerprint": "f07ecb75e03f7b6e",
+  "kind": "deletion"
+ },
+ "case_151": {
+  "authorizes_deletion": true,
+  "fingerprint": "02c27d218e571a23",
+  "kind": "deletion"
+ },
+ "case_152": {
+  "authorizes_deletion": true,
+  "fingerprint": "b4e7a5cd754ceb21",
+  "kind": "deletion"
+ },
+ "case_153": {
+  "authorizes_deletion": true,
+  "fingerprint": "df1ec8db444fd975",
+  "kind": "deletion"
+ },
+ "case_154": {
+  "authorizes_deletion": true,
+  "fingerprint": "950b62a7c20c3f2e",
+  "kind": "deletion"
+ },
+ "case_155": {
+  "authorizes_deletion": true,
+  "fingerprint": "84297bea1a89668d",
+  "kind": "deletion"
+ },
+ "case_156": {
+  "authorizes_deletion": true,
+  "fingerprint": "b5dcbe3626620e59",
+  "kind": "deletion"
+ },
+ "case_157": {
+  "authorizes_deletion": true,
+  "fingerprint": "30ca69b6116687f9",
+  "kind": "deletion"
+ },
+ "case_158": {
+  "authorizes_deletion": true,
+  "fingerprint": "3f84823c385fc0f8",
+  "kind": "deletion"
+ },
+ "case_159": {
+  "authorizes_deletion": true,
+  "fingerprint": "697a0ae68044abfb",
+  "kind": "deletion"
+ },
+ "case_16": {
+  "authorizes_deletion": true,
+  "fingerprint": "2562fa46e8c2a3f5",
+  "kind": "deletion"
+ },
+ "case_160": {
+  "authorizes_deletion": true,
+  "fingerprint": "0d43c71ad666f541",
+  "kind": "deletion"
+ },
+ "case_161": {
+  "authorizes_deletion": true,
+  "fingerprint": "085c0b95ff1c4b80",
+  "kind": "deletion"
+ },
+ "case_162": {
+  "authorizes_deletion": true,
+  "fingerprint": "96a952a09e469f00",
+  "kind": "deletion"
+ },
+ "case_163": {
+  "authorizes_deletion": true,
+  "fingerprint": "b09f975cad9f0729",
+  "kind": "deletion"
+ },
+ "case_164": {
+  "authorizes_deletion": true,
+  "fingerprint": "547e9ae2199dc307",
+  "kind": "deletion"
+ },
+ "case_165": {
+  "authorizes_deletion": true,
+  "fingerprint": "f74e8e6e698108af",
+  "kind": "deletion"
+ },
+ "case_166": {
+  "authorizes_deletion": true,
+  "fingerprint": "b0cab2afc0776392",
+  "kind": "deletion"
+ },
+ "case_167": {
+  "authorizes_deletion": true,
+  "fingerprint": "3c762070111bfa25",
+  "kind": "deletion"
+ },
+ "case_168": {
+  "authorizes_deletion": true,
+  "fingerprint": "0c7b505b98c579d8",
+  "kind": "deletion"
+ },
+ "case_169": {
+  "authorizes_deletion": true,
+  "fingerprint": "4db8d5add0f2be65",
+  "kind": "deletion"
+ },
+ "case_17": {
+  "authorizes_deletion": true,
+  "fingerprint": "e33eea8fb041dec8",
+  "kind": "deletion"
+ },
+ "case_170": {
+  "authorizes_deletion": true,
+  "fingerprint": "f43e271794487d84",
+  "kind": "deletion"
+ },
+ "case_171": {
+  "authorizes_deletion": true,
+  "fingerprint": "526523758a6cef72",
+  "kind": "deletion"
+ },
+ "case_172": {
+  "authorizes_deletion": true,
+  "fingerprint": "3507e0d9778e21b5",
+  "kind": "deletion"
+ },
+ "case_173": {
+  "authorizes_deletion": true,
+  "fingerprint": "344248b18dbf1295",
+  "kind": "deletion"
+ },
+ "case_174": {
+  "authorizes_deletion": true,
+  "fingerprint": "c578cb561dd45fce",
+  "kind": "deletion"
+ },
+ "case_175": {
+  "authorizes_deletion": true,
+  "fingerprint": "2c58cf3e480e1604",
+  "kind": "deletion"
+ },
+ "case_176": {
+  "authorizes_deletion": true,
+  "fingerprint": "a4302c6055bab7b1",
+  "kind": "deletion"
+ },
+ "case_177": {
+  "authorizes_deletion": true,
+  "fingerprint": "38ae15cebdbcc4e2",
+  "kind": "deletion"
+ },
+ "case_178": {
+  "authorizes_deletion": true,
+  "fingerprint": "14d1f395807d65c7",
+  "kind": "deletion"
+ },
+ "case_179": {
+  "authorizes_deletion": true,
+  "fingerprint": "3908b7d3c8d3fda9",
+  "kind": "deletion"
+ },
+ "case_18": {
+  "authorizes_deletion": true,
+  "fingerprint": "6935afa40ebdada5",
+  "kind": "deletion"
+ },
+ "case_180": {
+  "authorizes_deletion": true,
+  "fingerprint": "440ea5e2a73e22fe",
+  "kind": "deletion"
+ },
+ "case_181": {
+  "authorizes_deletion": true,
+  "fingerprint": "aabee8a27b22c9ec",
+  "kind": "deletion"
+ },
+ "case_182": {
+  "authorizes_deletion": true,
+  "fingerprint": "d062e30857d50d58",
+  "kind": "deletion"
+ },
+ "case_183": {
+  "authorizes_deletion": true,
+  "fingerprint": "519765b04f059e5e",
+  "kind": "deletion"
+ },
+ "case_184": {
+  "authorizes_deletion": true,
+  "fingerprint": "ee45e359efd3034e",
+  "kind": "deletion"
+ },
+ "case_185": {
+  "authorizes_deletion": true,
+  "fingerprint": "61d30c7959532769",
+  "kind": "deletion"
+ },
+ "case_186": {
+  "authorizes_deletion": true,
+  "fingerprint": "4687d498ac735f35",
+  "kind": "deletion"
+ },
+ "case_187": {
+  "authorizes_deletion": true,
+  "fingerprint": "3ef37ae55a44c778",
+  "kind": "deletion"
+ },
+ "case_188": {
+  "authorizes_deletion": true,
+  "fingerprint": "29ceb00ec5016a8e",
+  "kind": "deletion"
+ },
+ "case_189": {
+  "authorizes_deletion": true,
+  "fingerprint": "f1edc1853b4954d0",
+  "kind": "deletion"
+ },
+ "case_19": {
+  "authorizes_deletion": true,
+  "fingerprint": "7589b67f96a0cc1d",
+  "kind": "deletion"
+ },
+ "case_190": {
+  "authorizes_deletion": true,
+  "fingerprint": "0c364222c0575bd0",
+  "kind": "deletion"
+ },
+ "case_191": {
+  "authorizes_deletion": true,
+  "fingerprint": "19cd4d1f7b0dff58",
+  "kind": "deletion"
+ },
+ "case_192": {
+  "authorizes_deletion": true,
+  "fingerprint": "af653111f11a43ec",
+  "kind": "deletion"
+ },
+ "case_193": {
+  "authorizes_deletion": true,
+  "fingerprint": "926c18a438121aa0",
+  "kind": "deletion"
+ },
+ "case_194": {
+  "authorizes_deletion": true,
+  "fingerprint": "70457a5d2abd00e2",
+  "kind": "deletion"
+ },
+ "case_195": {
+  "authorizes_deletion": true,
+  "fingerprint": "b5dcbe3626620e59",
+  "kind": "deletion"
+ },
+ "case_196": {
+  "authorizes_deletion": true,
+  "fingerprint": "6e5da8add5a8d584",
+  "kind": "deletion"
+ },
+ "case_197": {
+  "authorizes_deletion": true,
+  "fingerprint": "41b695b028a83b6b",
+  "kind": "deletion"
+ },
+ "case_198": {
+  "authorizes_deletion": true,
+  "fingerprint": "32bdd3666a02839b",
+  "kind": "deletion"
+ },
+ "case_199": {
+  "authorizes_deletion": true,
+  "fingerprint": "b50e291723e76080",
+  "kind": "deletion"
+ },
+ "case_20": {
+  "authorizes_deletion": true,
+  "fingerprint": "ba771c7e38d386cc",
+  "kind": "deletion"
+ },
+ "case_200": {
+  "authorizes_deletion": true,
+  "fingerprint": "6c0c05a43d82b478",
+  "kind": "deletion"
+ },
+ "case_201": {
+  "authorizes_deletion": true,
+  "fingerprint": "96a952a09e469f00",
+  "kind": "deletion"
+ },
+ "case_202": {
+  "authorizes_deletion": true,
+  "fingerprint": "ea4f7ab77750359c",
+  "kind": "deletion"
+ },
+ "case_203": {
+  "authorizes_deletion": true,
+  "fingerprint": "885b016c9f28414c",
+  "kind": "deletion"
+ },
+ "case_204": {
+  "authorizes_deletion": true,
+  "fingerprint": "1b7acb903e765db7",
+  "kind": "deletion"
+ },
+ "case_205": {
+  "authorizes_deletion": true,
+  "fingerprint": "81d32c1de9694b8a",
+  "kind": "deletion"
+ },
+ "case_206": {
+  "authorizes_deletion": true,
+  "fingerprint": "a5b53705d9e6be30",
+  "kind": "deletion"
+ },
+ "case_207": {
+  "authorizes_deletion": true,
+  "fingerprint": "d2d55152856aaf20",
+  "kind": "deletion"
+ },
+ "case_208": {
+  "authorizes_deletion": true,
+  "fingerprint": "3908b7d3c8d3fda9",
+  "kind": "deletion"
+ },
+ "case_209": {
+  "authorizes_deletion": true,
+  "fingerprint": "7da748f7609ab37e",
+  "kind": "deletion"
+ },
+ "case_21": {
+  "authorizes_deletion": true,
+  "fingerprint": "e1bfdd0ba6d244ae",
+  "kind": "verification"
+ },
+ "case_210": {
+  "authorizes_deletion": true,
+  "fingerprint": "526523758a6cef72",
+  "kind": "deletion"
+ },
+ "case_211": {
+  "authorizes_deletion": true,
+  "fingerprint": "e9fd73be07e1c136",
+  "kind": "deletion"
+ },
+ "case_212": {
+  "authorizes_deletion": true,
+  "fingerprint": "3fda81310169d033",
+  "kind": "deletion"
+ },
+ "case_213": {
+  "authorizes_deletion": true,
+  "fingerprint": "37c63b020e928c19",
+  "kind": "deletion"
+ },
+ "case_214": {
+  "authorizes_deletion": true,
+  "fingerprint": "741cf3fc9d21bd5a",
+  "kind": "deletion"
+ },
+ "case_215": {
+  "authorizes_deletion": true,
+  "fingerprint": "fb8f214b716976bb",
+  "kind": "deletion"
+ },
+ "case_216": {
+  "authorizes_deletion": true,
+  "fingerprint": "0d43c71ad666f541",
+  "kind": "deletion"
+ },
+ "case_217": {
+  "authorizes_deletion": true,
+  "fingerprint": "ee0a8c465c08f47c",
+  "kind": "deletion"
+ },
+ "case_218": {
+  "authorizes_deletion": true,
+  "fingerprint": "138921602b08238a",
+  "kind": "deletion"
+ },
+ "case_219": {
+  "authorizes_deletion": true,
+  "fingerprint": "c2b980525f1d2ae5",
+  "kind": "deletion"
+ },
+ "case_22": {
+  "authorizes_deletion": true,
+  "fingerprint": "797c116e21d7bec6",
+  "kind": "deletion"
+ },
+ "case_220": {
+  "authorizes_deletion": true,
+  "fingerprint": "62ecf7f386c13cfd",
+  "kind": "deletion"
+ },
+ "case_221": {
+  "authorizes_deletion": true,
+  "fingerprint": "c16efd5414b3d2f2",
+  "kind": "deletion"
+ },
+ "case_222": {
+  "authorizes_deletion": true,
+  "fingerprint": "519765b04f059e5e",
+  "kind": "deletion"
+ },
+ "case_223": {
+  "authorizes_deletion": true,
+  "fingerprint": "47efe52d5fa6a196",
+  "kind": "deletion"
+ },
+ "case_224": {
+  "authorizes_deletion": true,
+  "fingerprint": "afc43749a50d6494",
+  "kind": "deletion"
+ },
+ "case_225": {
+  "authorizes_deletion": true,
+  "fingerprint": "4687d498ac735f35",
+  "kind": "deletion"
+ },
+ "case_226": {
+  "authorizes_deletion": true,
+  "fingerprint": "d828cf455e4c8eb4",
+  "kind": "deletion"
+ },
+ "case_227": {
+  "authorizes_deletion": true,
+  "fingerprint": "1f998e3e6442d81e",
+  "kind": "deletion"
+ },
+ "case_228": {
+  "authorizes_deletion": true,
+  "fingerprint": "8468e67b4be532b6",
+  "kind": "deletion"
+ },
+ "case_229": {
+  "authorizes_deletion": true,
+  "fingerprint": "3c94425b1672f7b2",
+  "kind": "deletion"
+ },
+ "case_23": {
+  "authorizes_deletion": true,
+  "fingerprint": "086ebbffe64ef344",
+  "kind": "deletion"
+ },
+ "case_230": {
+  "authorizes_deletion": true,
+  "fingerprint": "f4514a0dbfc21c6e",
+  "kind": "deletion"
+ },
+ "case_231": {
+  "authorizes_deletion": true,
+  "fingerprint": "be2617a5b4d04eb0",
+  "kind": "deletion"
+ },
+ "case_232": {
+  "authorizes_deletion": true,
+  "fingerprint": "0c0092a4d0975306",
+  "kind": "deletion"
+ },
+ "case_233": {
+  "authorizes_deletion": true,
+  "fingerprint": "608a59823c90ea96",
+  "kind": "deletion"
+ },
+ "case_234": {
+  "authorizes_deletion": true,
+  "fingerprint": "b5dcbe3626620e59",
+  "kind": "deletion"
+ },
+ "case_235": {
+  "authorizes_deletion": true,
+  "fingerprint": "38ae15cebdbcc4e2",
+  "kind": "deletion"
+ },
+ "case_236": {
+  "authorizes_deletion": true,
+  "fingerprint": "c7aebebc548ee72a",
+  "kind": "deletion"
+ },
+ "case_237": {
+  "authorizes_deletion": true,
+  "fingerprint": "85b61ad9bc3d3208",
+  "kind": "deletion"
+ },
+ "case_238": {
+  "authorizes_deletion": true,
+  "fingerprint": "1399d00bb57a0d8b",
+  "kind": "deletion"
+ },
+ "case_239": {
+  "authorizes_deletion": true,
+  "fingerprint": "55a322c4b8699223",
+  "kind": "deletion"
+ },
+ "case_24": {
+  "authorizes_deletion": true,
+  "fingerprint": "dcb86a6dcc0945c7",
+  "kind": "verification"
+ },
+ "case_240": {
+  "authorizes_deletion": true,
+  "fingerprint": "96a952a09e469f00",
+  "kind": "deletion"
+ },
+ "case_241": {
+  "authorizes_deletion": true,
+  "fingerprint": "4d76f7c989341b75",
+  "kind": "deletion"
+ },
+ "case_242": {
+  "authorizes_deletion": true,
+  "fingerprint": "e7edd8e0eceed978",
+  "kind": "deletion"
+ },
+ "case_243": {
+  "authorizes_deletion": true,
+  "fingerprint": "99c8fdfa4b5845b8",
+  "kind": "deletion"
+ },
+ "case_244": {
+  "authorizes_deletion": true,
+  "fingerprint": "3eedd238623fb0ce",
+  "kind": "deletion"
+ },
+ "case_245": {
+  "authorizes_deletion": true,
+  "fingerprint": "b07d9497aa194e49",
+  "kind": "deletion"
+ },
+ "case_246": {
+  "authorizes_deletion": true,
+  "fingerprint": "7de8107de359bcf7",
+  "kind": "deletion"
+ },
+ "case_247": {
+  "authorizes_deletion": true,
+  "fingerprint": "e3996c9f178d7f7e",
+  "kind": "deletion"
+ },
+ "case_248": {
+  "authorizes_deletion": true,
+  "fingerprint": "b1d00ee30f561414",
+  "kind": "deletion"
+ },
+ "case_249": {
+  "authorizes_deletion": true,
+  "fingerprint": "526523758a6cef72",
+  "kind": "deletion"
+ },
+ "case_25": {
+  "authorizes_deletion": true,
+  "fingerprint": "49c9b9f6ab21c5d4",
+  "kind": "verification"
+ },
+ "case_250": {
+  "authorizes_deletion": true,
+  "fingerprint": "7d9c6da4916e0e4b",
+  "kind": "deletion"
+ },
+ "case_251": {
+  "authorizes_deletion": true,
+  "fingerprint": "946cd34f1f1223cf",
+  "kind": "deletion"
+ },
+ "case_252": {
+  "authorizes_deletion": true,
+  "fingerprint": "0921cc13f9d017e8",
+  "kind": "deletion"
+ },
+ "case_253": {
+  "authorizes_deletion": true,
+  "fingerprint": "770136ceb8839e63",
+  "kind": "deletion"
+ },
+ "case_254": {
+  "authorizes_deletion": true,
+  "fingerprint": "4794b9a2593ac4ee",
+  "kind": "deletion"
+ },
+ "case_255": {
+  "authorizes_deletion": true,
+  "fingerprint": "b066f20d86a651b9",
+  "kind": "deletion"
+ },
+ "case_256": {
+  "authorizes_deletion": true,
+  "fingerprint": "0d43c71ad666f541",
+  "kind": "deletion"
+ },
+ "case_257": {
+  "authorizes_deletion": true,
+  "fingerprint": "a6773389e3432b6f",
+  "kind": "deletion"
+ },
+ "case_258": {
+  "authorizes_deletion": true,
+  "fingerprint": "138921602b08238a",
+  "kind": "deletion"
+ },
+ "case_259": {
+  "authorizes_deletion": true,
+  "fingerprint": "140c5e28f3125088",
+  "kind": "deletion"
+ },
+ "case_26": {
+  "authorizes_deletion": true,
+  "fingerprint": "6b4eaab30d9ff201",
+  "kind": "verification"
+ },
+ "case_260": {
+  "authorizes_deletion": true,
+  "fingerprint": "f4373a5a8b446a07",
+  "kind": "deletion"
+ },
+ "case_261": {
+  "authorizes_deletion": true,
+  "fingerprint": "519765b04f059e5e",
+  "kind": "deletion"
+ },
+ "case_262": {
+  "authorizes_deletion": true,
+  "fingerprint": "61ca794aa8f0f46d",
+  "kind": "deletion"
+ },
+ "case_263": {
+  "authorizes_deletion": true,
+  "fingerprint": "ffae447c34c70c43",
+  "kind": "deletion"
+ },
+ "case_264": {
+  "authorizes_deletion": true,
+  "fingerprint": "4687d498ac735f35",
+  "kind": "deletion"
+ },
+ "case_265": {
+  "authorizes_deletion": true,
+  "fingerprint": "93f1014ecb2407c3",
+  "kind": "deletion"
+ },
+ "case_266": {
+  "authorizes_deletion": true,
+  "fingerprint": "2b49fd5d8d9be8e9",
+  "kind": "deletion"
+ },
+ "case_267": {
+  "authorizes_deletion": true,
+  "fingerprint": "4c014ddc3646d682",
+  "kind": "deletion"
+ },
+ "case_268": {
+  "authorizes_deletion": true,
+  "fingerprint": "248a34ff670c8fed",
+  "kind": "deletion"
+ },
+ "case_269": {
+  "authorizes_deletion": true,
+  "fingerprint": "6935afa40ebdada5",
+  "kind": "deletion"
+ },
+ "case_27": {
+  "authorizes_deletion": true,
+  "fingerprint": "cb8cd21217ee95bc",
+  "kind": "verification"
+ },
+ "case_270": {
+  "authorizes_deletion": true,
+  "fingerprint": "1f998e3e6442d81e",
+  "kind": "deletion"
+ },
+ "case_271": {
+  "authorizes_deletion": true,
+  "fingerprint": "d630a28dd185a193",
+  "kind": "deletion"
+ },
+ "case_272": {
+  "authorizes_deletion": true,
+  "fingerprint": "f66fc4af2e705d0f",
+  "kind": "deletion"
+ },
+ "case_273": {
+  "authorizes_deletion": true,
+  "fingerprint": "b5dcbe3626620e59",
+  "kind": "deletion"
+ },
+ "case_274": {
+  "authorizes_deletion": true,
+  "fingerprint": "ec93552d90751c9d",
+  "kind": "deletion"
+ },
+ "case_275": {
+  "authorizes_deletion": true,
+  "fingerprint": "890f7aea9543ffc1",
+  "kind": "deletion"
+ },
+ "case_276": {
+  "authorizes_deletion": true,
+  "fingerprint": "1ca9f4f2cca93e4b",
+  "kind": "deletion"
+ },
+ "case_277": {
+  "authorizes_deletion": true,
+  "fingerprint": "7672d7f4fbaae17f",
+  "kind": "deletion"
+ },
+ "case_278": {
+  "authorizes_deletion": true,
+  "fingerprint": "28ade67584cec8f6",
+  "kind": "deletion"
+ },
+ "case_279": {
+  "authorizes_deletion": true,
+  "fingerprint": "96a952a09e469f00",
+  "kind": "deletion"
+ },
+ "case_28": {
+  "authorizes_deletion": true,
+  "fingerprint": "69d20dacb67f801c",
+  "kind": "verification"
+ },
+ "case_280": {
+  "authorizes_deletion": true,
+  "fingerprint": "138921602b08238a",
+  "kind": "deletion"
+ },
+ "case_281": {
+  "authorizes_deletion": true,
+  "fingerprint": "3e20300a1e237ec1",
+  "kind": "deletion"
+ },
+ "case_282": {
+  "authorizes_deletion": true,
+  "fingerprint": "d235c8e40b92c97f",
+  "kind": "deletion"
+ },
+ "case_283": {
+  "authorizes_deletion": true,
+  "fingerprint": "52acbc1ddb37f6ca",
+  "kind": "deletion"
+ },
+ "case_284": {
+  "authorizes_deletion": true,
+  "fingerprint": "ce27e984c773f047",
+  "kind": "deletion"
+ },
+ "case_285": {
+  "authorizes_deletion": true,
+  "fingerprint": "e69b5947f4fa8792",
+  "kind": "deletion"
+ },
+ "case_286": {
+  "authorizes_deletion": true,
+  "fingerprint": "26d21a3aa53d80c8",
+  "kind": "deletion"
+ },
+ "case_287": {
+  "authorizes_deletion": true,
+  "fingerprint": "b3bcbbd28c90e1f1",
+  "kind": "deletion"
+ },
+ "case_288": {
+  "authorizes_deletion": true,
+  "fingerprint": "526523758a6cef72",
+  "kind": "deletion"
+ },
+ "case_289": {
+  "authorizes_deletion": true,
+  "fingerprint": "83bd213d734d8172",
+  "kind": "deletion"
+ },
+ "case_29": {
+  "authorizes_deletion": true,
+  "fingerprint": "1d3f4a67e369fcc7",
+  "kind": "deletion"
+ },
+ "case_290": {
+  "authorizes_deletion": true,
+  "fingerprint": "7b4a2ba7955026bb",
+  "kind": "deletion"
+ },
+ "case_291": {
+  "authorizes_deletion": true,
+  "fingerprint": "10f368c90b39cbd3",
+  "kind": "deletion"
+ },
+ "case_292": {
+  "authorizes_deletion": true,
+  "fingerprint": "c7827781eabdcf56",
+  "kind": "deletion"
+ },
+ "case_293": {
+  "authorizes_deletion": true,
+  "fingerprint": "486f0beeacbb713c",
+  "kind": "deletion"
+ },
+ "case_294": {
+  "authorizes_deletion": true,
+  "fingerprint": "f8cf396a767721d0",
+  "kind": "deletion"
+ },
+ "case_295": {
+  "authorizes_deletion": true,
+  "fingerprint": "a4ffcb88025cdee6",
+  "kind": "deletion"
+ },
+ "case_296": {
+  "authorizes_deletion": true,
+  "fingerprint": "324b44f5d66a2ba1",
+  "kind": "deletion"
+ },
+ "case_297": {
+  "authorizes_deletion": true,
+  "fingerprint": "48c56e2fdf1058eb",
+  "kind": "deletion"
+ },
+ "case_298": {
+  "authorizes_deletion": true,
+  "fingerprint": "1c08556671c5cb72",
+  "kind": "deletion"
+ },
+ "case_299": {
+  "authorizes_deletion": true,
+  "fingerprint": "32b94c04890efeb9",
+  "kind": "deletion"
+ },
+ "case_30": {
+  "authorizes_deletion": true,
+  "fingerprint": "6b95666432dc1fb6",
+  "kind": "deletion"
+ },
+ "case_300": {
+  "authorizes_deletion": true,
+  "fingerprint": "519765b04f059e5e",
+  "kind": "deletion"
+ },
+ "case_301": {
+  "authorizes_deletion": true,
+  "fingerprint": "ec4152185577541c",
+  "kind": "deletion"
+ },
+ "case_302": {
+  "authorizes_deletion": true,
+  "fingerprint": "f4373a5a8b446a07",
+  "kind": "deletion"
+ },
+ "case_303": {
+  "authorizes_deletion": true,
+  "fingerprint": "4687d498ac735f35",
+  "kind": "deletion"
+ },
+ "case_304": {
+  "authorizes_deletion": true,
+  "fingerprint": "3445faa7c63495b3",
+  "kind": "deletion"
+ },
+ "case_305": {
+  "authorizes_deletion": true,
+  "fingerprint": "dd0175cc64145574",
+  "kind": "deletion"
+ },
+ "case_306": {
+  "authorizes_deletion": true,
+  "fingerprint": "51aef7c2ce6fae44",
+  "kind": "deletion"
+ },
+ "case_307": {
+  "authorizes_deletion": true,
+  "fingerprint": "701e1b4280fd23a8",
+  "kind": "deletion"
+ },
+ "case_308": {
+  "authorizes_deletion": true,
+  "fingerprint": "8e1940eb1d1d152a",
+  "kind": "deletion"
+ },
+ "case_309": {
+  "authorizes_deletion": true,
+  "fingerprint": "1333708dcb7a66fe",
+  "kind": "deletion"
+ },
+ "case_31": {
+  "authorizes_deletion": true,
+  "fingerprint": "595c4ec93576f93d",
+  "kind": "deletion"
+ },
+ "case_310": {
+  "authorizes_deletion": true,
+  "fingerprint": "f7f3e19ad599bcdd",
+  "kind": "deletion"
+ },
+ "case_311": {
+  "authorizes_deletion": true,
+  "fingerprint": "b2b5c54aba7e654b",
+  "kind": "deletion"
+ },
+ "case_312": {
+  "authorizes_deletion": true,
+  "fingerprint": "b5dcbe3626620e59",
+  "kind": "deletion"
+ },
+ "case_313": {
+  "authorizes_deletion": true,
+  "fingerprint": "f240def58f5ba384",
+  "kind": "deletion"
+ },
+ "case_314": {
+  "authorizes_deletion": true,
+  "fingerprint": "4c5eac6bb771e7e6",
+  "kind": "deletion"
+ },
+ "case_315": {
+  "authorizes_deletion": true,
+  "fingerprint": "13b177a501cca3bd",
+  "kind": "deletion"
+ },
+ "case_316": {
+  "authorizes_deletion": true,
+  "fingerprint": "341ee2374fe815f2",
+  "kind": "deletion"
+ },
+ "case_317": {
+  "authorizes_deletion": true,
+  "fingerprint": "9a88ccc42d3b5d84",
+  "kind": "deletion"
+ },
+ "case_318": {
+  "authorizes_deletion": true,
+  "fingerprint": "96a952a09e469f00",
+  "kind": "deletion"
+ },
+ "case_319": {
+  "authorizes_deletion": true,
+  "fingerprint": "e5f19e280184146f",
+  "kind": "deletion"
+ },
+ "case_32": {
+  "authorizes_deletion": true,
+  "fingerprint": "c86605fe5218572a",
+  "kind": "deletion"
+ },
+ "case_320": {
+  "authorizes_deletion": true,
+  "fingerprint": "50812865e602a463",
+  "kind": "deletion"
+ },
+ "case_321": {
+  "authorizes_deletion": true,
+  "fingerprint": "a11c0e3ee83fe00c",
+  "kind": "deletion"
+ },
+ "case_322": {
+  "authorizes_deletion": true,
+  "fingerprint": "f8d41bc22884c9a2",
+  "kind": "deletion"
+ },
+ "case_323": {
+  "authorizes_deletion": true,
+  "fingerprint": "39df7895b5eacd73",
+  "kind": "deletion"
+ },
+ "case_324": {
+  "authorizes_deletion": true,
+  "fingerprint": "db6fa173de2fae7e",
+  "kind": "deletion"
+ },
+ "case_325": {
+  "authorizes_deletion": true,
+  "fingerprint": "32db1e5328273608",
+  "kind": "deletion"
+ },
+ "case_326": {
+  "authorizes_deletion": true,
+  "fingerprint": "25ad38ea792d202f",
+  "kind": "deletion"
+ },
+ "case_327": {
+  "authorizes_deletion": true,
+  "fingerprint": "526523758a6cef72",
+  "kind": "deletion"
+ },
+ "case_328": {
+  "authorizes_deletion": true,
+  "fingerprint": "a7afd665bb6f7ff1",
+  "kind": "deletion"
+ },
+ "case_329": {
+  "authorizes_deletion": true,
+  "fingerprint": "a3667dfb333ab594",
+  "kind": "deletion"
+ },
+ "case_33": {
+  "authorizes_deletion": true,
+  "fingerprint": "067f07ea872347bf",
+  "kind": "deletion"
+ },
+ "case_330": {
+  "authorizes_deletion": true,
+  "fingerprint": "ac9c61c3bf87b6a6",
+  "kind": "deletion"
+ },
+ "case_331": {
+  "authorizes_deletion": true,
+  "fingerprint": "c1326f35a1cd154e",
+  "kind": "deletion"
+ },
+ "case_332": {
+  "authorizes_deletion": true,
+  "fingerprint": "770136ceb8839e63",
+  "kind": "deletion"
+ },
+ "case_333": {
+  "authorizes_deletion": true,
+  "fingerprint": "29ddc8065113537d",
+  "kind": "deletion"
+ },
+ "case_334": {
+  "authorizes_deletion": true,
+  "fingerprint": "aec5dda3b8e2182a",
+  "kind": "deletion"
+ },
+ "case_335": {
+  "authorizes_deletion": true,
+  "fingerprint": "da082eb18654e54b",
+  "kind": "deletion"
+ },
+ "case_336": {
+  "authorizes_deletion": true,
+  "fingerprint": "2562fa46e8c2a3f5",
+  "kind": "deletion"
+ },
+ "case_337": {
+  "authorizes_deletion": true,
+  "fingerprint": "6e2743962ef93d5c",
+  "kind": "deletion"
+ },
+ "case_338": {
+  "authorizes_deletion": true,
+  "fingerprint": "9ea82e859f51da0d",
+  "kind": "deletion"
+ },
+ "case_339": {
+  "authorizes_deletion": true,
+  "fingerprint": "519765b04f059e5e",
+  "kind": "deletion"
+ },
+ "case_34": {
+  "authorizes_deletion": true,
+  "fingerprint": "d7cb81260a2c16c3",
+  "kind": "deletion"
+ },
+ "case_340": {
+  "authorizes_deletion": true,
+  "fingerprint": "b1d00ee30f561414",
+  "kind": "deletion"
+ },
+ "case_341": {
+  "authorizes_deletion": true,
+  "fingerprint": "ba2a55a13333f0b5",
+  "kind": "deletion"
+ },
+ "case_342": {
+  "authorizes_deletion": true,
+  "fingerprint": "4687d498ac735f35",
+  "kind": "deletion"
+ },
+ "case_343": {
+  "authorizes_deletion": true,
+  "fingerprint": "e9212ec11b76c213",
+  "kind": "deletion"
+ },
+ "case_344": {
+  "authorizes_deletion": true,
+  "fingerprint": "d305c8e06d5854a9",
+  "kind": "deletion"
+ },
+ "case_345": {
+  "authorizes_deletion": true,
+  "fingerprint": "a3bf89b6a3032132",
+  "kind": "deletion"
+ },
+ "case_346": {
+  "authorizes_deletion": true,
+  "fingerprint": "40bf64e906472ba9",
+  "kind": "deletion"
+ },
+ "case_347": {
+  "authorizes_deletion": true,
+  "fingerprint": "b85ede2d496f048f",
+  "kind": "deletion"
+ },
+ "case_348": {
+  "authorizes_deletion": true,
+  "fingerprint": "11403bc9f2f49797",
+  "kind": "deletion"
+ },
+ "case_349": {
+  "authorizes_deletion": true,
+  "fingerprint": "d9080a8ca991d536",
+  "kind": "deletion"
+ },
+ "case_35": {
+  "authorizes_deletion": true,
+  "fingerprint": "bcf56fb55e0325d0",
+  "kind": "deletion"
+ },
+ "case_350": {
+  "authorizes_deletion": true,
+  "fingerprint": "5ca59253f240ed9d",
+  "kind": "deletion"
+ },
+ "case_351": {
+  "authorizes_deletion": true,
+  "fingerprint": "b5dcbe3626620e59",
+  "kind": "deletion"
+ },
+ "case_352": {
+  "authorizes_deletion": true,
+  "fingerprint": "21d71e0c454bb254",
+  "kind": "deletion"
+ },
+ "case_353": {
+  "authorizes_deletion": true,
+  "fingerprint": "d85fb9bb232d5d52",
+  "kind": "deletion"
+ },
+ "case_354": {
+  "authorizes_deletion": true,
+  "fingerprint": "da7bc3fe1c3946a4",
+  "kind": "deletion"
+ },
+ "case_355": {
+  "authorizes_deletion": true,
+  "fingerprint": "ec6243b429e74266",
+  "kind": "deletion"
+ },
+ "case_356": {
+  "authorizes_deletion": true,
+  "fingerprint": "c16efd5414b3d2f2",
+  "kind": "deletion"
+ },
+ "case_357": {
+  "authorizes_deletion": true,
+  "fingerprint": "96a952a09e469f00",
+  "kind": "deletion"
+ },
+ "case_358": {
+  "authorizes_deletion": true,
+  "fingerprint": "8d96fdf7ba01e6e4",
+  "kind": "deletion"
+ },
+ "case_359": {
+  "authorizes_deletion": true,
+  "fingerprint": "da3e258f4c1a70bc",
+  "kind": "deletion"
+ },
+ "case_36": {
+  "authorizes_deletion": true,
+  "fingerprint": "12d0b1499fca70d5",
+  "kind": "deletion"
+ },
+ "case_360": {
+  "authorizes_deletion": true,
+  "fingerprint": "d9080a8ca991d536",
+  "kind": "deletion"
+ },
+ "case_361": {
+  "authorizes_deletion": true,
+  "fingerprint": "deea4976b25fde5a",
+  "kind": "deletion"
+ },
+ "case_362": {
+  "authorizes_deletion": true,
+  "fingerprint": "a444e5c47f310ead",
+  "kind": "deletion"
+ },
+ "case_363": {
+  "authorizes_deletion": true,
+  "fingerprint": "4783d949add4b4f1",
+  "kind": "deletion"
+ },
+ "case_364": {
+  "authorizes_deletion": true,
+  "fingerprint": "c2b980525f1d2ae5",
+  "kind": "deletion"
+ },
+ "case_365": {
+  "authorizes_deletion": true,
+  "fingerprint": "029a5c1f48efca44",
+  "kind": "deletion"
+ },
+ "case_366": {
+  "authorizes_deletion": true,
+  "fingerprint": "526523758a6cef72",
+  "kind": "deletion"
+ },
+ "case_367": {
+  "authorizes_deletion": true,
+  "fingerprint": "25cba9a24547315e",
+  "kind": "deletion"
+ },
+ "case_368": {
+  "authorizes_deletion": true,
+  "fingerprint": "9dac8dcf8518c4fa",
+  "kind": "deletion"
+ },
+ "case_369": {
+  "authorizes_deletion": true,
+  "fingerprint": "8125df3ad79ba47b",
+  "kind": "deletion"
+ },
+ "case_37": {
+  "authorizes_deletion": true,
+  "fingerprint": "8ef18caf29ce4b6d",
+  "kind": "deletion"
+ },
+ "case_370": {
+  "authorizes_deletion": true,
+  "fingerprint": "3a231bb6fa93e360",
+  "kind": "deletion"
+ },
+ "case_371": {
+  "authorizes_deletion": true,
+  "fingerprint": "6be7d716b0d1e5cb",
+  "kind": "deletion"
+ },
+ "case_372": {
+  "authorizes_deletion": true,
+  "fingerprint": "8fc6520583d717c5",
+  "kind": "deletion"
+ },
+ "case_373": {
+  "authorizes_deletion": true,
+  "fingerprint": "c033ac9e6859dd7d",
+  "kind": "deletion"
+ },
+ "case_374": {
+  "authorizes_deletion": true,
+  "fingerprint": "dda5d1c94cf0d15b",
+  "kind": "deletion"
+ },
+ "case_375": {
+  "authorizes_deletion": true,
+  "fingerprint": "3954636de7418e5e",
+  "kind": "deletion"
+ },
+ "case_376": {
+  "authorizes_deletion": true,
+  "fingerprint": "926c18a438121aa0",
+  "kind": "deletion"
+ },
+ "case_377": {
+  "authorizes_deletion": true,
+  "fingerprint": "77e3db908d32ead5",
+  "kind": "deletion"
+ },
+ "case_378": {
+  "authorizes_deletion": true,
+  "fingerprint": "519765b04f059e5e",
+  "kind": "deletion"
+ },
+ "case_379": {
+  "authorizes_deletion": true,
+  "fingerprint": "ad23146d68bcee6b",
+  "kind": "deletion"
+ },
+ "case_38": {
+  "authorizes_deletion": true,
+  "fingerprint": "78e90dfe46f9406c",
+  "kind": "deletion"
+ },
+ "case_380": {
+  "authorizes_deletion": true,
+  "fingerprint": "c033ac9e6859dd7d",
+  "kind": "deletion"
+ },
+ "case_381": {
+  "authorizes_deletion": true,
+  "fingerprint": "4687d498ac735f35",
+  "kind": "deletion"
+ },
+ "case_382": {
+  "authorizes_deletion": true,
+  "fingerprint": "d69064765c36c07b",
+  "kind": "deletion"
+ },
+ "case_383": {
+  "authorizes_deletion": true,
+  "fingerprint": "e7a8a81d6c70b000",
+  "kind": "deletion"
+ },
+ "case_384": {
+  "authorizes_deletion": true,
+  "fingerprint": "318a280414928fb7",
+  "kind": "deletion"
+ },
+ "case_385": {
+  "authorizes_deletion": true,
+  "fingerprint": "c08179ee73c87a85",
+  "kind": "deletion"
+ },
+ "case_386": {
+  "authorizes_deletion": true,
+  "fingerprint": "e4918891279dcad9",
+  "kind": "deletion"
+ },
+ "case_387": {
+  "authorizes_deletion": true,
+  "fingerprint": "e53b47ad6a42ea72",
+  "kind": "deletion"
+ },
+ "case_388": {
+  "authorizes_deletion": true,
+  "fingerprint": "c7ddb60ee77f04ea",
+  "kind": "deletion"
+ },
+ "case_389": {
+  "authorizes_deletion": true,
+  "fingerprint": "c16efd5414b3d2f2",
+  "kind": "deletion"
+ },
+ "case_39": {
+  "authorizes_deletion": true,
+  "fingerprint": "e69b5947f4fa8792",
+  "kind": "deletion"
+ },
+ "case_390": {
+  "authorizes_deletion": true,
+  "fingerprint": "b5dcbe3626620e59",
+  "kind": "deletion"
+ },
+ "case_391": {
+  "authorizes_deletion": true,
+  "fingerprint": "229fe560e682d7a1",
+  "kind": "deletion"
+ },
+ "case_392": {
+  "authorizes_deletion": true,
+  "fingerprint": "9624da3ff33c4174",
+  "kind": "deletion"
+ },
+ "case_393": {
+  "authorizes_deletion": true,
+  "fingerprint": "48ffba33f491acce",
+  "kind": "deletion"
+ },
+ "case_394": {
+  "authorizes_deletion": true,
+  "fingerprint": "26271413d7c39629",
+  "kind": "deletion"
+ },
+ "case_395": {
+  "authorizes_deletion": true,
+  "fingerprint": "5d80fd6f8d2d375d",
+  "kind": "deletion"
+ },
+ "case_396": {
+  "authorizes_deletion": true,
+  "fingerprint": "96a952a09e469f00",
+  "kind": "deletion"
+ },
+ "case_397": {
+  "authorizes_deletion": true,
+  "fingerprint": "d94233f07e6b30de",
+  "kind": "deletion"
+ },
+ "case_398": {
+  "authorizes_deletion": true,
+  "fingerprint": "13b177a501cca3bd",
+  "kind": "deletion"
+ },
+ "case_399": {
+  "authorizes_deletion": true,
+  "fingerprint": "db34aeafa60278af",
+  "kind": "deletion"
+ },
+ "case_40": {
+  "authorizes_deletion": true,
+  "fingerprint": "deea4976b25fde5a",
+  "kind": "deletion"
+ },
+ "case_400": {
+  "authorizes_deletion": true,
+  "fingerprint": "e47814fd46cc0585",
+  "kind": "deletion"
+ },
+ "case_401": {
+  "authorizes_deletion": true,
+  "fingerprint": "1399d00bb57a0d8b",
+  "kind": "deletion"
+ },
+ "case_402": {
+  "authorizes_deletion": true,
+  "fingerprint": "ec6243b429e74266",
+  "kind": "deletion"
+ },
+ "case_403": {
+  "authorizes_deletion": true,
+  "fingerprint": "a2563a8cc22a7320",
+  "kind": "deletion"
+ },
+ "case_404": {
+  "authorizes_deletion": true,
+  "fingerprint": "30ca69b6116687f9",
+  "kind": "deletion"
+ },
+ "case_405": {
+  "authorizes_deletion": true,
+  "fingerprint": "526523758a6cef72",
+  "kind": "deletion"
+ },
+ "case_406": {
+  "authorizes_deletion": true,
+  "fingerprint": "b2edf9469ddd10c2",
+  "kind": "deletion"
+ },
+ "case_407": {
+  "authorizes_deletion": true,
+  "fingerprint": "da082eb18654e54b",
+  "kind": "deletion"
+ },
+ "case_408": {
+  "authorizes_deletion": true,
+  "fingerprint": "10f368c90b39cbd3",
+  "kind": "deletion"
+ },
+ "case_409": {
+  "authorizes_deletion": true,
+  "fingerprint": "2c5c85c1bc6e6813",
+  "kind": "deletion"
+ },
+ "case_41": {
+  "authorizes_deletion": true,
+  "fingerprint": "d85fb9bb232d5d52",
+  "kind": "deletion"
+ },
+ "case_410": {
+  "authorizes_deletion": true,
+  "fingerprint": "80eee84590a890dc",
+  "kind": "deletion"
+ },
+ "case_411": {
+  "authorizes_deletion": true,
+  "fingerprint": "e815af3dc4789380",
+  "kind": "deletion"
+ },
+ "case_412": {
+  "authorizes_deletion": true,
+  "fingerprint": "6bdb9724ceff4dd7",
+  "kind": "deletion"
+ },
+ "case_413": {
+  "authorizes_deletion": true,
+  "fingerprint": "2c21f76163bb64a0",
+  "kind": "deletion"
+ },
+ "case_414": {
+  "authorizes_deletion": true,
+  "fingerprint": "1d854b50c40cb3e7",
+  "kind": "deletion"
+ },
+ "case_415": {
+  "authorizes_deletion": true,
+  "fingerprint": "481aa1f764fdf314",
+  "kind": "deletion"
+ },
+ "case_416": {
+  "authorizes_deletion": true,
+  "fingerprint": "e6f21de7277d6a08",
+  "kind": "deletion"
+ },
+ "case_417": {
+  "authorizes_deletion": true,
+  "fingerprint": "519765b04f059e5e",
+  "kind": "deletion"
+ },
+ "case_418": {
+  "authorizes_deletion": true,
+  "fingerprint": "100b122bc14d31b0",
+  "kind": "deletion"
+ },
+ "case_419": {
+  "authorizes_deletion": true,
+  "fingerprint": "5ca59253f240ed9d",
+  "kind": "deletion"
+ },
+ "case_42": {
+  "authorizes_deletion": true,
+  "fingerprint": "413455da7212d9f1",
+  "kind": "deletion"
+ },
+ "case_420": {
+  "authorizes_deletion": true,
+  "fingerprint": "4687d498ac735f35",
+  "kind": "deletion"
+ },
+ "case_421": {
+  "authorizes_deletion": true,
+  "fingerprint": "9fc3e6447c6d76dd",
+  "kind": "deletion"
+ },
+ "case_422": {
+  "authorizes_deletion": true,
+  "fingerprint": "d75dbf14bfc594ff",
+  "kind": "deletion"
+ },
+ "case_423": {
+  "authorizes_deletion": true,
+  "fingerprint": "a397f21b34e39ad6",
+  "kind": "deletion"
+ },
+ "case_424": {
+  "authorizes_deletion": true,
+  "fingerprint": "65a87b165e113aea",
+  "kind": "deletion"
+ },
+ "case_425": {
+  "authorizes_deletion": true,
+  "fingerprint": "b41adab9a25ca6f8",
+  "kind": "deletion"
+ },
+ "case_426": {
+  "authorizes_deletion": true,
+  "fingerprint": "41a26a18241b8d02",
+  "kind": "deletion"
+ },
+ "case_427": {
+  "authorizes_deletion": true,
+  "fingerprint": "3bcf205f62bceb1a",
+  "kind": "deletion"
+ },
+ "case_428": {
+  "authorizes_deletion": true,
+  "fingerprint": "7d155e82d7aab007",
+  "kind": "deletion"
+ },
+ "case_429": {
+  "authorizes_deletion": true,
+  "fingerprint": "b5dcbe3626620e59",
+  "kind": "deletion"
+ },
+ "case_43": {
+  "authorizes_deletion": true,
+  "fingerprint": "59055c91ea464e9b",
+  "kind": "deletion"
+ },
+ "case_430": {
+  "authorizes_deletion": true,
+  "fingerprint": "ca318283948a0601",
+  "kind": "deletion"
+ },
+ "case_431": {
+  "authorizes_deletion": true,
+  "fingerprint": "52c03ba8dfecfe0d",
+  "kind": "deletion"
+ },
+ "case_432": {
+  "authorizes_deletion": true,
+  "fingerprint": "a3667dfb333ab594",
+  "kind": "deletion"
+ },
+ "case_433": {
+  "authorizes_deletion": true,
+  "fingerprint": "00fd268868683ae6",
+  "kind": "deletion"
+ },
+ "case_434": {
+  "authorizes_deletion": true,
+  "fingerprint": "a0a454d3f03c70e5",
+  "kind": "deletion"
+ },
+ "case_435": {
+  "authorizes_deletion": true,
+  "fingerprint": "96a952a09e469f00",
+  "kind": "deletion"
+ },
+ "case_436": {
+  "authorizes_deletion": true,
+  "fingerprint": "2e07c7eeef699fdf",
+  "kind": "deletion"
+ },
+ "case_437": {
+  "authorizes_deletion": true,
+  "fingerprint": "19f18ea6ae9f4f9f",
+  "kind": "deletion"
+ },
+ "case_438": {
+  "authorizes_deletion": true,
+  "fingerprint": "cebce50542705ce3",
+  "kind": "deletion"
+ },
+ "case_439": {
+  "authorizes_deletion": true,
+  "fingerprint": "2ca80bc1ae807076",
+  "kind": "deletion"
+ },
+ "case_44": {
+  "authorizes_deletion": true,
+  "fingerprint": "253fc3f786d285c4",
+  "kind": "deletion"
+ },
+ "case_440": {
+  "authorizes_deletion": true,
+  "fingerprint": "344248b18dbf1295",
+  "kind": "deletion"
+ },
+ "case_441": {
+  "authorizes_deletion": true,
+  "fingerprint": "59111debca516332",
+  "kind": "deletion"
+ },
+ "case_442": {
+  "authorizes_deletion": true,
+  "fingerprint": "5e921915b6b5b0ec",
+  "kind": "deletion"
+ },
+ "case_443": {
+  "authorizes_deletion": true,
+  "fingerprint": "42908a5dcdd50b3d",
+  "kind": "deletion"
+ },
+ "case_444": {
+  "authorizes_deletion": true,
+  "fingerprint": "526523758a6cef72",
+  "kind": "deletion"
+ },
+ "case_445": {
+  "authorizes_deletion": true,
+  "fingerprint": "f43e271794487d84",
+  "kind": "deletion"
+ },
+ "case_446": {
+  "authorizes_deletion": true,
+  "fingerprint": "942829228bbd76f4",
+  "kind": "deletion"
+ },
+ "case_447": {
+  "authorizes_deletion": true,
+  "fingerprint": "ed578d33f1ab79f2",
+  "kind": "deletion"
+ },
+ "case_448": {
+  "authorizes_deletion": true,
+  "fingerprint": "f203cd5e98b0c1c8",
+  "kind": "deletion"
+ },
+ "case_449": {
+  "authorizes_deletion": true,
+  "fingerprint": "870e60b9b073448f",
+  "kind": "deletion"
+ },
+ "case_45": {
+  "authorizes_deletion": true,
+  "fingerprint": "dd0175cc64145574",
+  "kind": "deletion"
+ },
+ "case_450": {
+  "authorizes_deletion": true,
+  "fingerprint": "340106b1018713bb",
+  "kind": "deletion"
+ },
+ "case_451": {
+  "authorizes_deletion": true,
+  "fingerprint": "6be7d716b0d1e5cb",
+  "kind": "deletion"
+ },
+ "case_452": {
+  "authorizes_deletion": true,
+  "fingerprint": "32044747821967fc",
+  "kind": "deletion"
+ },
+ "case_453": {
+  "authorizes_deletion": true,
+  "fingerprint": "ccf32b3374e6bc80",
+  "kind": "deletion"
+ },
+ "case_454": {
+  "authorizes_deletion": true,
+  "fingerprint": "a2563a8cc22a7320",
+  "kind": "deletion"
+ },
+ "case_455": {
+  "authorizes_deletion": true,
+  "fingerprint": "80a41e4edbcdd934",
+  "kind": "deletion"
+ },
+ "case_456": {
+  "authorizes_deletion": true,
+  "fingerprint": "519765b04f059e5e",
+  "kind": "deletion"
+ },
+ "case_457": {
+  "authorizes_deletion": true,
+  "fingerprint": "e3ec832ee27b0437",
+  "kind": "deletion"
+ },
+ "case_458": {
+  "authorizes_deletion": true,
+  "fingerprint": "48cc574a1170b483",
+  "kind": "deletion"
+ },
+ "case_459": {
+  "authorizes_deletion": true,
+  "fingerprint": "4687d498ac735f35",
+  "kind": "deletion"
+ },
+ "case_46": {
+  "authorizes_deletion": true,
+  "fingerprint": "db4b4fb761c4b0b3",
+  "kind": "deletion"
+ },
+ "case_460": {
+  "authorizes_deletion": true,
+  "fingerprint": "8e5448823a8b09b5",
+  "kind": "deletion"
+ },
+ "case_461": {
+  "authorizes_deletion": true,
+  "fingerprint": "968ea76948f209da",
+  "kind": "deletion"
+ },
+ "case_462": {
+  "authorizes_deletion": true,
+  "fingerprint": "115342d888e5fd42",
+  "kind": "deletion"
+ },
+ "case_463": {
+  "authorizes_deletion": true,
+  "fingerprint": "de1df2d3335fab91",
+  "kind": "deletion"
+ },
+ "case_464": {
+  "authorizes_deletion": true,
+  "fingerprint": "e7f3a93a2a3fe708",
+  "kind": "deletion"
+ },
+ "case_465": {
+  "authorizes_deletion": true,
+  "fingerprint": "248a34ff670c8fed",
+  "kind": "deletion"
+ },
+ "case_466": {
+  "authorizes_deletion": true,
+  "fingerprint": "b31b14b383684133",
+  "kind": "deletion"
+ },
+ "case_467": {
+  "authorizes_deletion": true,
+  "fingerprint": "10f368c90b39cbd3",
+  "kind": "deletion"
+ },
+ "case_468": {
+  "authorizes_deletion": true,
+  "fingerprint": "b5dcbe3626620e59",
+  "kind": "deletion"
+ },
+ "case_469": {
+  "authorizes_deletion": true,
+  "fingerprint": "3de7c888e48ce2d4",
+  "kind": "deletion"
+ },
+ "case_47": {
+  "authorizes_deletion": true,
+  "fingerprint": "2d723cfd8b703279",
+  "kind": "deletion"
+ },
+ "case_470": {
+  "authorizes_deletion": true,
+  "fingerprint": "97ea83482a1921e3",
+  "kind": "deletion"
+ },
+ "case_471": {
+  "authorizes_deletion": true,
+  "fingerprint": "8f2f9d87fe5bda07",
+  "kind": "deletion"
+ },
+ "case_472": {
+  "authorizes_deletion": true,
+  "fingerprint": "a0afed736de48d7f",
+  "kind": "deletion"
+ },
+ "case_473": {
+  "authorizes_deletion": true,
+  "fingerprint": "bc1c535d3c880cac",
+  "kind": "deletion"
+ },
+ "case_474": {
+  "authorizes_deletion": true,
+  "fingerprint": "96a952a09e469f00",
+  "kind": "deletion"
+ },
+ "case_475": {
+  "authorizes_deletion": true,
+  "fingerprint": "f70c73fcc4cd5503",
+  "kind": "deletion"
+ },
+ "case_476": {
+  "authorizes_deletion": true,
+  "fingerprint": "97ea83482a1921e3",
+  "kind": "deletion"
+ },
+ "case_477": {
+  "authorizes_deletion": true,
+  "fingerprint": "d7603b28a91168ef",
+  "kind": "deletion"
+ },
+ "case_478": {
+  "authorizes_deletion": true,
+  "fingerprint": "6682949802f1f1d5",
+  "kind": "deletion"
+ },
+ "case_479": {
+  "authorizes_deletion": true,
+  "fingerprint": "7ab137aad21c4d14",
+  "kind": "deletion"
+ },
+ "case_48": {
+  "authorizes_deletion": true,
+  "fingerprint": "d85fb9bb232d5d52",
+  "kind": "deletion"
+ },
+ "case_480": {
+  "authorizes_deletion": true,
+  "fingerprint": "9d5bf76ac8a5e382",
+  "kind": "deletion"
+ },
+ "case_481": {
+  "authorizes_deletion": true,
+  "fingerprint": "4dd7d30104a63358",
+  "kind": "deletion"
+ },
+ "case_482": {
+  "authorizes_deletion": true,
+  "fingerprint": "e055ad3707f0b3bb",
+  "kind": "deletion"
+ },
+ "case_483": {
+  "authorizes_deletion": true,
+  "fingerprint": "526523758a6cef72",
+  "kind": "deletion"
+ },
+ "case_484": {
+  "authorizes_deletion": true,
+  "fingerprint": "f203cd5e98b0c1c8",
+  "kind": "deletion"
+ },
+ "case_485": {
+  "authorizes_deletion": true,
+  "fingerprint": "d8c49ab5405ec99f",
+  "kind": "deletion"
+ },
+ "case_486": {
+  "authorizes_deletion": true,
+  "fingerprint": "abc5e79eda4730c0",
+  "kind": "deletion"
+ },
+ "case_487": {
+  "authorizes_deletion": true,
+  "fingerprint": "88499ba8d7ff5bcc",
+  "kind": "deletion"
+ },
+ "case_488": {
+  "authorizes_deletion": true,
+  "fingerprint": "7d9c6da4916e0e4b",
+  "kind": "deletion"
+ },
+ "case_489": {
+  "authorizes_deletion": true,
+  "fingerprint": "bb301d87ffa1dbf9",
+  "kind": "deletion"
+ },
+ "case_49": {
+  "authorizes_deletion": true,
+  "fingerprint": "9fc9fd2ac2d51433",
+  "kind": "deletion"
+ },
+ "case_490": {
+  "authorizes_deletion": true,
+  "fingerprint": "4b7a0a5f4d194262",
+  "kind": "deletion"
+ },
+ "case_491": {
+  "authorizes_deletion": true,
+  "fingerprint": "4d710eb52ffc6ffd",
+  "kind": "deletion"
+ },
+ "case_492": {
+  "authorizes_deletion": true,
+  "fingerprint": "b9c1e9ece9f34c1b",
+  "kind": "deletion"
+ },
+ "case_493": {
+  "authorizes_deletion": true,
+  "fingerprint": "83d5182fbdf94aad",
+  "kind": "deletion"
+ },
+ "case_494": {
+  "authorizes_deletion": true,
+  "fingerprint": "bbf21dc5d3be66f0",
+  "kind": "deletion"
+ },
+ "case_495": {
+  "authorizes_deletion": true,
+  "fingerprint": "519765b04f059e5e",
+  "kind": "deletion"
+ },
+ "case_496": {
+  "authorizes_deletion": true,
+  "fingerprint": "a49a87a2ef77c615",
+  "kind": "deletion"
+ },
+ "case_497": {
+  "authorizes_deletion": true,
+  "fingerprint": "f4ee1100ffa6a03b",
+  "kind": "deletion"
+ },
+ "case_498": {
+  "authorizes_deletion": true,
+  "fingerprint": "4687d498ac735f35",
+  "kind": "deletion"
+ },
+ "case_499": {
+  "authorizes_deletion": true,
+  "fingerprint": "e53ba72e379b3fd4",
+  "kind": "deletion"
+ },
+ "case_50": {
+  "authorizes_deletion": true,
+  "fingerprint": "ba771c7e38d386cc",
+  "kind": "deletion"
+ },
+ "case_500": {
+  "authorizes_deletion": true,
+  "fingerprint": "a3527a3bc814762b",
+  "kind": "deletion"
+ },
+ "case_501": {
+  "authorizes_deletion": true,
+  "fingerprint": "f081677e9c9635ed",
+  "kind": "deletion"
+ },
+ "case_502": {
+  "authorizes_deletion": true,
+  "fingerprint": "32db1e5328273608",
+  "kind": "deletion"
+ },
+ "case_503": {
+  "authorizes_deletion": true,
+  "fingerprint": "bed4ad6a50cd8344",
+  "kind": "deletion"
+ },
+ "case_504": {
+  "authorizes_deletion": true,
+  "fingerprint": "15cf599cea016fa1",
+  "kind": "deletion"
+ },
+ "case_505": {
+  "authorizes_deletion": true,
+  "fingerprint": "3507e0d9778e21b5",
+  "kind": "deletion"
+ },
+ "case_506": {
+  "authorizes_deletion": true,
+  "fingerprint": "1b9deeab3aa99b96",
+  "kind": "deletion"
+ },
+ "case_507": {
+  "authorizes_deletion": true,
+  "fingerprint": "b5dcbe3626620e59",
+  "kind": "deletion"
+ },
+ "case_508": {
+  "authorizes_deletion": true,
+  "fingerprint": "df1d479029c42a15",
+  "kind": "deletion"
+ },
+ "case_509": {
+  "authorizes_deletion": true,
+  "fingerprint": "d014f22a8686218e",
+  "kind": "deletion"
+ },
+ "case_51": {
+  "authorizes_deletion": true,
+  "fingerprint": "268170233c8aed6f",
+  "kind": "deletion"
+ },
+ "case_510": {
+  "authorizes_deletion": true,
+  "fingerprint": "a242b65ce65127f5",
+  "kind": "deletion"
+ },
+ "case_511": {
+  "authorizes_deletion": true,
+  "fingerprint": "a102f7b7b82bd05b",
+  "kind": "deletion"
+ },
+ "case_512": {
+  "authorizes_deletion": true,
+  "fingerprint": "341ee2374fe815f2",
+  "kind": "deletion"
+ },
+ "case_513": {
+  "authorizes_deletion": true,
+  "fingerprint": "96a952a09e469f00",
+  "kind": "deletion"
+ },
+ "case_514": {
+  "authorizes_deletion": true,
+  "fingerprint": "83bd213d734d8172",
+  "kind": "deletion"
+ },
+ "case_515": {
+  "authorizes_deletion": true,
+  "fingerprint": "e56e653000a4ec4f",
+  "kind": "deletion"
+ },
+ "case_516": {
+  "authorizes_deletion": true,
+  "fingerprint": "2b2162b47dd56acc",
+  "kind": "deletion"
+ },
+ "case_517": {
+  "authorizes_deletion": true,
+  "fingerprint": "776e482b1a67e673",
+  "kind": "deletion"
+ },
+ "case_518": {
+  "authorizes_deletion": true,
+  "fingerprint": "f7fdd10da1ef9cb7",
+  "kind": "deletion"
+ },
+ "case_519": {
+  "authorizes_deletion": true,
+  "fingerprint": "1adb46d009734e21",
+  "kind": "deletion"
+ },
+ "case_52": {
+  "authorizes_deletion": true,
+  "fingerprint": "6935afa40ebdada5",
+  "kind": "deletion"
+ },
+ "case_520": {
+  "authorizes_deletion": true,
+  "fingerprint": "8a88681cce0efd57",
+  "kind": "deletion"
+ },
+ "case_521": {
+  "authorizes_deletion": true,
+  "fingerprint": "a7e7222184783802",
+  "kind": "deletion"
+ },
+ "case_522": {
+  "authorizes_deletion": true,
+  "fingerprint": "526523758a6cef72",
+  "kind": "deletion"
+ },
+ "case_523": {
+  "authorizes_deletion": true,
+  "fingerprint": "4d76f7c989341b75",
+  "kind": "deletion"
+ },
+ "case_524": {
+  "authorizes_deletion": true,
+  "fingerprint": "67237b9018979614",
+  "kind": "deletion"
+ },
+ "case_525": {
+  "authorizes_deletion": true,
+  "fingerprint": "fbc1892e29750dbe",
+  "kind": "deletion"
+ },
+ "case_526": {
+  "authorizes_deletion": true,
+  "fingerprint": "361d67e079aeb754",
+  "kind": "deletion"
+ },
+ "case_527": {
+  "authorizes_deletion": true,
+  "fingerprint": "ad23146d68bcee6b",
+  "kind": "deletion"
+ },
+ "case_528": {
+  "authorizes_deletion": true,
+  "fingerprint": "48b15091e9c70483",
+  "kind": "deletion"
+ },
+ "case_529": {
+  "authorizes_deletion": true,
+  "fingerprint": "44866cf567e538dc",
+  "kind": "deletion"
+ },
+ "case_53": {
+  "authorizes_deletion": true,
+  "fingerprint": "797c116e21d7bec6",
+  "kind": "deletion"
+ },
+ "case_530": {
+  "authorizes_deletion": true,
+  "fingerprint": "864d7b36707d00c6",
+  "kind": "deletion"
+ },
+ "case_531": {
+  "authorizes_deletion": true,
+  "fingerprint": "f829f65631425498",
+  "kind": "deletion"
+ },
+ "case_532": {
+  "authorizes_deletion": true,
+  "fingerprint": "4c014ddc3646d682",
+  "kind": "deletion"
+ },
+ "case_533": {
+  "authorizes_deletion": false,
+  "fingerprint": "598cb9570c7bd2c4",
+  "kind": "correction"
+ },
+ "case_534": {
+  "authorizes_deletion": false,
+  "fingerprint": "ee97b3d731305d80",
+  "kind": "opt_out"
+ },
+ "case_535": {
+  "authorizes_deletion": false,
+  "fingerprint": "cdd4c1c14773df32",
+  "kind": "export"
+ },
+ "case_536": {
+  "authorizes_deletion": false,
+  "fingerprint": "5e9a2eb97fee27c6",
+  "kind": "other"
+ },
+ "case_537": {
+  "authorizes_deletion": false,
+  "fingerprint": "f18ff8242d7eaab5",
+  "kind": "correction"
+ },
+ "case_538": {
+  "authorizes_deletion": false,
+  "fingerprint": "49dfcee417a21393",
+  "kind": "opt_out"
+ },
+ "case_539": {
+  "authorizes_deletion": false,
+  "fingerprint": "3a2ee5d14b92a4a3",
+  "kind": "access"
+ },
+ "case_54": {
+  "authorizes_deletion": true,
+  "fingerprint": "526523758a6cef72",
+  "kind": "deletion"
+ },
+ "case_540": {
+  "authorizes_deletion": false,
+  "fingerprint": "799c8c081d61e85d",
+  "kind": "export"
+ },
+ "case_541": {
+  "authorizes_deletion": false,
+  "fingerprint": "c2654fd69d75d715",
+  "kind": "correction"
+ },
+ "case_542": {
+  "authorizes_deletion": false,
+  "fingerprint": "a33bd2e755a4535b",
+  "kind": "access"
+ },
+ "case_543": {
+  "authorizes_deletion": true,
+  "fingerprint": "82a1f67e138e458d",
+  "kind": "deletion"
+ },
+ "case_544": {
+  "authorizes_deletion": true,
+  "fingerprint": "dd7bebd42adee3f4",
+  "kind": "deletion"
+ },
+ "case_545": {
+  "authorizes_deletion": true,
+  "fingerprint": "1adb46d009734e21",
+  "kind": "deletion"
+ },
+ "case_546": {
+  "authorizes_deletion": true,
+  "fingerprint": "526523758a6cef72",
+  "kind": "deletion"
+ },
+ "case_547": {
+  "authorizes_deletion": true,
+  "fingerprint": "ae67ccc40a86d37c",
+  "kind": "deletion"
+ },
+ "case_548": {
+  "authorizes_deletion": true,
+  "fingerprint": "670ba948ac4fb1db",
+  "kind": "deletion"
+ },
+ "case_549": {
+  "authorizes_deletion": true,
+  "fingerprint": "05843de4d685666d",
+  "kind": "deletion"
+ },
+ "case_55": {
+  "authorizes_deletion": true,
+  "fingerprint": "2562fa46e8c2a3f5",
+  "kind": "deletion"
+ },
+ "case_550": {
+  "authorizes_deletion": true,
+  "fingerprint": "ee76503d239b0dbf",
+  "kind": "deletion"
+ },
+ "case_56": {
+  "authorizes_deletion": true,
+  "fingerprint": "05843de4d685666d",
+  "kind": "deletion"
+ },
+ "case_57": {
+  "authorizes_deletion": true,
+  "fingerprint": "05843de4d685666d",
+  "kind": "deletion"
+ },
+ "case_58": {
+  "authorizes_deletion": true,
+  "fingerprint": "697a0ae68044abfb",
+  "kind": "deletion"
+ },
+ "case_59": {
+  "authorizes_deletion": true,
+  "fingerprint": "9bb717e0f67db075",
+  "kind": "deletion"
+ },
+ "case_60": {
+  "authorizes_deletion": true,
+  "fingerprint": "d630a28dd185a193",
+  "kind": "deletion"
+ },
+ "case_61": {
+  "authorizes_deletion": true,
+  "fingerprint": "3e20300a1e237ec1",
+  "kind": "deletion"
+ },
+ "case_62": {
+  "authorizes_deletion": true,
+  "fingerprint": "a0add9d1eafbbb57",
+  "kind": "deletion"
+ },
+ "case_63": {
+  "authorizes_deletion": true,
+  "fingerprint": "ee0a8c465c08f47c",
+  "kind": "deletion"
+ },
+ "case_64": {
+  "authorizes_deletion": true,
+  "fingerprint": "1e6f39d673007de9",
+  "kind": "deletion"
+ },
+ "case_65": {
+  "authorizes_deletion": true,
+  "fingerprint": "794ab2006f6b5f90",
+  "kind": "deletion"
+ },
+ "case_66": {
+  "authorizes_deletion": true,
+  "fingerprint": "519765b04f059e5e",
+  "kind": "deletion"
+ },
+ "case_67": {
+  "authorizes_deletion": true,
+  "fingerprint": "2b9eb8e39774cbea",
+  "kind": "deletion"
+ },
+ "case_68": {
+  "authorizes_deletion": true,
+  "fingerprint": "b50e291723e76080",
+  "kind": "deletion"
+ },
+ "case_69": {
+  "authorizes_deletion": true,
+  "fingerprint": "4687d498ac735f35",
+  "kind": "deletion"
+ },
+ "case_70": {
+  "authorizes_deletion": true,
+  "fingerprint": "eb10ea53ee4fc83e",
+  "kind": "deletion"
+ },
+ "case_71": {
+  "authorizes_deletion": true,
+  "fingerprint": "4c830d2ed876ebef",
+  "kind": "deletion"
+ },
+ "case_72": {
+  "authorizes_deletion": true,
+  "fingerprint": "3a231bb6fa93e360",
+  "kind": "deletion"
+ },
+ "case_73": {
+  "authorizes_deletion": true,
+  "fingerprint": "ee0a8c465c08f47c",
+  "kind": "deletion"
+ },
+ "case_74": {
+  "authorizes_deletion": true,
+  "fingerprint": "969dabe8eb335fb8",
+  "kind": "deletion"
+ },
+ "case_75": {
+  "authorizes_deletion": true,
+  "fingerprint": "3de7c888e48ce2d4",
+  "kind": "deletion"
+ },
+ "case_76": {
+  "authorizes_deletion": true,
+  "fingerprint": "9c779c2a47592345",
+  "kind": "deletion"
+ },
+ "case_77": {
+  "authorizes_deletion": true,
+  "fingerprint": "32bdd3666a02839b",
+  "kind": "deletion"
+ },
+ "case_78": {
+  "authorizes_deletion": true,
+  "fingerprint": "b5dcbe3626620e59",
+  "kind": "deletion"
+ },
+ "case_79": {
+  "authorizes_deletion": true,
+  "fingerprint": "f319b27c48d90c1b",
+  "kind": "deletion"
+ },
+ "case_80": {
+  "authorizes_deletion": true,
+  "fingerprint": "d5b921e389571cd4",
+  "kind": "deletion"
+ },
+ "case_81": {
+  "authorizes_deletion": true,
+  "fingerprint": "3718c8a68e0fea2a",
+  "kind": "deletion"
+ },
+ "case_82": {
+  "authorizes_deletion": true,
+  "fingerprint": "ed93d9acf210819b",
+  "kind": "deletion"
+ },
+ "case_83": {
+  "authorizes_deletion": true,
+  "fingerprint": "37cac93d4c1c1df8",
+  "kind": "deletion"
+ },
+ "case_84": {
+  "authorizes_deletion": true,
+  "fingerprint": "96a952a09e469f00",
+  "kind": "deletion"
+ },
+ "case_85": {
+  "authorizes_deletion": true,
+  "fingerprint": "9720b84dfc8cf4cd",
+  "kind": "deletion"
+ },
+ "case_86": {
+  "authorizes_deletion": true,
+  "fingerprint": "df1ec8db444fd975",
+  "kind": "deletion"
+ },
+ "case_87": {
+  "authorizes_deletion": true,
+  "fingerprint": "911db66adb021f4c",
+  "kind": "deletion"
+ },
+ "case_88": {
+  "authorizes_deletion": true,
+  "fingerprint": "6307d273abdc44db",
+  "kind": "deletion"
+ },
+ "case_89": {
+  "authorizes_deletion": true,
+  "fingerprint": "bfa95783b74a9501",
+  "kind": "deletion"
+ },
+ "case_90": {
+  "authorizes_deletion": true,
+  "fingerprint": "11403bc9f2f49797",
+  "kind": "deletion"
+ },
+ "case_91": {
+  "authorizes_deletion": true,
+  "fingerprint": "eaad994cece57b0f",
+  "kind": "deletion"
+ },
+ "case_92": {
+  "authorizes_deletion": true,
+  "fingerprint": "85eb1e2219a8ba22",
+  "kind": "deletion"
+ },
+ "case_93": {
+  "authorizes_deletion": true,
+  "fingerprint": "526523758a6cef72",
+  "kind": "deletion"
+ },
+ "case_94": {
+  "authorizes_deletion": true,
+  "fingerprint": "327aedb18afdec36",
+  "kind": "deletion"
+ },
+ "case_95": {
+  "authorizes_deletion": true,
+  "fingerprint": "5adbccc14dff7e28",
+  "kind": "deletion"
+ },
+ "case_96": {
+  "authorizes_deletion": true,
+  "fingerprint": "4b7a0a5f4d194262",
+  "kind": "deletion"
+ },
+ "case_97": {
+  "authorizes_deletion": true,
+  "fingerprint": "b9bc5d06a27301ad",
+  "kind": "deletion"
+ },
+ "case_98": {
+  "authorizes_deletion": true,
+  "fingerprint": "4adf9a35d04caba4",
+  "kind": "deletion"
+ },
+ "case_99": {
+  "authorizes_deletion": true,
+  "fingerprint": "d61b849553fd37b4",
+  "kind": "deletion"
+ }
+}
