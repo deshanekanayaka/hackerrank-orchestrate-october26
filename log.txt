@@ -399,3 +399,46 @@ branch=main
 repo_root=/Users/deshan/Documents/hackerrank-orchestrate-october26
 worktree=main
 parent_agent=none
+
+## [2026-10-24T00:00:00Z] Build the evidence index
+
+User Prompt (verbatim, secrets redacted):
+build the evidence index
+
+Agent Response Summary:
+Wrote code/policy.py, the prefix table that maps a resource prefix to its
+system, data category, and required action, and code/evidence.py, which reads
+all 79 text evidence files once and records 3,173 observations over 2,040
+resources. SQL files load through sqlite3, JSON files through a recursive walk
+for any object carrying a resource_id, and logs and text records line by line.
+Linking is exact only, through any identifier in a subject's universe.
+
+Six format gaps were found and fixed at the root, each a general rule rather
+than a special case: a JSON document stored inside a SQL column or a log
+field is now flattened, log lines are grouped by trace id because the email
+and the resource_id sit on different lines of one trace, logs that nest their
+fields inside an escaped message string are read again unescaped, logs that
+write one JSON object per line are parsed as JSON, syslog lines expose their
+trace id as a bare token, and the trace pattern was tightened to tr- and rb-
+so an instance name such as node-8 cannot group unrelated lines. Cases with
+nothing linked fell from 149 to 19.
+
+This answers the open design question. All 19 remaining cases are explained,
+not stranded: 16 subjects whose only text evidence was captured after their
+audit_at, and 3 whose evidence is a screenshot, and every one of them is
+named by a LINK_RESOURCE_IDENTITY row, so the image pass will cover them. The
+10 non-deletion cases are excused by their CLASSIFY_REQUEST rows, which trace
+to users 531 to 540. No fallback rule is needed.
+
+Actions:
+* created code/policy.py and code/evidence.py
+* ran all three self tests, which pass
+* appended this log entry
+
+Context:
+tool=Claude Code
+model=claude-opus-5
+branch=main
+repo_root=/Users/deshan/Documents/hackerrank-orchestrate-october26
+worktree=main
+parent_agent=none
