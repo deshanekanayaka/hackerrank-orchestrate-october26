@@ -65,6 +65,23 @@ class Index:
     by_user: dict = field(default_factory=dict)
     by_resource: dict = field(default_factory=dict)
     coverage: dict = field(default_factory=dict)  # file_id -> {system: time}
+    referenced: dict = field(default_factory=dict)  # user -> {resource: files}
+
+    def resources_of(self, user_id, at=None):
+        """Every resource this subject owns, observed or only referenced.
+
+        A deleted record leaves no row of its own, but another record can
+        still name it, so the reference is the only way to reach it.
+        """
+        out = {}
+        for obs in self.for_user(user_id, at):
+            out.setdefault(obs.resource_id, set()).add(obs.file_id)
+        for resource, files in self.referenced.get(user_id, {}).items():
+            usable = {f for f in files
+                      if at is None or self.manifest[f]["captured_at"] <= at}
+            if usable:
+                out.setdefault(resource, set()).update(usable)
+        return out
 
     def for_user(self, user_id, at=None):
         """Observations naming this subject, captured at or before `at`."""
@@ -311,7 +328,56 @@ def build(directory=None, data_dir=DATA):
             systems.setdefault(system_id, observed)
         index.coverage[file_id] = systems
 
+    link_through_references(index)
     return index
+
+
+def link_through_references(index, rounds=3):
+    """A resource named inside a subject's record belongs to that subject.
+
+    Records cross-reference each other: a search document carries the
+    account it was built from, an export names its object key, a backup
+    names its archive. A record whose own identifiers were deleted or
+    anonymized can still be reached this way.
+    """
+    for _ in range(rounds):
+        claims, references = {}, {}
+        for obs in index.observations:
+            if not obs.owners:
+                continue
+            for _, value in obs.fields:
+                for name in RESOURCE.findall(value):
+                    if name == obs.resource_id or not policy.prefix_of(name):
+                        continue
+                    claims.setdefault(name, set()).update(obs.owners)
+                    for owner in obs.owners:
+                        references.setdefault((name, owner),
+                                              set()).add(obs.file_id)
+        for (resource, owner), files in references.items():
+            index.referenced.setdefault(owner, {}).setdefault(
+                resource, set()).update(files)
+        grew = False
+        for resource, owners in claims.items():
+            for obs in index.by_resource.get(resource, []):
+                fresh = owners - obs.owners
+                if not fresh:
+                    continue
+                grew = True
+                merged = Observation(obs.file_id, obs.captured_at,
+                                     obs.observed_at, obs.system_id,
+                                     obs.resource_id, obs.source, obs.fields,
+                                     frozenset(obs.owners | fresh), obs.raw)
+                index.observations[index.observations.index(obs)] = merged
+                lst = index.by_resource[resource]
+                lst[lst.index(obs)] = merged
+                for owner in merged.owners:
+                    bucket = index.by_user.setdefault(owner, [])
+                    if obs in bucket:
+                        bucket[bucket.index(obs)] = merged
+                    elif merged not in bucket:
+                        bucket.append(merged)
+        if not grew:
+            break
 
 
 def selftest():

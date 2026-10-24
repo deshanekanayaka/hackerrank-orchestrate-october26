@@ -442,3 +442,66 @@ branch=main
 repo_root=/Users/deshan/Documents/hackerrank-orchestrate-october26
 worktree=main
 parent_agent=none
+
+## [2026-10-24T00:00:00Z] State the next design step
+
+User Prompt (verbatim, secrets redacted):
+what's the next design step
+
+Agent Response Summary:
+Named step 4 of the agreed build order: the state decision and the step
+builder, held to 32 of 32 on the samples. Explained what it has to do, the
+two open details it must settle from the samples, and why the vision pass and
+the intent classifier come after it. No files were changed.
+
+Actions:
+* appended this log entry
+
+Context:
+tool=Claude Code
+model=claude-opus-5
+branch=main
+repo_root=/Users/deshan/Documents/hackerrank-orchestrate-october26
+worktree=main
+parent_agent=none
+
+## [2026-10-24T00:00:00Z] Build step 4: state decision and step builder
+
+User Prompt (verbatim, secrets redacted):
+added an api key, continue building step 4
+
+Agent Response Summary:
+Wrote code/status.py and code/main.py, so the pipeline now runs end to end
+with no API key. On the 32 samples it scores status 30/32 = 0.938, step
+precision 0.948, recall 0.762, f1 0.845, and evidence_id accuracy 1.000.
+The full 518 run takes 0.2 seconds.
+
+Three root fixes came out of the samples. An explicit state word in the
+evidence beats any guess from the record's shape, because handover files
+state NOT_FOUND, FOUND, IDENTIFIABLE and ACTIVE outright. The field
+account_status describes the account and not the record holding it, so a
+tombstone reading DELETED is still present. A readback trace writes the
+lookup on one line and its result on the next, so all records of one
+resource in the newest file are merged before the state is read.
+
+A hard ceiling was measured and reported to the user. 27 of the 111 sample
+step resources are linkable by no participant-visible rule, because their
+identifiers were deleted or anonymized and no other record references them.
+Four candidate rules were tested and rejected with numbers: nearest event
+time to reported_at gives 14 of 32, the account-number convention holds for
+2 of 571 known pairs, elimination inside the case window leaves pools of 37
+to 65 candidates, and the activity details carry no run or case identifier.
+
+Actions:
+* created code/status.py and code/main.py
+* added reference linking and resources_of to code/evidence.py
+* scored the samples and ran all 518 cases through the checker
+* appended this log entry
+
+Context:
+tool=Claude Code
+model=claude-opus-5
+branch=main
+repo_root=/Users/deshan/Documents/hackerrank-orchestrate-october26
+worktree=main
+parent_agent=none
