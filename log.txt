@@ -625,3 +625,30 @@ branch=main
 repo_root=/Users/deshan/Documents/hackerrank-orchestrate-october26
 worktree=main
 parent_agent=none
+
+## [2026-10-24T00:00:00Z] Record the pull request description format
+
+User Prompt (verbatim, secrets redacted):
+Also from now on prs should follow a template that's easy to read like this -
+Just a very high level, like: what was your problem, how did you solve it and
+how should it be tested (+screenshot or gif if it is an UI).
+
+Agent Response Summary:
+Saved the preference to the project memory directory as a feedback memory and
+added its index line. Every future pull request description carries three
+short high-level sections, the problem, the solution, and how to test, plus a
+screenshot or GIF for user interface work. Detail stays in commit messages
+and repository docs instead of the description. No repository file changed.
+
+Actions:
+* created memory/pr-short-three-part-description.md
+* appended the pointer line to memory/MEMORY.md
+* appended this log entry
+
+Context:
+tool=Claude Code
+model=claude-opus-5
+branch=main
+repo_root=/Users/deshan/Documents/hackerrank-orchestrate-october26
+worktree=main
+parent_agent=none
