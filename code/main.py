@@ -5,8 +5,8 @@
     python3 code/main.py --out PATH      # write somewhere else
     python3 code/main.py --limit N       # first N cases, for a quick look
 
-Intent classification and the image and PDF pass are not wired in yet, so
-every case is treated as a deletion request for now.
+Intent labels come from code/cache/intent.json, which is committed, so a
+clean run needs no API key. The image and PDF pass is not wired in yet.
 """
 
 import csv
@@ -16,6 +16,7 @@ from pathlib import Path
 
 import identity
 import evidence
+import intent
 import status
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -32,15 +33,22 @@ def run(requests_path, out_path, limit=None):
     if limit:
         requests = requests[:limit]
 
+    labels = intent.classify(requests)
+
     rows = []
     for request in requests:
+        case_id = request["case_id"]
+        if labels.get(case_id) is False:
+            # The person asked for something other than deletion.
+            rows.append((case_id, "NOT_APPLICABLE", []))
+            continue
         user_id = directory.resolve(request["email"], "email")
         if user_id is None:
-            rows.append((request["case_id"], "NOT_APPLICABLE", []))
+            rows.append((case_id, "NOT_APPLICABLE", []))
             continue
         case_status, steps = status.plan(index, directory, user_id,
                                         request["audit_at"])
-        rows.append((request["case_id"], case_status, steps))
+        rows.append((case_id, case_status, steps))
 
     with open(out_path, "w", newline="", encoding="utf-8") as fh:
         writer = csv.writer(fh)
