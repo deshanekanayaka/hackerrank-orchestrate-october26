@@ -1,0 +1,40 @@
+# macOS
+.DS_Store
+._*
+.Spotlight-V100
+.Trashes
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+.pytest_cache/
+.mypy_cache/
+.ipynb_checkpoints/
+
+# Node
+node_modules/
+
+# Secrets - never commit
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+credentials.json
+
+# Submission archives - nested archives are rejected by the grader
+code.zip
+*.tar
+*.tar.gz
+*.tgz
+*.7z
+*.rar
+
+# Local scratch
+scratch/
+tmp/
+*.log.local

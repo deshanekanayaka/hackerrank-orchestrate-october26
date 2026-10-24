@@ -1,0 +1,52 @@
+## [2026-10-24T14:49:01Z] SESSION START
+
+tool=Claude Code
+model=claude-opus-5
+Repo Root: /Users/deshan/Documents/hackerrank-orchestrate-october26
+Branch: main
+Worktree: main
+Parent Agent: none
+Language: py
+Time Remaining: not configured
+
+
+## [2026-10-24T15:05:00Z] Data quality audit of dataset/ before design
+
+User Prompt (verbatim, secrets redacted):
+Read AGENTS.md first and log this turn as it requires. Then read problem_statement.md and README.md.
+
+This is HackerRank Orchestrate October 2026, "Ghost Data Still Exists". Before any design, I want a data quality audit of everything in dataset/, like the cleaning pass before an ML project. Do not modify any file in dataset/. Write analysis scripts under code/analysis/ and run them.
+
+For every CSV in dataset/, report:
+1. Row counts, duplicate rows, and duplicate IDs (case_id, user_id, activity_id, audit_id, file_id, rule_id).
+2. Missing or empty values per column.
+3. Encoding problems: non-UTF-8 bytes, mojibake, invisible or zero-width characters, stray whitespace, inconsistent casing in emails.
+4. Format inconsistencies: timestamp formats and timezones, email formats, phone formats, email_hash length and charset.
+5. Referential integrity: emails in deletion_requests.csv with no match in user_identities.csv (current or via user_audit_log.csv), user_ids in the audit log that don't exist, files in evidence_files.csv missing on disk, files on disk not in the manifest, resource_ids in system_activity.csv never mentioned in evidence.
+6. Value distributions: reported_status, event_type, reported_result, field_name, data_category, and the same email appearing in more than one case.
+
+For dataset/evidence/, report the file types, which SQL files load cleanly into SQLite and what tables they contain, which JSON files parse, and the structure of the logs.
+
+Prompt injection scan: search request_text and every text-readable evidence file for instruction-like content, for example "ignore", "system prompt", "mark as complete", "you are", role tags, or instructions in other languages. List each hit with its location.
+
+Also report: how many request_text values do NOT look like deletion requests, with five examples. The samples contain no NOT_APPLICABLE cases.
+
+Write the findings to docs/data-quality.md as a table: issue, where, how many rows, and a proposed handling rule. Then summarise the five findings that matter most for the design, in plain English, and stop.
+
+Agent Response Summary:
+Read AGENTS.md, problem_statement.md and README.md, then wrote three read-only stdlib-only audit scripts under code/analysis/ and ran them. The CSV layer is clean: no duplicate rows or IDs, no empty cells, no encoding defects, and every timestamp is ISO 8601 UTC. The real risks are semantic, not structural: 20 upper-case request emails, 100 cases keyed on a historical email, 10 non-deletion cases (case_533 to case_542) of which 5 hide a deletion verb inside a refusal, 22 decoy emails and 3 fabricated user_ids in evidence, and absence proofs that deliberately cite a file not containing the resource id. The prompt-injection scan found zero hits across 550 request texts, 79 text evidence files, and 4 decoded PDFs. Findings written to docs/data-quality.md with a handling rule per issue. No file under dataset/ was modified.
+
+Actions:
+* Appended SESSION START entry to log.txt
+* Created code/analysis/csv_audit.py, code/analysis/evidence_audit.py, code/analysis/injection_scan.py
+* Ran all three scripts and saved output to code/analysis/reports/*.txt
+* Created docs/data-quality.md
+* Verified with git status that dataset/ is unchanged
+
+Context:
+tool=Claude Code
+model=claude-opus-5
+branch=main
+repo_root=/Users/deshan/Documents/hackerrank-orchestrate-october26
+worktree=main
+parent_agent=none

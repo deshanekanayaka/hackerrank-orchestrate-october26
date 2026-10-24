@@ -1,0 +1,183 @@
+# CSV audit
+
+### deletion_requests.csv
+rows=518 cols=['case_id', 'email', 'requested_at', 'reported_status', 'reported_at', 'audit_at', 'request_text']
+utf8_decode_error=None
+bom=False crlf_lines=0
+duplicate_full_rows=0
+duplicate_case_id=0 []
+empty_per_column=none
+zero_width_or_nbsp=none
+mojibake_markers=none
+stray_whitespace=none
+control_chars=none
+timestamp[requested_at]: non_iso_utc=0 examples=[]
+timestamp[reported_at]: non_iso_utc=0 examples=[]
+timestamp[audit_at]: non_iso_utc=0 examples=[]
+email: invalid=0 [] non_ascii=0 [] not_lowercase=20 ['SIPHO.MOKOENA@GMAIL.COM', 'CHOI.JIHOON94@GMAIL.COM', 'BCARVALHO6517@GMAIL.COM']
+
+### sample_deletion_requests.csv
+rows=32 cols=['case_id', 'email', 'requested_at', 'reported_status', 'reported_at', 'audit_at', 'request_text']
+utf8_decode_error=None
+bom=False crlf_lines=0
+duplicate_full_rows=0
+duplicate_case_id=0 []
+empty_per_column=none
+zero_width_or_nbsp=none
+mojibake_markers=none
+stray_whitespace=none
+control_chars=none
+timestamp[requested_at]: non_iso_utc=0 examples=[]
+timestamp[reported_at]: non_iso_utc=0 examples=[]
+timestamp[audit_at]: non_iso_utc=0 examples=[]
+email: invalid=0 [] non_ascii=0 [] not_lowercase=0 []
+
+### sample_output.csv
+rows=32 cols=['case_id', 'deletion_status', 'steps_json']
+utf8_decode_error=None
+bom=False crlf_lines=0
+duplicate_full_rows=0
+duplicate_case_id=0 []
+empty_per_column=none
+zero_width_or_nbsp=none
+mojibake_markers=none
+stray_whitespace=none
+control_chars=none
+
+### user_identities.csv
+rows=850 cols=['user_id', 'name', 'email', 'phone', 'email_hash', 'updated_at']
+utf8_decode_error=None
+bom=False crlf_lines=0
+duplicate_full_rows=0
+duplicate_user_id=0 []
+empty_per_column=none
+zero_width_or_nbsp=none
+mojibake_markers=none
+stray_whitespace=none
+control_chars=none
+timestamp[updated_at]: non_iso_utc=0 examples=[]
+email: invalid=0 [] non_ascii=0 [] not_lowercase=0 []
+
+### user_audit_log.csv
+rows=306 cols=['audit_id', 'user_id', 'event_time', 'field_name', 'old_value', 'new_value']
+utf8_decode_error=None
+bom=False crlf_lines=0
+duplicate_full_rows=0
+duplicate_audit_id=0 []
+duplicate_user_id=105 [('user_523', 2), ('user_528', 2), ('user_530', 2), ('user_518', 2), ('user_509', 2)]
+empty_per_column=none
+zero_width_or_nbsp=none
+mojibake_markers=none
+stray_whitespace=none
+control_chars=none
+timestamp[event_time]: non_iso_utc=0 examples=[]
+
+### system_activity.csv
+rows=4011 cols=['activity_id', 'event_time', 'event_type', 'source_system', 'target_system', 'resource_id', 'reported_result', 'details']
+utf8_decode_error=None
+bom=False crlf_lines=0
+duplicate_full_rows=0
+duplicate_activity_id=0 []
+empty_per_column=none
+zero_width_or_nbsp=none
+mojibake_markers=none
+stray_whitespace=none
+control_chars=none
+timestamp[event_time]: non_iso_utc=0 examples=[]
+
+### deletion_rules.csv
+rows=15 cols=['rule_id', 'data_category', 'condition', 'required_action']
+utf8_decode_error=None
+bom=False crlf_lines=0
+duplicate_full_rows=0
+duplicate_rule_id=0 []
+empty_per_column=none
+zero_width_or_nbsp=none
+mojibake_markers=none
+stray_whitespace=none
+control_chars=none
+
+### evidence_files.csv
+rows=94 cols=['file_id', 'file_path', 'origin', 'captured_at']
+utf8_decode_error=None
+bom=False crlf_lines=0
+duplicate_full_rows=0
+duplicate_file_id=0 []
+empty_per_column=none
+zero_width_or_nbsp=none
+mojibake_markers=none
+stray_whitespace=none
+control_chars=none
+timestamp[captured_at]: non_iso_utc=0 examples=[]
+
+### output.csv
+rows=0 cols=[]
+utf8_decode_error=None
+bom=False crlf_lines=0
+duplicate_full_rows=0
+empty_per_column=none
+zero_width_or_nbsp=none
+mojibake_markers=none
+stray_whitespace=none
+control_chars=none
+
+### user_identities.csv formats
+phone_shapes={'has_plus': 850, 'has_space': 850, 'has_dash': 99}
+phone_cc_prefixes=[('+34', 66), ('+46', 66), ('+91', 66), ('+55', 66), ('+971', 65), ('+27', 65), ('+233', 65), ('+81', 65), ('+82', 65), ('+33', 65), ('+48', 64), ('+234', 64)]
+phone_digit_len=[(11, 360), (12, 360), (13, 130)]
+email_hash_lengths={64: 850}
+email_hash_not_lower_hex64=0
+duplicate_email_hash=0
+duplicate_current_email=0 []
+
+### referential integrity
+audit_log_user_ids_missing_from_identities=[]
+audit_log_field_names={'phone': 92, 'email': 107, 'email_hash': 107}
+deletion_requests.csv: emails_unresolvable=0 []
+deletion_requests.csv: resolved_only_via_audit_log=100 ['case_37', 'case_40', 'case_41', 'case_43', 'case_47']
+deletion_requests.csv: emails_used_by_multiple_cases=1 max_cases_per_email=2
+deletion_requests.csv: distinct_users_covered=517 of 850
+deletion_requests.csv: reported_status={'COMPLETE': 254, 'NOT_STARTED': 112, 'PARTIALLY_COMPLETE': 152}
+deletion_requests.csv: timeline_out_of_order(requested<=reported<=audit)=0 []
+sample_deletion_requests.csv: emails_unresolvable=0 []
+sample_deletion_requests.csv: resolved_only_via_audit_log=3 ['case_10', 'case_29', 'case_30']
+sample_deletion_requests.csv: emails_used_by_multiple_cases=0 max_cases_per_email=1
+sample_deletion_requests.csv: distinct_users_covered=32 of 850
+sample_deletion_requests.csv: reported_status={'COMPLETE': 17, 'PARTIALLY_COMPLETE': 5, 'NOT_STARTED': 10}
+sample_deletion_requests.csv: timeline_out_of_order(requested<=reported<=audit)=0 []
+manifest_rows=94 missing_on_disk=0 []
+files_on_disk_not_in_manifest=0 []
+manifest_duplicate_paths=False
+manifest_origins=30 distinct
+activity event_type={'INDEX_RECORD': 400, 'UPDATE_RECORD': 672, 'RETAIN_RECORD': 206, 'SEND_EMAIL': 368, 'SYNC_RECORD': 447, 'DELETE_RECORD': 890, 'ANONYMIZE_RECORD': 204, 'REFRESH_CACHE': 284, 'CREATE_EXPORT': 155, 'CHECK_DATA_FLOW': 89, 'CHECK_RESTORE_ACCESS': 28, 'REDACT_RECORD': 173, 'DISABLE_DATA_FLOW': 36, 'BLOCK_RESTORE': 36, 'RESTORE_BACKUP': 1, 'CLASSIFY_REQUEST': 10, 'LINK_RESOURCE_IDENTITY': 12}
+activity reported_result={'SUCCESS': 2914, 'FAILED': 721, 'PARTIAL': 376}
+activity source_system={'account_service': 1100, 'support_platform': 232, 'profile_service': 440, 'security_service': 196, 'notification_service': 368, 'deletion_worker': 1466, 'export_service': 155, 'integration_service': 31, 'backup_service': 1, 'privacy_intake': 10, 'data_catalog': 12}
+activity target_system={'search_service': 954, 'account_service': 980, 'archive_service': 196, 'email_delivery_service': 368, 'analytics_platform': 566, 'cache_service': 284, 'object_store': 155, 'integration_service': 126, 'backup_service': 65, 'support_platform': 193, 'account_replication_cluster': 55, 'export_service': 34, 'legal_service': 10, 'account_failover_replica': 1, 'privacy_case_management': 10, 'identity_service': 11, 'object_storage': 1, 'marketing_platform': 1, 'security_service': 1}
+activity resource_prefixes=[('account', 1046), ('search', 690), ('analytics', 566), ('support', 425), ('email_delivery', 368), ('cache', 284), ('audit_record', 197), ('export', 189), ('data_flow', 157), ('backup', 66), ('tombstone', 11), ('legal_hold', 10), ('object', 1), ('marketing', 1)]
+activity distinct_resource_ids=3948
+rules data_category={'USER_PROFILE': 1, 'SECONDARY_IDENTIFIER': 1, 'SEARCH_INDEX_ENTRY': 1, 'CACHE_ENTRY': 1, 'SUPPORT_MESSAGE': 1, 'SUPPORT_ATTACHMENT': 1, 'ANALYTICS_PROFILE': 1, 'PRODUCT_TELEMETRY': 1, 'USER_EXPORT': 1, 'MARKETING_PROFILE': 1, 'EMAIL_DELIVERY_LOG': 1, 'SECURITY_AUDIT_LOG': 1, 'LEGAL_HOLD_RECORD': 1, 'BACKUP_ARCHIVE': 1, 'ACCOUNT_TOMBSTONE': 1}
+rules required_action={'DELETE': 7, 'REDACT': 3, 'ANONYMIZE': 2, 'RETAIN': 3}
+
+### sample_output.csv shape
+status={'COMPLETE': 10, 'INCOMPLETE': 22}
+step_no_not_consecutive=[]
+phases={'VERIFICATION': 111, 'FINDING': 41, 'REMEDIATION': 41}
+operations={'VERIFY_RECORD_ABSENT': 50, 'VERIFY_RECORD_PRESENT': 24, 'VERIFY_RECORD_ANONYMIZED': 12, 'REPORT_REMAINING_RECORD': 21, 'DELETE_RECORD': 21, 'REPORT_RESTORE_RISK': 3, 'BLOCK_RESTORE': 3, 'VERIFY_RESTORE_BLOCKED': 6, 'REPORT_EXPOSED_PII': 11, 'REPORT_ACTIVE_DATA_FLOW': 6, 'DISABLE_DATA_FLOW': 6, 'REDACT_RECORD': 6, 'ANONYMIZE_RECORD': 5, 'VERIFY_RECORD_REDACTED': 10, 'VERIFY_DATA_FLOW_DISABLED': 9}
+states={'ABSENT': 71, 'PRESENT': 56, 'ANONYMIZED': 17, 'ACTIVE': 9, 'BLOCKED': 9, 'DISABLED': 15, 'REDACTED': 16}
+system_ids={'account_service': 38, 'security_service': 24, 'analytics_platform': 25, 'search_service': 36, 'support_platform': 27, 'export_service': 6, 'backup_service': 12, 'integration_service': 21, 'identity_service': 4}
+resource_prefixes={'account': 38, 'audit_record': 24, 'analytics': 25, 'search': 36, 'support': 27, 'export': 6, 'backup': 12, 'data_flow': 21, 'tombstone': 4}
+evidence_id_kinds={'evidence': 75, 'empty': 118}
+
+### activity resource ids vs evidence text
+activity_resource_ids=3948 never_in_text_evidence=2616 examples=['account_001', 'account_002', 'account_007', 'account_008', 'account_010', 'account_018', 'account_034', 'account_035', 'account_050', 'account_058']
+never_mentioned_by_prefix={'account': 646, 'analytics': 352, 'audit_record': 189, 'cache': 284, 'email_delivery': 368, 'export': 156, 'legal_hold': 2, 'marketing': 1, 'object': 1, 'search': 389, 'support': 227, 'tombstone': 1}
+
+### decoy identifiers in evidence (emails not in the identity universe)
+distinct_emails_in_text_evidence=790 not_in_identity_universe=22
+examples=[('walker.charlotte.jr@gmail.com', 3), ('abennett9843.jr@fastmail.com', 3), ('hannah.carter.jr@outlook.com', 2), ('ionescu.pavel.jr@gmail.com', 2), ('hhan9955.jr@fastmail.com', 2), ('karim.elmasri@gmail.com', 2), ('m.rios.gil@outlook.com', 2), ('p.ramanathan@gmail.com', 2), ('jonas.berglund@outlook.com', 1), ('joana.berg@outlook.com', 1), ('camila.almeida.jr@outlook.com', 1), ('aboateng9675.jr@fastmail.com', 1), ('znkosi0011.jr@fastmail.com', 1), ('smartinez6461.jr@gmail.com', 1), ('isabela.oliveira.jr@outlook.com', 1)]
+evidence_emails_that_are_request_emails=437 of 517 request emails
+surnames_shared_by_multiple_users=143 top=[('Wright', 7), ('Petrescu', 7), ('Singh', 7), ('Silva', 7), ('Fontaine', 7), ('Haddad', 7), ('Kim', 7), ('Sato', 7)]
+
+### per-user evidence coverage
+user_ids_in_text_evidence=461 real=458 fabricated_looking=3
+fabricated_examples=['user_8741', 'user_9116', 'user_7204']

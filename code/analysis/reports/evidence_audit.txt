@@ -1,0 +1,190 @@
+# Evidence audit
+
+### file inventory
+databases/*.sql: 24
+documents/*.pdf: 4
+images/*.png: 11
+logs/*.log: 26
+records/*.json: 28
+records/*.txt: 1
+
+### magic bytes vs extension
+(no MISMATCH lines above means every extension matched its content)
+
+### SQL files in SQLite
+OK   customer_accounts_failover_replica_20260902.sql: 2 tables -> customer_profiles_failover_replica(rows=4; cols=resource_id,user_id,full_name,email,phone,account_status,updated_at) | customer_profiles_primary(rows=3; cols=resource_id,user_id,full_name,email,phone,account_status,updated_at)
+OK   customer_data_failover_replica_20260920.sql: 2 tables -> customer_data_failover_replica(rows=16; cols=resource_id,origin_system,collection_name,record_json,updated_at) | customer_data_primary(rows=16; cols=resource_id,origin_system,collection_name,record_json,updated_at)
+OK   customer_data_inventory_20260213.sql: 9 tables -> backup_restore_entries(rows=1; cols=resource_id,customer_reference,customer_email,archive_key,restore_allowed,updated_at) | connector_subscriptions(rows=1; cols=resource_id,customer_reference,customer_email,connector_name,enabled,last_delivery_status,updated_at) | customer_analytics_profiles(rows=3; cols=resource_id,customer_reference,email,phone,email_hash,audience_cohort,updated_at) | customer_exports(rows=0; cols=resource_id,customer_reference,owner_email,owner_phone,object_key,updated_at) | customer_profiles(rows=2; cols=resource_id,customer_reference,full_name,email,phone,email_hash,account_status,updated_at) | customer_search_documents(rows=4; cols=resource_id,customer_reference,display_name,email,phone,email_hash,index_name,updated_at) | security_audit_records(rows=4; cols=resource_id,subject_reference,event_code,retention_until,updated_at) | snapshot_scope(rows=7; cols=origin_system,captured_at) | support_records(rows=2; cols=resource_id,customer_reference,requester_name,requester_email,requester_phone,message_excerpt,updated_at)
+OK   customer_data_inventory_20260310.sql: 9 tables -> backup_restore_entries(rows=1; cols=resource_id,customer_reference,customer_email,archive_key,restore_allowed,updated_at) | connector_subscriptions(rows=4; cols=resource_id,customer_reference,customer_email,connector_name,enabled,last_delivery_status,updated_at) | customer_analytics_profiles(rows=5; cols=resource_id,customer_reference,email,phone,email_hash,audience_cohort,updated_at) | customer_exports(rows=1; cols=resource_id,customer_reference,owner_email,owner_phone,object_key,updated_at) | customer_profiles(rows=0; cols=resource_id,customer_reference,full_name,email,phone,email_hash,account_status,updated_at) | customer_search_documents(rows=7; cols=resource_id,customer_reference,display_name,email,phone,email_hash,index_name,updated_at) | security_audit_records(rows=2; cols=resource_id,subject_reference,event_code,retention_until,updated_at) | snapshot_scope(rows=8; cols=origin_system,captured_at) | support_records(rows=3; cols=resource_id,customer_reference,requester_name,requester_email,requester_phone,message_excerpt,updated_at)
+OK   customer_data_inventory_20260404.sql: 9 tables -> backup_restore_entries(rows=1; cols=resource_id,customer_reference,customer_email,archive_key,restore_allowed,updated_at) | connector_subscriptions(rows=2; cols=resource_id,customer_reference,customer_email,connector_name,enabled,last_delivery_status,updated_at) | customer_analytics_profiles(rows=4; cols=resource_id,customer_reference,email,phone,email_hash,audience_cohort,updated_at) | customer_exports(rows=1; cols=resource_id,customer_reference,owner_email,owner_phone,object_key,updated_at) | customer_profiles(rows=0; cols=resource_id,customer_reference,full_name,email,phone,email_hash,account_status,updated_at) | customer_search_documents(rows=5; cols=resource_id,customer_reference,display_name,email,phone,email_hash,index_name,updated_at) | security_audit_records(rows=3; cols=resource_id,subject_reference,event_code,retention_until,updated_at) | snapshot_scope(rows=8; cols=origin_system,captured_at) | support_records(rows=2; cols=resource_id,customer_reference,requester_name,requester_email,requester_phone,message_excerpt,updated_at)
+OK   customer_data_inventory_20260504.sql: 9 tables -> backup_restore_entries(rows=1; cols=resource_id,customer_reference,customer_email,archive_key,restore_allowed,updated_at) | connector_subscriptions(rows=4; cols=resource_id,customer_reference,customer_email,connector_name,enabled,last_delivery_status,updated_at) | customer_analytics_profiles(rows=3; cols=resource_id,customer_reference,email,phone,email_hash,audience_cohort,updated_at) | customer_exports(rows=0; cols=resource_id,customer_reference,owner_email,owner_phone,object_key,updated_at) | customer_profiles(rows=1; cols=resource_id,customer_reference,full_name,email,phone,email_hash,account_status,updated_at) | customer_search_documents(rows=6; cols=resource_id,customer_reference,display_name,email,phone,email_hash,index_name,updated_at) | security_audit_records(rows=3; cols=resource_id,subject_reference,event_code,retention_until,updated_at) | snapshot_scope(rows=7; cols=origin_system,captured_at) | support_records(rows=3; cols=resource_id,customer_reference,requester_name,requester_email,requester_phone,message_excerpt,updated_at)
+OK   customer_data_inventory_20260524.sql: 9 tables -> backup_restore_entries(rows=1; cols=resource_id,customer_reference,customer_email,archive_key,restore_allowed,updated_at) | connector_subscriptions(rows=4; cols=resource_id,customer_reference,customer_email,connector_name,enabled,last_delivery_status,updated_at) | customer_analytics_profiles(rows=6; cols=resource_id,customer_reference,email,phone,email_hash,audience_cohort,updated_at) | customer_exports(rows=1; cols=resource_id,customer_reference,owner_email,owner_phone,object_key,updated_at) | customer_profiles(rows=0; cols=resource_id,customer_reference,full_name,email,phone,email_hash,account_status,updated_at) | customer_search_documents(rows=5; cols=resource_id,customer_reference,display_name,email,phone,email_hash,index_name,updated_at) | security_audit_records(rows=4; cols=resource_id,subject_reference,event_code,retention_until,updated_at) | snapshot_scope(rows=8; cols=origin_system,captured_at) | support_records(rows=3; cols=resource_id,customer_reference,requester_name,requester_email,requester_phone,message_excerpt,updated_at)
+OK   customer_data_inventory_20260618.sql: 9 tables -> backup_restore_entries(rows=0; cols=resource_id,customer_reference,customer_email,archive_key,restore_allowed,updated_at) | connector_subscriptions(rows=1; cols=resource_id,customer_reference,customer_email,connector_name,enabled,last_delivery_status,updated_at) | customer_analytics_profiles(rows=4; cols=resource_id,customer_reference,email,phone,email_hash,audience_cohort,updated_at) | customer_exports(rows=1; cols=resource_id,customer_reference,owner_email,owner_phone,object_key,updated_at) | customer_profiles(rows=2; cols=resource_id,customer_reference,full_name,email,phone,email_hash,account_status,updated_at) | customer_search_documents(rows=6; cols=resource_id,customer_reference,display_name,email,phone,email_hash,index_name,updated_at) | security_audit_records(rows=2; cols=resource_id,subject_reference,event_code,retention_until,updated_at) | snapshot_scope(rows=7; cols=origin_system,captured_at) | support_records(rows=3; cols=resource_id,customer_reference,requester_name,requester_email,requester_phone,message_excerpt,updated_at)
+OK   customer_data_inventory_20260703.sql: 9 tables -> backup_restore_entries(rows=1; cols=resource_id,customer_reference,customer_email,archive_key,restore_allowed,updated_at) | connector_subscriptions(rows=2; cols=resource_id,customer_reference,customer_email,connector_name,enabled,last_delivery_status,updated_at) | customer_analytics_profiles(rows=5; cols=resource_id,customer_reference,email,phone,email_hash,audience_cohort,updated_at) | customer_exports(rows=1; cols=resource_id,customer_reference,owner_email,owner_phone,object_key,updated_at) | customer_profiles(rows=0; cols=resource_id,customer_reference,full_name,email,phone,email_hash,account_status,updated_at) | customer_search_documents(rows=5; cols=resource_id,customer_reference,display_name,email,phone,email_hash,index_name,updated_at) | security_audit_records(rows=5; cols=resource_id,subject_reference,event_code,retention_until,updated_at) | snapshot_scope(rows=8; cols=origin_system,captured_at) | support_records(rows=5; cols=resource_id,customer_reference,requester_name,requester_email,requester_phone,message_excerpt,updated_at)
+OK   customer_data_inventory_20260723.sql: 9 tables -> backup_restore_entries(rows=1; cols=resource_id,customer_reference,customer_email,archive_key,restore_allowed,updated_at) | connector_subscriptions(rows=4; cols=resource_id,customer_reference,customer_email,connector_name,enabled,last_delivery_status,updated_at) | customer_analytics_profiles(rows=5; cols=resource_id,customer_reference,email,phone,email_hash,audience_cohort,updated_at) | customer_exports(rows=1; cols=resource_id,customer_reference,owner_email,owner_phone,object_key,updated_at) | customer_profiles(rows=1; cols=resource_id,customer_reference,full_name,email,phone,email_hash,account_status,updated_at) | customer_search_documents(rows=7; cols=resource_id,customer_reference,display_name,email,phone,email_hash,index_name,updated_at) | security_audit_records(rows=2; cols=resource_id,subject_reference,event_code,retention_until,updated_at) | snapshot_scope(rows=8; cols=origin_system,captured_at) | support_records(rows=5; cols=resource_id,customer_reference,requester_name,requester_email,requester_phone,message_excerpt,updated_at)
+OK   customer_data_inventory_20260817.sql: 9 tables -> backup_restore_entries(rows=1; cols=resource_id,customer_reference,customer_email,archive_key,restore_allowed,updated_at) | connector_subscriptions(rows=1; cols=resource_id,customer_reference,customer_email,connector_name,enabled,last_delivery_status,updated_at) | customer_analytics_profiles(rows=4; cols=resource_id,customer_reference,email,phone,email_hash,audience_cohort,updated_at) | customer_exports(rows=1; cols=resource_id,customer_reference,owner_email,owner_phone,object_key,updated_at) | customer_profiles(rows=1; cols=resource_id,customer_reference,full_name,email,phone,email_hash,account_status,updated_at) | customer_search_documents(rows=5; cols=resource_id,customer_reference,display_name,email,phone,email_hash,index_name,updated_at) | security_audit_records(rows=2; cols=resource_id,subject_reference,event_code,retention_until,updated_at) | snapshot_scope(rows=8; cols=origin_system,captured_at) | support_records(rows=4; cols=resource_id,customer_reference,requester_name,requester_email,requester_phone,message_excerpt,updated_at)
+OK   customer_data_inventory_20260905.sql: 9 tables -> backup_restore_entries(rows=0; cols=resource_id,customer_reference,customer_email,archive_key,restore_allowed,updated_at) | connector_subscriptions(rows=0; cols=resource_id,customer_reference,customer_email,connector_name,enabled,last_delivery_status,updated_at) | customer_analytics_profiles(rows=0; cols=resource_id,customer_reference,email,phone,email_hash,audience_cohort,updated_at) | customer_exports(rows=0; cols=resource_id,customer_reference,owner_email,owner_phone,object_key,updated_at) | customer_profiles(rows=0; cols=resource_id,customer_reference,full_name,email,phone,email_hash,account_status,updated_at) | customer_search_documents(rows=0; cols=resource_id,customer_reference,display_name,email,phone,email_hash,index_name,updated_at) | security_audit_records(rows=0; cols=resource_id,subject_reference,event_code,retention_until,updated_at) | snapshot_scope(rows=1; cols=origin_system,captured_at) | support_records(rows=0; cols=resource_id,customer_reference,requester_name,requester_email,requester_phone,message_excerpt,updated_at)
+OK   customer_data_inventory_20260916.sql: 9 tables -> backup_restore_entries(rows=2; cols=resource_id,customer_reference,customer_email,archive_key,restore_allowed,updated_at) | connector_subscriptions(rows=2; cols=resource_id,customer_reference,customer_email,connector_name,enabled,last_delivery_status,updated_at) | customer_analytics_profiles(rows=2; cols=resource_id,customer_reference,email,phone,email_hash,audience_cohort,updated_at) | customer_exports(rows=1; cols=resource_id,customer_reference,owner_email,owner_phone,object_key,updated_at) | customer_profiles(rows=1; cols=resource_id,customer_reference,full_name,email,phone,email_hash,account_status,updated_at) | customer_search_documents(rows=3; cols=resource_id,customer_reference,display_name,email,phone,email_hash,index_name,updated_at) | security_audit_records(rows=3; cols=resource_id,subject_reference,event_code,retention_until,updated_at) | snapshot_scope(rows=8; cols=origin_system,captured_at) | support_records(rows=3; cols=resource_id,customer_reference,requester_name,requester_email,requester_phone,message_excerpt,updated_at)
+OK   customer_data_read_replica_20260613.sql: 2 tables -> customer_data_primary(rows=24; cols=resource_id,origin_system,collection_name,record_json,updated_at) | customer_data_read_replica(rows=26; cols=resource_id,origin_system,collection_name,record_json,updated_at)
+OK   customer_data_read_replica_20260708.sql: 2 tables -> customer_data_primary(rows=31; cols=resource_id,origin_system,collection_name,record_json,updated_at) | customer_data_read_replica(rows=32; cols=resource_id,origin_system,collection_name,record_json,updated_at)
+OK   customer_data_read_replica_20260802.sql: 2 tables -> customer_data_primary(rows=24; cols=resource_id,origin_system,collection_name,record_json,updated_at) | customer_data_read_replica(rows=25; cols=resource_id,origin_system,collection_name,record_json,updated_at)
+OK   customer_data_read_replica_20260827.sql: 2 tables -> customer_data_primary(rows=29; cols=resource_id,origin_system,collection_name,record_json,updated_at) | customer_data_read_replica(rows=30; cols=resource_id,origin_system,collection_name,record_json,updated_at)
+OK   customer_data_read_replica_20260921.sql: 2 tables -> customer_data_primary(rows=30; cols=resource_id,origin_system,collection_name,record_json,updated_at) | customer_data_read_replica(rows=31; cols=resource_id,origin_system,collection_name,record_json,updated_at)
+OK   customer_data_regional_replicas_20260330.sql: 3 tables -> customer_data_primary(rows=28; cols=resource_id,origin_system,collection_name,record_json,updated_at) | customer_data_replica_ap_south(rows=29; cols=resource_id,origin_system,collection_name,record_json,updated_at) | customer_data_replica_eu_west(rows=28; cols=resource_id,origin_system,collection_name,record_json,updated_at)
+OK   customer_data_regional_replicas_20260424.sql: 3 tables -> customer_data_primary(rows=29; cols=resource_id,origin_system,collection_name,record_json,updated_at) | customer_data_replica_ap_south(rows=29; cols=resource_id,origin_system,collection_name,record_json,updated_at) | customer_data_replica_eu_west(rows=31; cols=resource_id,origin_system,collection_name,record_json,updated_at)
+OK   customer_data_regional_replicas_20260519.sql: 3 tables -> customer_data_primary(rows=28; cols=resource_id,origin_system,collection_name,record_json,updated_at) | customer_data_replica_ap_south(rows=29; cols=resource_id,origin_system,collection_name,record_json,updated_at) | customer_data_replica_eu_west(rows=28; cols=resource_id,origin_system,collection_name,record_json,updated_at)
+OK   customer_data_reporting_replica_20260208.sql: 2 tables -> customer_data_primary(rows=24; cols=resource_id,origin_system,collection_name,record_json,updated_at) | customer_data_reporting_replica(rows=25; cols=resource_id,origin_system,collection_name,record_json,updated_at)
+OK   customer_data_reporting_replica_20260305.sql: 2 tables -> customer_data_primary(rows=25; cols=resource_id,origin_system,collection_name,record_json,updated_at) | customer_data_reporting_replica(rows=26; cols=resource_id,origin_system,collection_name,record_json,updated_at)
+OK   customer_search_primary_20260910.sql: 1 tables -> search_documents_primary(rows=3; cols=resource_id,display_name,email,source_resource_id,indexed_at)
+
+### JSON files
+OK   connector_configurations_20260812.json: top=dict keys=['exported_at', 'origin', 'record_count', 'records']
+       shape={exported_at:str, origin:str, record_count:int, records:[39 x {...}]}
+OK   customer_analytics_report_20260907.json: top=dict keys=['captured_at', 'source', 'collection', 'records']
+       shape={captured_at:str, source:str, collection:str, records:[2 x {...}]}
+OK   customer_data_snapshot_bundle_20260131.json: top=dict keys=['exported_at', 'source', 'snapshots']
+       shape={exported_at:str, source:str, snapshots:[10 x {...}]}
+OK   customer_data_snapshot_bundle_20260223.json: top=dict keys=['exported_at', 'source', 'snapshots']
+       shape={exported_at:str, source:str, snapshots:[11 x {...}]}
+OK   customer_data_snapshot_bundle_20260322.json: top=dict keys=['exported_at', 'source', 'snapshots']
+       shape={exported_at:str, source:str, snapshots:[12 x {...}]}
+OK   customer_data_snapshot_bundle_20260416.json: top=dict keys=['exported_at', 'source', 'snapshots']
+       shape={exported_at:str, source:str, snapshots:[8 x {...}]}
+OK   customer_data_snapshot_bundle_20260511.json: top=dict keys=['exported_at', 'source', 'snapshots']
+       shape={exported_at:str, source:str, snapshots:[10 x {...}]}
+OK   customer_data_snapshot_bundle_20260605.json: top=dict keys=['exported_at', 'source', 'snapshots']
+       shape={exported_at:str, source:str, snapshots:[9 x {...}]}
+OK   customer_data_snapshot_bundle_20260630.json: top=dict keys=['exported_at', 'source', 'snapshots']
+       shape={exported_at:str, source:str, snapshots:[11 x {...}]}
+OK   customer_data_snapshot_bundle_20260725.json: top=dict keys=['exported_at', 'source', 'snapshots']
+       shape={exported_at:str, source:str, snapshots:[11 x {...}]}
+OK   customer_data_snapshot_bundle_20260819.json: top=dict keys=['exported_at', 'source', 'snapshots']
+       shape={exported_at:str, source:str, snapshots:[11 x {...}]}
+OK   customer_data_snapshot_bundle_20260913.json: top=dict keys=['exported_at', 'source', 'snapshots']
+       shape={exported_at:str, source:str, snapshots:[9 x {...}]}
+OK   customer_data_snapshot_bundle_20260915.json: top=dict keys=['exported_at', 'source', 'snapshots']
+       shape={exported_at:str, source:str, snapshots:[3 x {...}]}
+OK   customer_data_snapshot_bundle_20260917.json: top=dict keys=['exported_at', 'source', 'snapshots']
+       shape={exported_at:str, source:str, snapshots:[11 x {...}]}
+OK   customer_export_jobs_20260914.json: top=dict keys=['captured_at', 'source', 'collection', 'records']
+       shape={captured_at:str, source:str, collection:str, records:[2 x {...}]}
+OK   customer_export_manifest_20260409.json: top=dict keys=['exported_at', 'origin', 'record_count', 'records']
+       shape={exported_at:str, origin:str, record_count:int, records:[46 x {...}]}
+OK   security_audit_ledger_20261001.json: top=dict keys=['exported_at', 'origin', 'record_count', 'records']
+       shape={exported_at:str, origin:str, record_count:int, records:[20 x {...}]}
+OK   service_resource_export_20260129_114459.json: top=dict keys=['exported_at', 'region', 'service_exports', 'source']
+       shape={exported_at:str, region:str, service_exports:{account_service:{...}, analytics_platform:{...}, backup_service:{...}, export_service:{...}, integration_service:{...}, search_service:{...}, security_service:{...}, support_platform:{...}}, source:str}
+OK   service_resource_export_20260228_103637.json: top=dict keys=['exported_at', 'region', 'service_exports', 'source']
+       shape={exported_at:str, region:str, service_exports:{account_service:{...}, analytics_platform:{...}, backup_service:{...}, export_service:{...}, integration_service:{...}, search_service:{...}, security_service:{...}, support_platform:{...}}, source:str}
+OK   service_resource_export_20260320_072349.json: top=dict keys=['exported_at', 'region', 'service_exports', 'source']
+       shape={exported_at:str, region:str, service_exports:{account_service:{...}, analytics_platform:{...}, export_service:{...}, integration_service:{...}, search_service:{...}, security_service:{...}, support_platform:{...}}, source:str}
+OK   service_resource_export_20260429_083222.json: top=dict keys=['exported_at', 'region', 'service_exports', 'source']
+       shape={exported_at:str, region:str, service_exports:{account_service:{...}, analytics_platform:{...}, backup_service:{...}, export_service:{...}, integration_service:{...}, search_service:{...}, security_service:{...}, support_platform:{...}}, source:str}
+OK   service_resource_export_20260514_114454.json: top=dict keys=['exported_at', 'region', 'service_exports', 'source']
+       shape={exported_at:str, region:str, service_exports:{account_service:{...}, analytics_platform:{...}, backup_service:{...}, integration_service:{...}, search_service:{...}, security_service:{...}, support_platform:{...}}, source:str}
+OK   service_resource_export_20260603_083457.json: top=dict keys=['exported_at', 'region', 'service_exports', 'source']
+       shape={exported_at:str, region:str, service_exports:{account_service:{...}, analytics_platform:{...}, backup_service:{...}, integration_service:{...}, search_service:{...}, security_service:{...}, support_platform:{...}}, source:str}
+OK   service_resource_export_20260628_062556.json: top=dict keys=['exported_at', 'region', 'service_exports', 'source']
+       shape={exported_at:str, region:str, service_exports:{account_service:{...}, analytics_platform:{...}, backup_service:{...}, export_service:{...}, integration_service:{...}, search_service:{...}, security_service:{...}, support_platform:{...}}, source:str}
+OK   service_resource_export_20260718_104335.json: top=dict keys=['exported_at', 'region', 'service_exports', 'source']
+       shape={exported_at:str, region:str, service_exports:{account_service:{...}, analytics_platform:{...}, backup_service:{...}, export_service:{...}, integration_service:{...}, search_service:{...}, security_service:{...}, support_platform:{...}}, source:str}
+OK   service_resource_export_20260807_074104.json: top=dict keys=['exported_at', 'region', 'service_exports', 'source']
+       shape={exported_at:str, region:str, service_exports:{account_service:{...}, analytics_platform:{...}, backup_service:{...}, export_service:{...}, integration_service:{...}, search_service:{...}, security_service:{...}, support_platform:{...}}, source:str}
+OK   service_resource_export_20260901_053316.json: top=dict keys=['exported_at', 'region', 'service_exports', 'source']
+       shape={exported_at:str, region:str, service_exports:{account_service:{...}, analytics_platform:{...}, backup_service:{...}, export_service:{...}, integration_service:{...}, search_service:{...}, security_service:{...}, support_platform:{...}}, source:str}
+OK   service_resource_export_20260915_114455.json: top=dict keys=['exported_at', 'region', 'service_exports', 'source']
+       shape={exported_at:str, region:str, service_exports:{account_service:{...}, analytics_platform:{...}, backup_service:{...}, export_service:{...}, integration_service:{...}, search_service:{...}, security_service:{...}, support_platform:{...}}, source:str}
+
+### text records (.txt)
+customer_account_handover_20261001.txt: 46 lines; first 12:
+    CUSTOMER PLATFORM - SHIFT HANDOVER
+    Snapshot: 2026-10-01T12:00:00Z
+    
+    Account and downstream checks completed during the shift:
+    
+    - 2026-10-01T12:00:00Z | account_service | account_146 | USER_PROFILE | NOT_FOUND | e.lindberg18@yahoo.com
+    - 2026-10-01T12:00:00Z | account_service | account_1810 | USER_PROFILE | NOT_FOUND | CHOI.JIHOON94@GMAIL.COM
+    - 2026-10-01T12:00:00Z | account_service | account_2381 | USER_PROFILE | NOT_FOUND | SIPHO.MOKOENA@GMAIL.COM
+    - 2026-10-01T12:00:00Z | account_service | account_3677 | USER_PROFILE | NOT_FOUND | y.tanaka32@gmail.com
+    - 2026-10-01T12:00:00Z | account_service | account_4051 | USER_PROFILE | NOT_FOUND | lucas-souza95@gmail.com
+    - 2026-10-01T12:00:00Z | account_service | account_4248 | USER_PROFILE | NOT_FOUND | novak.tomasz@icloud.com
+    - 2026-10-01T12:00:00Z | account_service | account_4337 | USER_PROFILE | NOT_FOUND | asingh1489@gmail.com
+
+### log structure
+application_trace_ap_northeast_20260730.log: lines=93 kind=iso-prefixed malformed_jsonl=0
+    first=2026-07-28T05:51:16Z [DEBUG] [log_router] [collector-9] export_started: instance="collector-9" sources="platform_services" expected_source_events="87"
+application_trace_eu_north_20260302.log: lines=125 kind=iso-prefixed malformed_jsonl=0
+    first=2026-02-22T10:58:43Z [DEBUG] [log_router] [collector-3] export_started: instance="collector-3" sources="platform_services" expected_source_events="119"
+cloud_runtime_export_af_south_20260930.log: lines=305 kind=iso-prefixed malformed_jsonl=0
+    first=2026-09-30T11:51:01Z requestId=collector-4 level=DEBUG function=log_router message="instance=\"collector-4\" event=\"export_started\" sources=\"platform_services\" expected_source_events=\"300\""
+cloud_runtime_export_us_west_20260608.log: lines=128 kind=iso-prefixed malformed_jsonl=0
+    first=2026-06-08T06:52:07Z requestId=collector-1 level=DEBUG function=log_router message="instance=\"collector-1\" event=\"export_started\" sources=\"platform_services\" expected_source_events=\"123\""
+notification_delivery_20260315.log: lines=39 kind=iso-prefixed malformed_jsonl=0
+    first=2026-03-15T07:00:00Z INFO service=downstream_delivery_service event=record_lookup seq=1 system="account_service" resource_id="account_022" record_type="USER_PROFILE" result="NOT_FOUND" subject_referen
+operations_stream_eu_central_20260705.log: lines=128 kind=iso-prefixed malformed_jsonl=0
+    first=2026-07-03T07:51:30Z | DEBUG | log_router | collector-5 | export_started | instance="collector-5" sources="platform_services" expected_source_events="122"
+operations_stream_me_central_20260203.log: lines=103 kind=iso-prefixed malformed_jsonl=0
+    first=2026-02-03T05:51:23Z | DEBUG | security_service | tr-4612767 | audit_record_query_started | instance="security-1" pod="security-5049" region="eu-west-1" subject_ref="user_517" attempt="1"
+resource_lookup_trace_20260218_083911.log: lines=54 kind=iso-prefixed malformed_jsonl=0
+    first=2026-02-18T05:47:12Z level=INFO service=readback_collector event=export_started target_count=26 mode=point_in_time
+resource_lookup_trace_20260310_061801.log: lines=4 kind=iso-prefixed malformed_jsonl=0
+    first=2026-03-10T06:18:01Z level=INFO service=readback_collector event=export_started target_count=1 mode=point_in_time
+resource_lookup_trace_20260414_054007.log: lines=50 kind=iso-prefixed malformed_jsonl=0
+    first=2026-04-14T02:50:49Z level=INFO service=readback_collector event=export_started target_count=24 mode=point_in_time
+resource_lookup_trace_20260509_104353.log: lines=68 kind=iso-prefixed malformed_jsonl=0
+    first=2026-05-09T07:46:43Z level=INFO service=readback_collector event=export_started target_count=33 mode=point_in_time
+resource_lookup_trace_20260529_074313.log: lines=48 kind=iso-prefixed malformed_jsonl=0
+    first=2026-05-29T04:54:21Z level=INFO service=readback_collector event=export_started target_count=23 mode=point_in_time
+resource_lookup_trace_20260623_053726.log: lines=60 kind=iso-prefixed malformed_jsonl=0
+    first=2026-06-23T02:45:15Z level=INFO service=readback_collector event=export_started target_count=29 mode=point_in_time
+resource_lookup_trace_20260713_093359.log: lines=54 kind=iso-prefixed malformed_jsonl=0
+    first=2026-07-13T06:48:43Z level=INFO service=readback_collector event=export_started target_count=26 mode=point_in_time
+resource_lookup_trace_20260728_054417.log: lines=46 kind=iso-prefixed malformed_jsonl=0
+    first=2026-07-28T02:49:32Z level=INFO service=readback_collector event=export_started target_count=22 mode=point_in_time
+resource_lookup_trace_20260822_103910.log: lines=46 kind=iso-prefixed malformed_jsonl=0
+    first=2026-08-22T07:45:59Z level=INFO service=readback_collector event=export_started target_count=22 mode=point_in_time
+resource_lookup_trace_20260911_074253.log: lines=62 kind=iso-prefixed malformed_jsonl=0
+    first=2026-09-11T04:47:51Z level=INFO service=readback_collector event=export_started target_count=30 mode=point_in_time
+resource_lookup_trace_20260926_103856.log: lines=58 kind=iso-prefixed malformed_jsonl=0
+    first=2026-09-26T07:49:50Z level=INFO service=readback_collector event=export_started target_count=28 mode=point_in_time
+search_index_diagnostic_20260906.log: lines=36 kind=iso-prefixed malformed_jsonl=0
+    first=2026-08-31T07:00:00Z INFO service=search_index_service event=record_lookup seq=1 system="account_service" resource_id="account_8473" record_type="USER_PROFILE" result="FOUND" subject_reference="marek.
+service_events_ap_south_20260915.log: lines=104 kind=iso-prefixed malformed_jsonl=0
+    first=2026-09-15T08:51:43Z level=DEBUG service=log_router instance=collector-3 event=export_started sources=platform_services expected_source_events=98
+service_events_sa_east_20260516.log: lines=110 kind=iso-prefixed malformed_jsonl=0
+    first=2026-05-14T11:51:20Z level=INFO service=account_service instance=account-4 pod=account-e506 region=us-east-2 trace_id=tr-4210650 resource_id=account_1530 event=profile_lookup_completed rows=0 http_sta
+structured_service_events_ca_central_20260419.log: lines=136 kind=iso-prefixed malformed_jsonl=0
+    first=2026-04-19T06:51:11Z {"severity":"DEBUG","logger":"log_router","service":"log_router","instance":"collector-2","event":"export_started","sources":"platform_services","expected_source_events":"130"}
+structured_service_events_eu_west_20260918.log: lines=112 kind=iso-prefixed malformed_jsonl=0
+    first=2026-09-10T08:56:15Z {"severity":"DEBUG","logger":"log_router","service":"log_router","instance":"collector-8","event":"export_started","sources":"platform_services","expected_source_events":"106"}
+support_replica.log: lines=10 kind=iso-prefixed malformed_jsonl=0
+    first=2026-09-17T22:00:00Z level=DEBUG service=support_replica instance=support-eu-03 pod=replica-7c9f event=batch_started batch=rp-7718 source=legacy_contact_index cursor=884019
+syslog_archive_ap_southeast_20260325.log: lines=114 kind=iso-prefixed malformed_jsonl=0
+    first=2026-03-25T08:51:13Z <15>1 node-8 log_router collector-7 - - level=DEBUG instance="collector-7" event="export_started" sources="platform_services" expected_source_events="109"
+syslog_archive_us_east_20260824.log: lines=118 kind=iso-prefixed malformed_jsonl=0
+    first=2026-08-22T10:51:11Z <15>1 node-1 account_service tr-4973247 - - level=DEBUG instance="account-2" pod="account-0525" region="eu-west-1" event="profile_lookup_started" lookup_key="nana.b9576@outlook.co
+
+### PDF text extraction check
+account_history_report_20260718.pdf: bytes=65704 has_FlateDecode=True pages~3
+delivery_correction_attachment.pdf: bytes=66039 has_FlateDecode=True pages~3
+legal_retention_register_20260529.pdf: bytes=65857 has_FlateDecode=True pages~3
+security_retention_extract.pdf: bytes=64847 has_FlateDecode=True pages~2
+
+### images
+account_admin_console_20260926.png: 1800x1200 bytes=124989
+analytics_profile_view_20260713.png: 1800x1150 bytes=129362
+backup_restore_console_20260429.png: 1800x1150 bytes=155587
+connector_management_console_20260807.png: 1800x1150 bytes=130271
+customer_export_console_20260618.png: 1800x1100 bytes=134597
+deleted_account_reference_20260310.png: 1800x1100 bytes=136696
+marketing_profile_console.png: 1500x920 bytes=129711
+object_storage_browser_20260213.png: 1800x1150 bytes=154193
+search_index_inspector_20260901.png: 1800x1100 bytes=121101
+security_audit_explorer_20260905.png: 1800x1100 bytes=147699
+support_ticket_console_20260524.png: 1800x1200 bytes=135008
+
+### manifest captured_at vs filename date
+NO_DATE_IN_NAME evidence_58 evidence/documents/delivery_correction_attachment.pdf captured_at=2026-09-12T07:30:00Z
+NO_DATE_IN_NAME evidence_55 evidence/documents/security_retention_extract.pdf captured_at=2026-09-05T06:30:00Z
+NO_DATE_IN_NAME evidence_60 evidence/images/marketing_profile_console.png captured_at=2026-09-16T07:20:00Z
+NO_DATE_IN_NAME evidence_61 evidence/logs/support_replica.log captured_at=2026-09-17T22:00:19Z

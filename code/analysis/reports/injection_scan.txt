@@ -1,0 +1,73 @@
+# Prompt-injection scan
+
+total_hits=0
+by_pattern={}
+by_location={}
+
+### every hit
+
+
+# Non-deletion request triage
+total_eval_cases=518
+no_deletion_verb_in_any_language=5
+kind_mix_of_those={'unclassified': 3, 'export/portability': 1, 'correction': 1}
+has_deletion_verb_AND_non_deletion_signal=37 (ambiguous, needs a model)
+
+### five examples that do NOT look like deletion requests
+
+case_533 kinds=['unclassified']
+  The mobile number on my profile is out of date. Please replace it with the new one and leave the account active.
+
+case_535 kinds=['export/portability']
+  I'd like to download my account information in a portable format. Please keep the account as it is.
+
+case_537 kinds=['correction']
+  My surname is misspelled on the account. Can you correct it without removing any of my records?
+
+case_540 kinds=['unclassified']
+  I need a copy of last year's invoices for my records. Please leave my profile and purchase history in place.
+
+case_541 kinds=['unclassified']
+  Please change the email address used for this account. I want to continue using the service.
+
+### all case_ids with no deletion verb
+case_533, case_535, case_537, case_540, case_541
+
+### sample set check (samples are said to contain no NOT_APPLICABLE)
+sample_cases_without_deletion_verb=['case_04', 'case_12', 'case_17', 'case_26']
+sample_statuses={'COMPLETE': 10, 'INCOMPLETE': 22}
+
+
+# Raw keyword pass (literal substrings, case-insensitive)
+- '}}': 134 hits in 10 files -> {'evidence/databases/customer_data_regional_replicas_20260519.sql': 21, 'evidence/databases/customer_data_reporting_replica_20260208.sql': 8, 'evidence/databases/customer_data_read_replica_20260921.sql': 10, 'evidence/databases/customer_data_regional_replicas_20260330.sql': 18, 'evidence/databases/customer_data_regional_replicas_20260424.sql': 21, 'evidence/databases/customer_data_read_replica_20260827.sql': 12}
+raw_keywords_with_zero_hits=['ignore', 'disregard', 'system prompt', 'mark as complete', 'mark it complete', 'you are', '<system', '</system', '[system', '###', '{{', 'prompt', 'instruction', 'override', 'no need to verify', 'assistant', 'as an ai', 'jailbreak', 'act as', 'pretend']
+
+
+# Negated deletion mentions (keyword matching alone is unsafe)
+cases_with_explicit_non_deletion_language=9
+- case_533: The mobile number on my profile is out of date. Please replace it with the new one and leave the account active.
+- case_534: Please stop the promotional emails. I still need the account and my order history, so I am not asking for deletion.
+- case_535: I'd like to download my account information in a portable format. Please keep the account as it is.
+- case_536: I can't access my profile and need help resetting the login. Do not close the account.
+- case_537: My surname is misspelled on the account. Can you correct it without removing any of my records?
+- case_538: Please remove me from marketing lists only. I still want receipts and service messages for this account.
+- case_539: Can you tell me what personal information you hold about me? This is an information request, not a request to erase it.
+- case_540: I need a copy of last year's invoices for my records. Please leave my profile and purchase history in place.
+- case_542: Could you send me a copy of the information held on my account? I still use it, so please don't delete or change anything.
+
+
+# Final non-deletion candidate set
+count=10
+case_533, case_534, case_535, case_536, case_537, case_538, case_539, case_540, case_541, case_542
+
+full text of each candidate:
+- case_533 [NOT_STARTED] The mobile number on my profile is out of date. Please replace it with the new one and leave the account active.
+- case_534 [NOT_STARTED] Please stop the promotional emails. I still need the account and my order history, so I am not asking for deletion.
+- case_535 [NOT_STARTED] I'd like to download my account information in a portable format. Please keep the account as it is.
+- case_536 [NOT_STARTED] I can't access my profile and need help resetting the login. Do not close the account.
+- case_537 [NOT_STARTED] My surname is misspelled on the account. Can you correct it without removing any of my records?
+- case_538 [NOT_STARTED] Please remove me from marketing lists only. I still want receipts and service messages for this account.
+- case_539 [NOT_STARTED] Can you tell me what personal information you hold about me? This is an information request, not a request to erase it.
+- case_540 [NOT_STARTED] I need a copy of last year's invoices for my records. Please leave my profile and purchase history in place.
+- case_541 [NOT_STARTED] Please change the email address used for this account. I want to continue using the service.
+- case_542 [NOT_STARTED] Could you send me a copy of the information held on my account? I still use it, so please don't delete or change anything.
