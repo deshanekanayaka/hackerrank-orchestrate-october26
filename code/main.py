@@ -5,8 +5,11 @@
     python3 code/main.py --out PATH      # write somewhere else
     python3 code/main.py --limit N       # first N cases, for a quick look
 
-Intent labels come from code/cache/intent.json, which is committed, so a
-clean run needs no API key. The image and PDF pass is not wired in yet.
+Intent labels come from code/cache/intent.json and the transcribed
+screenshots and PDF documents come from code/cache/vision.json. Both caches
+are committed, so a clean run makes no model call and needs no API key. To
+rebuild them, run `python3 code/intent.py classify` and
+`python3 code/vision.py transcribe` with ANTHROPIC_API_KEY set.
 """
 
 import csv
@@ -47,7 +50,8 @@ def run(requests_path, out_path, limit=None):
             rows.append((case_id, "NOT_APPLICABLE", []))
             continue
         case_status, steps = status.plan(index, directory, user_id,
-                                        request["audit_at"])
+                                         request["audit_at"],
+                                         request["requested_at"])
         rows.append((case_id, case_status, steps))
 
     with open(out_path, "w", newline="", encoding="utf-8") as fh:

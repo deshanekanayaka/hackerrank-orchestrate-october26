@@ -134,18 +134,19 @@ def state_of(obs, prefix, directory, user_id):
     return "PRESENT"
 
 
-def resource_states(index, directory, user_id, audit_at):
+def resource_states(index, directory, user_id, audit_at,
+                    since=None):
     """One state per resource, from the newest usable observation."""
     out = {}
-    owned = index.resources_of(user_id, audit_at)
+    owned = index.resources_of(user_id, audit_at, since)
     # Newest file per resource, then every record of that resource in that
     # file merged: a readback trace writes the lookup on one line and its
     # result on the next, and only the pair states the whole truth.
     newest, groups = {}, {}
-    for obs in index.for_user(user_id, audit_at):
+    for obs in index.for_user(user_id, audit_at, since):
         if obs.captured_at >= newest.get(obs.resource_id, ""):
             newest[obs.resource_id] = obs.captured_at
-    for obs in index.for_user(user_id, audit_at):
+    for obs in index.for_user(user_id, audit_at, since):
         if obs.captured_at == newest[obs.resource_id]:
             groups.setdefault(obs.resource_id, []).append(obs)
     seen = {}
@@ -186,9 +187,10 @@ def cite(index, resource, state, obs, files, audit_at):
     return max(usable)[1] if usable else ""
 
 
-def plan(index, directory, user_id, audit_at):
+def plan(index, directory, user_id, audit_at, since=None):
     """Build the ordered steps for one audited case."""
-    states = resource_states(index, directory, user_id, audit_at)
+    states = resource_states(index, directory, user_id, audit_at,
+                             since)
     findings, fixes, proofs = [], [], []
 
     for resource, (state, obs, files) in states.items():

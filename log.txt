@@ -652,3 +652,81 @@ branch=main
 repo_root=/Users/deshan/Documents/hackerrank-orchestrate-october26
 worktree=main
 parent_agent=none
+
+## [2026-10-25T00:00:00Z] SESSION START
+
+tool=Claude Code
+model=claude-opus-5
+Repo Root: /Users/deshan/Documents/hackerrank-orchestrate-october26
+Branch: main
+Worktree: main
+Parent Agent: none
+Language: py
+Time Remaining: not configured
+
+## [2026-10-25T00:30:00Z] Implement issue 01: read the screenshots and PDFs
+
+User Prompt (verbatim, secrets redacted):
+/mattpocock-skills:implement ticket 1
+
+Agent Response Summary:
+Built code/vision.py, a one-time pass that sends each of the 11 screenshots
+and 4 PDF documents to claude-sonnet-5, asks for a plain transcription of
+every label, value, and table row, and caches the answer per file in
+code/cache/vision.json. The evidence index now reads that cache like any
+other file. A console screen prints a display key instead of a resource_id,
+so the LINK_RESOURCE_IDENTITY rows of system_activity.csv supply the pairing
+and the subject, matched to the file by capture time. A screenshot is
+filtered to one subject, so it no longer counts as a sweep of its system,
+and evidence captured before requested_at no longer enters a case. The nine
+COMPLETE cases with no step are gone and the format check passes on all 518
+rows.
+
+Actions:
+* created code/vision.py and code/cache/vision.json
+* edited code/evidence.py, code/status.py, code/main.py, code/intent.py
+* ran python3 code/vision.py transcribe, then every module selftest
+* ran python3 code/main.py and python3 code/evaluation/main.py check
+
+Context:
+tool=Claude Code
+model=claude-opus-5
+branch=main
+repo_root=/Users/deshan/Documents/hackerrank-orchestrate-october26
+worktree=main
+parent_agent=none
+
+## [2026-10-24T23:12:32Z] SESSION START
+
+tool=Claude Code
+model=claude-opus-5
+Repo Root: /Users/deshan/Documents/hackerrank-orchestrate-october26
+Branch: main
+Worktree: main
+Parent Agent: none
+Language: py
+Time Remaining: not configured
+
+## [2026-10-24T23:12:32Z] Explain stage 3 of the design draft
+
+User Prompt (verbatim, secrets redacted):
+Read the design draft and explain the 3rd step simply
+
+Agent Response Summary:
+Read design-draft.md and explained stage 3, the state decision rule. Stage 3
+takes the newest evidence file captured at or before audit_at for a system and
+resource, and reads the state from it, ignoring reported_status and
+reported_result. Also covered the two sub-rules: any copy counts as present,
+and later evidence never changes an answer. No files changed.
+
+Actions:
+* Read design-draft.md
+* Appended this log entry
+
+Context:
+tool=Claude Code
+model=claude-opus-5
+branch=main
+repo_root=/Users/deshan/Documents/hackerrank-orchestrate-october26
+worktree=main
+parent_agent=none
