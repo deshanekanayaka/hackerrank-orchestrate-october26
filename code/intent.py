@@ -135,11 +135,20 @@ def ask(client, batch):
     return {a["case_id"]: a for a in answers}
 
 
-def classify(requests, force=False):
+def classify(requests, force=False, labels=None):
+    """Which requests authorize deletion, one label per case.
+
+    `labels` supplies a decision we made by hand, for a case we wrote
+    ourselves. A labeled case needs no model call and is never written to
+    the shared cache, so our own cases can never overwrite a dataset case
+    and can never break the key-free run that produces output.csv.
+    """
+    labels = labels or {}
     cache = read_cache()
     todo = [r for r in requests
-            if force or cache.get(r["case_id"], {}).get("fingerprint")
-            != fingerprint(r["request_text"])]
+            if r["case_id"] not in labels
+            and (force or cache.get(r["case_id"], {}).get("fingerprint")
+                 != fingerprint(r["request_text"]))]
     if todo:
         import anthropic
         key = load_env()
@@ -167,8 +176,11 @@ def classify(requests, force=False):
                 }
             write_cache(cache)
             print(f"classified {min(start + BATCH, len(todo))}/{len(todo)}")
-    return {r["case_id"]: cache[r["case_id"]]["authorizes_deletion"]
-            for r in requests if r["case_id"] in cache}
+    out = {r["case_id"]: cache[r["case_id"]]["authorizes_deletion"]
+           for r in requests if r["case_id"] in cache}
+    out.update({r["case_id"]: labels[r["case_id"]] for r in requests
+                if r["case_id"] in labels})
+    return out
 
 
 def read_requests(sample=False):

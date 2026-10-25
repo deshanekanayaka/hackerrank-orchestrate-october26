@@ -963,3 +963,107 @@ branch=main
 repo_root=/Users/deshan/Documents/hackerrank-orchestrate-october26
 worktree=main
 parent_agent=none
+
+## [2026-10-25T10:05:00Z] Ticket 3: measure the pipeline and write the evaluation report
+
+User Prompt (verbatim, secrets redacted):
+/mattpocock-skills:implement ticket 3
+
+Agent Response Summary:
+Built the evaluation report from real scorer output on branch
+feat/evaluation-report. Added ceiling.py, which measures the recall limit
+the evidence index imposes: 159 of 193 sample truth steps are reachable, so
+the limit is 0.824 against a measured 0.793, and all 34 unreachable steps
+are verification steps rather than findings. Added experiments.py, which
+runs five candidate rules and rejects all five with measured numbers.
+Candidate 5 raises status accuracy to 32 of 32 while adding two wrong steps
+to case_10, so it was not shipped. Added five extra cases as a request file
+and a hand-written expected-answer file, covering shapes the samples never
+show, and all five pass. Gave code/main.py a --requests flag so the shipped
+entry point runs them.
+
+Actions:
+* Added code/evaluation/ceiling.py and code/evaluation/experiments.py
+* Added evaluation/cases/requests.csv and evaluation/cases/expected.csv
+* Added evaluation/evaluation_report.md
+* Edited code/main.py: --requests PATH
+* Updated .scratch/ghost-data-finish/issues/03-evaluation-report.md
+* Verified each expected answer by reading the evidence directly
+* Ran every selftest, both new tools, the full run, and the checker
+* git commit 409dc46 on feat/evaluation-report
+
+Context:
+tool=Claude Code
+model=claude-opus-5
+branch=feat/evaluation-report
+repo_root=/Users/deshan/Documents/hackerrank-orchestrate-october26
+worktree=main
+parent_agent=none
+
+## [2026-10-25T10:35:00Z] Ticket 3: review fixes
+
+Agent Response Summary:
+The background review returned ten findings. Verified each one. Five were
+real and are fixed: --requests reused dataset case ids and so could overwrite
+a dataset entry in the shared intent cache; --requests without --out replaced
+the 518-row deliverable; the five extra cases were verbatim dataset rows and
+so added no input coverage while the report claimed more than they prove; the
+experiment harness skipped the intent stage, so its baseline row was not the
+shipped pipeline; and candidate 2's surname pattern reached only part of the
+directory, making its blast radius a floor. intent.classify now accepts hand
+labels, the cases carry their own ids and texts, and the surname figure rose
+from 18 resources across 13 cases to 21 across 16. The ceiling tool also now
+models the retained-record exception and fails loudly on an unresolved
+subject. Every published metric is unchanged. Committed as d07ca0c.
+
+Actions:
+* Edited code/intent.py: classify takes hand labels
+* Edited code/main.py: labels file, --requests needs --out, path guard
+* Rewrote evaluation/cases/requests.csv with our own ids and texts
+* Added evaluation/cases/requests.csv.labels.json
+* Edited code/evaluation/experiments.py and code/evaluation/ceiling.py
+* Updated evaluation/evaluation_report.md and the ticket
+* Confirmed the committed caches are untouched by a custom run
+* Reran every selftest, both tools, the full run, and both checks
+
+Context:
+tool=Claude Code
+model=claude-opus-5
+branch=feat/evaluation-report
+repo_root=/Users/deshan/Documents/hackerrank-orchestrate-october26
+worktree=main
+parent_agent=none
+
+## [2026-10-25T10:55:00Z] Apply the SimpleEnglish rules to the pull request body
+
+User Prompt (verbatim, secrets redacted):
+the prs and the text outputs you are providing sometimes doesn't make sense.
+fetch https://github.com/AminBlg/SimpleEnglish and understand, then apply for
+this pr's body and in the future sessions
+
+Agent Response Summary:
+Fetched the repository and its rule catalog. It defines the same simple
+English rules the active output style already carries, so the fault was in
+how the rules were applied rather than in which rules were present. The
+cause was sentence length. The pull request bodies kept the three required
+sections but packed 30 to 40 word sentences into them, and one sentence ran
+to 38 words. Rewrote the body of pull request #4 with every descriptive
+sentence at 25 words or fewer, numbered lists for parallel items, and a
+plain expected-results list. Recorded the standard in memory so later
+sessions apply it.
+
+Actions:
+* WebFetch of the repository and of skills/simple-english/SKILL.md
+* gh pr edit 4 --body-file with the rewritten body
+* Checked the new body: 0 sentences over 25 words, no banned modal, no
+  semicolon, no em-dash
+* Updated memory pr-short-three-part-description.md
+* Added memory simple-english-skill-source.md and the MEMORY.md index lines
+
+Context:
+tool=Claude Code
+model=claude-opus-5
+branch=feat/evaluation-report
+repo_root=/Users/deshan/Documents/hackerrank-orchestrate-october26
+worktree=main
+parent_agent=none

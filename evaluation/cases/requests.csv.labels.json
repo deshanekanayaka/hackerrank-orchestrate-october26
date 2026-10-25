@@ -1,0 +1,7 @@
+{
+ "extra_01_refusal": false,
+ "extra_02_tombstone": true,
+ "extra_03_retained_audit": true,
+ "extra_04_replica_drift": true,
+ "extra_05_active_flow": true
+}
