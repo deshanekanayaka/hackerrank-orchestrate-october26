@@ -1133,3 +1133,35 @@ branch=feat/submission-package
 repo_root=/Users/deshan/Documents/hackerrank-orchestrate-october26
 worktree=main
 parent_agent=none
+
+## [2026-10-25T12:05:00Z] Ticket 4: review fixes
+
+Agent Response Summary:
+The background review returned seven findings. Verified each one. Four were
+real and are fixed. The worst was an honesty defect in the usage report: the
+log is append-only and holds every cache rebuild, so presenting it as one
+run over-reported the cost by roughly double. The report now states one full
+run of 36 calls, 122,907 tokens and $0.4469 apart from the cumulative 85
+calls and $0.7039, and record_usage writes a run id so a later rebuild is
+exact. Average tokens per request no longer divides a numerator holding the
+32 sample classifications by the 518 evaluation requests. money() no longer
+rounds a small cost to $0.0000. The packaging check now scans every member
+that decodes as text, compares the archive against the working tree, and
+deletes an archive its own checks rejected. Committed as b3d8071.
+
+Actions:
+* Edited code/intent.py: a run id on every usage row
+* Rewrote the report body in code/evaluation/usage.py, with full_run,
+  mean_call, a wrapped para helper, and three more selftest assertions
+* Edited code/package.py: text scan, tree comparison, delete on failure
+* Fixed the README packaging paragraph, which named three directories
+* Updated .scratch/ghost-data-finish/issues/04-submission-package.md
+* Reran every selftest, every tool, the full run, and the packaging check
+
+Context:
+tool=Claude Code
+model=claude-opus-5
+branch=feat/submission-package
+repo_root=/Users/deshan/Documents/hackerrank-orchestrate-october26
+worktree=main
+parent_agent=none
