@@ -2,9 +2,15 @@
 
     python3 code/main.py                 # all 518 cases, output.csv at root
     python3 code/main.py --sample        # the 32 sample cases
-    python3 code/main.py --requests PATH # any request file in the same shape
+    python3 code/main.py --requests PATH --out PATH   # our own cases
     python3 code/main.py --out PATH      # write somewhere else
     python3 code/main.py --limit N       # first N cases, for a quick look
+
+--requests needs --out, so a run over our own cases can never overwrite the
+518-row output.csv that is the submission. A request file may sit beside a
+labels file named <requests>.labels.json, holding one true or false per
+case_id. A labeled case needs no model call, and its label never reaches the
+shared intent cache.
 
 Intent labels come from code/cache/intent.json and the transcribed
 screenshots and PDF documents come from code/cache/vision.json. Both caches
@@ -28,6 +34,14 @@ ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / "dataset"
 
 
+def hand_labels(requests_path):
+    """Intent decisions we made by hand, for cases we wrote ourselves."""
+    beside = Path(f"{requests_path}.labels.json")
+    if not beside.exists():
+        return {}
+    return json.loads(beside.read_text(encoding="utf-8"))
+
+
 def run(requests_path, out_path, limit=None):
     directory = identity.load()
     index = evidence.build(directory)
@@ -39,7 +53,7 @@ def run(requests_path, out_path, limit=None):
     if limit:
         requests = requests[:limit]
 
-    labels = intent.classify(requests)
+    labels = intent.classify(requests, labels=hand_labels(requests_path))
 
     rows = []
     for request in requests:
@@ -77,7 +91,14 @@ def main(argv):
     requests = DATA / ("sample_deletion_requests.csv" if sample
                        else "deletion_requests.csv")
     if "--requests" in argv:
-        requests = Path(argv[argv.index("--requests") + 1])
+        at = argv.index("--requests")
+        if at + 1 >= len(argv):
+            raise SystemExit("--requests needs a file path")
+        requests = Path(argv[at + 1])
+        if "--out" not in argv:
+            raise SystemExit("--requests needs --out, so a run over your own "
+                             "cases cannot overwrite the submission "
+                             "output.csv")
     out = ROOT / "output.csv"
     if "--out" in argv:
         out = Path(argv[argv.index("--out") + 1])

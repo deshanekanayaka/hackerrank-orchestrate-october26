@@ -28,6 +28,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 import identity   # noqa: E402
 import evidence   # noqa: E402
+import intent     # noqa: E402
 import policy     # noqa: E402
 import status     # noqa: E402
 import main as checker  # noqa: E402
@@ -36,15 +37,24 @@ DATA = ROOT / "dataset"
 REQUESTS = DATA / "sample_deletion_requests.csv"
 TRUTH = DATA / "sample_output.csv"
 
-SURNAME = re.compile(r"[A-Z][a-z]+ ([A-Z][a-z]+)")
+SURNAME = re.compile(r"\s(\S+)$")
 
 
 def run_sample(directory, index, tables, since=True):
-    """Predict every sample case and return the rows."""
+    """Predict every sample case, the way code/main.py does.
+
+    The intent stage runs here too, from the committed cache, so the row
+    labelled the shipped baseline really is the shipped answer. Skipping it
+    would score every candidate against a pipeline nobody ships.
+    """
     rows = []
     with open(REQUESTS, newline="", encoding="utf-8") as fh:
         requests = sorted(csv.DictReader(fh), key=lambda r: r["case_id"])
+    labels = intent.classify(requests)
     for request in requests:
+        if labels.get(request["case_id"]) is False:
+            rows.append((request["case_id"], "NOT_APPLICABLE", []))
+            continue
         user_id = directory.resolve(request["email"], "email")
         if user_id is None:
             rows.append((request["case_id"], "NOT_APPLICABLE", []))
@@ -92,10 +102,15 @@ def loose_owners(directory):
     exact = directory.owners_of
     by_surname = {}
     for user_id, row in directory.users.items():
-        found = SURNAME.match(row["name"])
+        found = SURNAME.search(row["name"])
         if found:
             by_surname.setdefault(found.group(1).lower(),
                                   set()).add(user_id)
+    # Every subject must get a surname, or the rule is measured on only
+    # part of the directory and the blast radius it reports is a floor.
+    covered = {u for owners in by_surname.values() for u in owners}
+    assert covered == set(directory.users), \
+        f"{len(directory.users) - len(covered)} subjects have no surname"
 
     def owners_of(value, field=None):
         hit = exact(value, field)
@@ -104,7 +119,7 @@ def loose_owners(directory):
         text = str(value).strip().lower()
         if len(text) > 120:
             return frozenset()
-        for word in re.findall(r"[a-z]{4,}", text):
+        for word in re.findall(r"[^\W\d_]{2,}", text, re.UNICODE):
             if word in by_surname:
                 return frozenset(by_surname[word])
         return frozenset()
@@ -172,6 +187,8 @@ def experiments():
     for request in evaluation:
         user_id = directory.resolve(request["email"], "email")
         if user_id is None:
+            continue
+        if request["case_id"] not in strict:
             continue
         gained = set(loose_index.resources_of(
             user_id, request["audit_at"],

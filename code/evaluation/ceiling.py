@@ -19,6 +19,7 @@ sys.path.insert(0, str(ROOT / "code"))
 import identity   # noqa: E402
 import evidence   # noqa: E402
 import policy     # noqa: E402
+import status     # noqa: E402
 
 DATA = ROOT / "dataset"
 
@@ -41,9 +42,16 @@ def report():
     for case_id, row in sorted(truth.items()):
         request = requests[case_id]
         user_id = directory.resolve(request["email"], "email")
+        if user_id is None:
+            raise SystemExit(f"{case_id}: the request email resolves to no "
+                             f"subject, so the ceiling cannot be measured")
         wide = set(index.resources_of(user_id, request["audit_at"]))
         narrow = set(index.resources_of(user_id, request["audit_at"],
                                         request["requested_at"]))
+        # resource_states adds back every record policy retains, because a
+        # retained record is never re-observed after the request. The
+        # ceiling has to model the same rule or it understates itself.
+        narrow |= {r for r in wide if status.retained(r)}
         for step in json.loads(row["steps_json"]):
             resource = step["resource_id"]
             steps += 1

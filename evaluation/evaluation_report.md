@@ -23,6 +23,7 @@ python3 code/evaluation/main.py score /tmp/sample.csv dataset/sample_output.csv
 # the 5 extra cases, scored against our own expected answers
 python3 code/main.py --requests evaluation/cases/requests.csv --out /tmp/extra.csv
 python3 code/evaluation/main.py score /tmp/extra.csv evaluation/cases/expected.csv
+python3 code/evaluation/main.py check /tmp/extra.csv --requests evaluation/cases/requests.csv
 
 # the recall limit the evidence index imposes
 python3 code/evaluation/ceiling.py
@@ -115,10 +116,13 @@ Rule 1 makes 0 of the 34 unreachable steps reachable. The activity stream
 names the resource. It never names an identifier of the subject in the same
 row, so the link the rule needs does not exist in the data.
 
-Rule 2 is the rule the data quality audit warned about. It claims 18 more
-resources across 13 of the 518 evaluation cases, gains no sample step, and
-costs 0.010 of f1. The dataset places 22 look-alike emails and 143 shared
-surnames next to the real identities for exactly this reason.
+Rule 2 is the rule the data quality audit warned about. It claims 21 more
+resources across 16 of the 518 evaluation cases, gains no sample step, and
+costs 0.010 of f1. The dataset places 22 look-alike emails next to the real
+identities for exactly this reason, and 145 surnames cover all 850 subjects.
+The experiment asserts that every subject gets a surname. The 21 is
+therefore a measurement over the whole directory, not over the part a narrow
+pattern happens to reach.
 
 Rule 3 replaces a correct absence proof with a false finding. A deleted
 record leaves no row of its own, so treating silence as presence inverts the
@@ -138,40 +142,47 @@ everywhere.
 ## The five extra evaluation cases
 
 The 32 public cases leave several shapes untested. These five cases cover
-them. Each expected answer is a hand reading of participant-visible evidence
-and of `deletion_rules.csv`. No organizer truth was used.
+them.
 
-The request rows are in `evaluation/cases/requests.csv` and the expected
-answers are in `evaluation/cases/expected.csv`.
+Each case carries a request text we wrote and an intent decision we made by
+hand, in `evaluation/cases/requests.csv.labels.json`. A labeled case needs no
+model call. Its label never reaches the shared intent cache, so these cases
+cannot break the key-free run that produces `output.csv`.
+
+The subject, the request time, and the audit time of each case come from a
+real case. The evidence is dated, so an invented time reaches no evidence at
+all. Each expected answer is a hand reading of participant-visible evidence
+and of `deletion_rules.csv`. No organizer truth was used.
 
 | Case | Shape it tests | Expected status |
 | --- | --- | --- |
-| `case_542` | A request for a copy that refuses deletion in the same sentence | `NOT_APPLICABLE` |
-| `case_46` | A tombstone that already carries only the stable reference | `COMPLETE` |
-| `case_103` | A security audit log inside its retention period | `COMPLETE` |
-| `case_105` | A record absent from the primary and alive in a read replica | `INCOMPLETE` |
-| `case_128` | An active sync flow after a workflow reported success | `INCOMPLETE` |
+| `extra_01_refusal` | A request for a copy that refuses deletion in the same sentence | `NOT_APPLICABLE` |
+| `extra_02_tombstone` | A tombstone that already carries only the stable reference | `COMPLETE` |
+| `extra_03_retained_audit` | A security audit log inside its retention period | `COMPLETE` |
+| `extra_04_replica_drift` | A record absent from the primary and alive in a read replica | `INCOMPLETE` |
+| `extra_05_active_flow` | An active sync flow after a workflow reported success | `INCOMPLETE` |
 
 What each case proves, and the evidence it rests on:
 
-1. `case_542` reads "please don't delete or change anything" inside a
-   request for a copy of the data. A keyword rule sees the deletion verb and
-   audits the case. The answer must be `NOT_APPLICABLE` with an empty step
-   list.
-2. `case_46` rests on `evidence_42`. The tombstone overview panel shows
-   order, support, and finance links and shows no name, no email, and no
-   phone, which is the state rule_15 requires. `evidence_67` answers the
+1. `extra_01_refusal` asks for a copy of the data and says "this is not a
+   deletion request" in the next sentence. A keyword rule sees the deletion
+   verb and audits the case. The answer must be `NOT_APPLICABLE` with an
+   empty step list.
+2. `extra_02_tombstone` rests on `evidence_42`. The tombstone overview panel
+   shows order, support, and finance links and shows no name, no email, and
+   no phone, which is the state rule_15 requires. `evidence_67` answers the
    profile lookup with HTTP 404 and 0 rows.
-3. `case_103` rests on `evidence_10`. The record `audit_record_9522` sits in
-   the primary table and in the replica, and rule_12 keeps it. The only step
-   is the proof that it is still there.
-4. `case_105` rests on `evidence_10`. The record `account_6345` carries the
-   full name, the email, and the phone in `customer_data_read_replica` and
-   does not appear in `customer_data_primary` of the same file. That gap is
-   the replication drift the challenge asks for.
-5. `case_128` rests on `evidence_87`. The flow `data_flow_5550` is enabled,
-   runs in continuous sync mode, and selects this subject by email, so it can
-   recreate the data it copies.
+3. `extra_03_retained_audit` rests on `evidence_10`. The record
+   `audit_record_9522` sits in the primary table and in the replica, and
+   rule_12 keeps it. The only step is the proof that it is still there.
+4. `extra_04_replica_drift` rests on `evidence_10`. The record
+   `account_6345` carries the full name, the email, and the phone in
+   `customer_data_read_replica` and does not appear in
+   `customer_data_primary` of the same file. That gap is the replication
+   drift the challenge asks for.
+5. `extra_05_active_flow` rests on `evidence_87`. The flow `data_flow_5550`
+   is enabled, runs in continuous sync mode, and selects this subject by
+   email, so it can recreate the data it copies.
 
 Result of the run:
 
@@ -184,9 +195,18 @@ Result of the run:
 | True positives | 13 |
 | Every field accuracy | 1.000 |
 
-These five numbers are reported apart from the sample numbers on purpose. We
-wrote the expected answers, so a perfect score here proves agreement with our
-reading of the policy. It does not prove agreement with the organizer.
+These numbers are reported apart from the sample numbers on purpose, and a
+reader must know exactly what they prove.
+
+We wrote the expected answers before the run, by reading the evidence named
+above. A perfect score therefore proves that the pipeline agrees with our
+reading of the policy on five shapes the samples never test. It does not
+prove that our reading matches the organizer. `case_10` in the sample set
+shows that the pipeline can read a case wrong. If one of these five is wrong
+the same way, this suite still prints 1.000.
+
+The sample section is the only measurement against truth we did not write.
+Read the two sections together.
 
 ## Cases for rules the supplied data never exercises
 
@@ -241,6 +261,10 @@ rows in the activity stream.
 | `vision.ask` read a name that no line created, so any cache rebuild stopped with `NameError` after the model call was paid for | Code review of the branch | Build the text block list from the response | The rebuild path works |
 | A group filter dropped a record that names the subject together with a second person, and then reported it absent | Code review of the branch | The merge only adds records and never removes any | No current row changed, and the latent wrong answer is gone |
 | The extra cases scored against themselves, so the guard never failed | Code review of the branch | The cases go through the contract checker instead | The guard can now fail |
+| `--requests` reused dataset case ids, so an edit to one request text overwrote a dataset entry in the shared intent cache and broke the key-free run | Code review of the branch | Our cases carry their own ids and a hand label file, and a labeled case never reaches the cache | The submission run cannot be broken by our cases |
+| `--requests` without `--out` overwrote the 518-row `output.csv` | Code review of the branch | `--requests` now requires `--out` | The deliverable cannot be replaced by a 5-row file |
+| The experiment harness skipped the intent stage, so the row labelled the shipped baseline was not the shipped pipeline | Code review of the branch | The harness runs the intent stage from the cache, as `code/main.py` does | The baseline row describes the shipped answer |
+| The ceiling tool ignored the retained-record exception that `resource_states` applies | Code review of the branch | The tool models the same rule | The published 0.824 is unchanged and now derived correctly |
 
 ## Known failure
 

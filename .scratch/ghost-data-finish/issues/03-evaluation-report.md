@@ -45,6 +45,33 @@ to case_10 and both are wrong. It buys the last status point with two wrong
 steps. That is why the report quotes step accuracy beside status accuracy in
 every section.
 
+## What the review caught
+
+A review of the commit found five real defects, all fixed here.
+
+- `--requests` reused dataset case ids. An edit to one of those request
+  texts overwrote a dataset entry in the shared intent cache and broke the
+  key-free run that produces `output.csv`. Our cases now carry their own ids
+  and a hand label file, and a labeled case never reaches the cache.
+- `--requests` without `--out` replaced the 518-row deliverable with a
+  5-row file. The flag now requires `--out`.
+- The five extra cases were verbatim copies of dataset rows, so they added
+  no input coverage, and the report claimed more than the suite can prove.
+  The request texts are ours now, and the report states plainly that a
+  perfect score proves agreement with our reading and not with the
+  organizer.
+- The experiment harness skipped the intent stage, so the row labelled the
+  shipped baseline was not the shipped pipeline. The harness runs the intent
+  stage from the cache now. The baseline numbers are unchanged.
+- Candidate 2's surname pattern reached only part of the directory, so its
+  blast radius was a floor rather than a measurement. The experiment now
+  asserts that every one of the 850 subjects gets a surname, and the figure
+  rose from 18 resources across 13 cases to 21 across 16.
+
+The ceiling tool also ignored the retained-record exception that
+`resource_states` applies. It models the same rule now, and the published
+0.824 is unchanged.
+
 ## Known failure left open
 
 case_10 predicts COMPLETE and the truth is INCOMPLETE. The record is
