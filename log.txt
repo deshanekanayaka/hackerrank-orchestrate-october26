@@ -758,3 +758,145 @@ branch=main
 repo_root=/Users/deshan/Documents/hackerrank-orchestrate-october26
 worktree=main
 parent_agent=none
+
+## [2026-10-25T07:56:03Z] SESSION START
+
+tool=Claude Code
+model=claude-opus-5
+Repo Root: /Users/deshan/Documents/hackerrank-orchestrate-october26
+Branch: main
+Worktree: main
+Parent Agent: none
+Language: py
+Time Remaining: not configured
+
+## [2026-10-25T07:56:03Z] Read AGENTS.md
+
+User Prompt (verbatim, secrets redacted):
+Read @AGENTS.md
+
+Agent Response Summary:
+Read AGENTS.md in full. It was already supplied in the session context by the
+project CLAUDE.md import. Appended the session-start entry and this per-turn
+entry to the shared root log, then greeted the user with the required
+introduction. No code or dataset changes were made.
+
+Actions:
+* Read AGENTS.md
+* Appended SESSION START and per-turn entries to log.txt
+* Ran date, git branch, pwd to collect session metadata
+
+Context:
+tool=Claude Code
+model=claude-opus-5
+branch=main
+repo_root=/Users/deshan/Documents/hackerrank-orchestrate-october26
+worktree=main
+parent_agent=none
+
+## [2026-10-25T08:20:00Z] Ticket 2: conditional policy rules, and a PR for ticket 1
+
+User Prompt (verbatim, secrets redacted):
+/mattpocock-skills:implement ticket 2
+(mid-turn) open a pr for ticket 1
+
+Agent Response Summary:
+Moved the two unpushed ticket-01 commits off local main onto
+feat/read-images-and-pdfs and opened pull request #2 against main.
+Then implemented ticket 02: policy.conditions() reads two retention lookup
+tables out of the transcription cache, and status.action_for() drops a
+record's RETAIN basis once its stated cutoff passes audit_at. Also split the
+support prefix between rule_05 (redact a message) and rule_06 (delete an
+attachment) using an attachment signal in the evidence, which closed the
+support_001 item ticket 01 left open. Sample step f1 rose from 0.840 to
+0.874 with status steady at 31 of 32, and the full run gives 518 rows with 0
+contract violations.
+
+Actions:
+* Created branch feat/read-images-and-pdfs, reset main to origin/main, pushed
+* gh pr create -> pull request #2
+* Edited code/policy.py: parse_date, resolve_category, conditions, selftest
+* Edited code/status.py: held_until, action_for, panel merge by resource_id
+* Edited code/main.py: build the retention tables once per run
+* Added code/evaluation/cases.py: 5 hand-built cases through the scorer
+* Updated .scratch/ghost-data-finish/issues/02-conditional-policy-rules.md
+* Ran every module selftest, code/main.py, and the contract check
+
+Context:
+tool=Claude Code
+model=claude-opus-5
+branch=feat/read-images-and-pdfs
+repo_root=/Users/deshan/Documents/hackerrank-orchestrate-october26
+worktree=main
+parent_agent=none
+
+## [2026-10-25T09:05:00Z] Code review of the conditional-policy diff
+
+User Prompt (verbatim, secrets redacted):
+minimal prompt -> single careful diff pass -> <=15 findings
+[code-review skill invocation: review the PR diff for real bugs, report at most
+15 findings with file, line, severity, and a concrete failure scenario]
+
+Agent Response Summary:
+Reviewed feat/read-images-and-pdfs (2 commits vs origin/main) plus the
+uncommitted conditional-policy work in code/policy.py, code/status.py,
+code/main.py and the new code/evaluation/cases.py. Found 8 real issues. The
+two that matter: code/vision.py:110 references an undefined name `blocks`, so
+any transcription rebuild raises NameError; and policy.ATTACHMENT only scans
+field values for a literal "file <name>.<ext>" or the exact SUPPORT_ATTACHMENT
+token, so 0 of 518 evaluation support records resolve to DELETE even though 21
+are plainly ticket attachments, leaving 11 submission rows with the wrong
+operation and state triple. Verified empirically: a broader detector changes
+exactly those 11 rows and leaves the sample score unchanged. Also found that
+the `holds` half of policy.conditions() is never consulted and that
+cases.py scores its predictions against themselves.
+
+Actions:
+* ran git diff origin/main...HEAD and git diff HEAD to establish review scope
+* read code/policy.py, code/status.py, code/main.py, code/evidence.py,
+  code/vision.py, code/intent.py, code/evaluation/cases.py,
+  code/evaluation/main.py
+* ran code/policy.py, code/status.py and code/evaluation/cases.py selftests
+* built a throwaway git worktree at HEAD to diff full 518-row outputs before
+  and after the uncommitted change (zero rows differ), then removed it
+* A/B tested the since window and a broadened attachment detector on the
+  sample set against dataset/sample_output.csv
+* no source file was modified by this review
+
+Context:
+tool=Claude Code
+model=claude-opus-5
+branch=feat/read-images-and-pdfs
+repo_root=/Users/deshan/Documents/hackerrank-orchestrate-october26
+worktree=main
+parent_agent=Claude Code main session (code-review skill)
+
+## [2026-10-25T08:40:00Z] Ticket 2: review fixes and commit
+
+Agent Response Summary:
+The background code review returned eight findings. Verified each one
+instead of accepting it. Three were real and are fixed: vision.ask() read an
+undefined name and raised NameError on any cache rebuild; the attachment
+pattern read field values only and matched 2 of 23 support attachments,
+which left 11 submission rows with the wrong operation; and the panel merge
+filtered a whole group by owner, which could have reported a shared record
+absent. The hand-built cases now run through the contract checker instead of
+scoring against themselves. Added direct tests for both conditional rules.
+One finding is left open on purpose and recorded in the ticket: the alias
+fallback in evidence.vision_records is per file rather than per record.
+Committed as f934fb6.
+
+Actions:
+* Edited code/vision.py, code/policy.py, code/status.py
+* Edited code/evaluation/cases.py: contract check, sorted rows, ordered output
+* Updated .scratch/ghost-data-finish/issues/02-conditional-policy-rules.md
+* Reran every selftest, the sample score, the full run, and the check
+* git commit f934fb6 on feat/read-images-and-pdfs
+
+Context:
+tool=Claude Code
+model=claude-opus-5
+branch=feat/read-images-and-pdfs
+repo_root=/Users/deshan/Documents/hackerrank-orchestrate-october26
+worktree=main
+parent_agent=none
