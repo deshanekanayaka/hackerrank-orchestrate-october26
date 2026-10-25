@@ -1094,3 +1094,42 @@ branch=main
 repo_root=/Users/deshan/Documents/hackerrank-orchestrate-october26
 worktree=main
 parent_agent=none
+
+## [2026-10-25T11:40:00Z] Ticket 4: submission package and usage report
+
+User Prompt (verbatim, secrets redacted):
+/mattpocock-skills:implement
+
+Agent Response Summary:
+Implemented the last ticket on branch feat/submission-package. Read the
+Claude API price list rather than recalling prices, then wrote
+code/evaluation/usage.py, which generates evaluation/usage_report.md from
+code/cache/usage.jsonl. A model with no entry in the price table makes the
+run fail, so a missing price cannot appear as a cost of zero. The measured
+run is 85 calls across 2 models and 240,001 tokens, an estimated $0.7039 in
+total. Rewrote README.md for this solution with the setup, the single run
+command, and every test command. Added code/package.py, which builds
+code.zip and then reads it back to fail on an excluded item, a nested
+archive, or a credential. Cloned the branch to a temporary directory with no
+.env and no key: output.csv came out byte identical and passed the checker.
+Recorded one ambiguity in the ticket for the user: the contract says to sort
+output.csv by case_id, and a string sort differs from the numeric order of
+the request file itself.
+
+Actions:
+* Invoked the claude-api skill for the Haiku 4.5 and Sonnet 5 prices
+* Added code/evaluation/usage.py with a selftest, and generated the report
+* Added code/package.py, which builds and then checks code.zip
+* Rewrote README.md
+* Updated .scratch/ghost-data-finish/issues/04-submission-package.md
+* Tested a clean clone with no API key and no .env
+* Ran every selftest, both tools, the full run, and the checker
+* git commit 13409e3 on feat/submission-package
+
+Context:
+tool=Claude Code
+model=claude-opus-5
+branch=feat/submission-package
+repo_root=/Users/deshan/Documents/hackerrank-orchestrate-october26
+worktree=main
+parent_agent=none
