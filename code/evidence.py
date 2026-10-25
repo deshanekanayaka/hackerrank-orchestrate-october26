@@ -20,6 +20,7 @@ from pathlib import Path
 
 import identity
 import policy
+import vision
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / "dataset"
@@ -32,6 +33,8 @@ TRACE = re.compile(r"^(?:tr|rb)-[\d-]+$")
 KV = re.compile(r'([A-Za-z_][A-Za-z0-9_]*)\s*=\s*(?:"((?:[^"\\]|\\.)*)"|'
                 r"'([^']*)'|([^\s|,\"]+))")
 TIMESTAMP = re.compile(r"\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z")
+# "linked tombstone_17 (user_17)": the resource, then the key the page shows.
+LINKED = re.compile(r"\b([a-z_]+_\d+) \(([^)]+)\)")
 NOISE = {"null", "none", "", "-"}
 
 
@@ -67,35 +70,40 @@ class Index:
     coverage: dict = field(default_factory=dict)  # file_id -> {system: time}
     referenced: dict = field(default_factory=dict)  # user -> {resource: files}
 
-    def resources_of(self, user_id, at=None):
+    def resources_of(self, user_id, at=None, since=None):
         """Every resource this subject owns, observed or only referenced.
 
         A deleted record leaves no row of its own, but another record can
         still name it, so the reference is the only way to reach it.
         """
         out = {}
-        for obs in self.for_user(user_id, at):
+        for obs in self.for_user(user_id, at, since):
             out.setdefault(obs.resource_id, set()).add(obs.file_id)
         for resource, files in self.referenced.get(user_id, {}).items():
-            usable = {f for f in files
-                      if at is None or self.manifest[f]["captured_at"] <= at}
+            usable = {f for f in files if self.in_window(
+                self.manifest[f]["captured_at"], at, since)}
             if usable:
                 out.setdefault(resource, set()).update(usable)
         return out
 
-    def for_user(self, user_id, at=None):
-        """Observations naming this subject, captured at or before `at`."""
-        rows = self.by_user.get(user_id, [])
-        if at is None:
-            return rows
-        return [o for o in rows if o.captured_at <= at]
+    @staticmethod
+    def in_window(captured, at, since=None):
+        """Evidence counts when it is not later than the audit, and not
+        older than the request the audit is about."""
+        return (at is None or captured <= at) \
+            and (since is None or captured >= since)
 
-    def files_covering(self, system_id, at=None):
+    def for_user(self, user_id, at=None, since=None):
+        """Observations naming this subject, inside the case window."""
+        return [o for o in self.by_user.get(user_id, [])
+                if self.in_window(o.captured_at, at, since)]
+
+    def files_covering(self, system_id, at=None, since=None):
         """Files that looked at this system, newest first."""
         out = [(self.manifest[f]["captured_at"], f)
                for f, systems in self.coverage.items()
                if system_id in systems
-               and (at is None or self.manifest[f]["captured_at"] <= at)]
+               and self.in_window(self.manifest[f]["captured_at"], at, since)]
         return [f for _, f in sorted(out, reverse=True)]
 
 
@@ -249,18 +257,95 @@ def resource_in(fields, raw):
     return None
 
 
+def vision_aliases(manifest, data_dir):
+    """What a screen calls a resource, against what the resource is called.
+
+    A console shows a display key: a customer key, a file name, a statement
+    number. The activity stream states the pair, and its event time sits
+    just after the capture time of the file it describes, so each pair
+    belongs to one file and never leaks to another.
+    """
+    screens = sorted((meta["captured_at"], file_id)
+                     for file_id, meta in manifest.items()
+                     if Path(meta["file_path"]).suffix.lower()
+                     in vision.SUFFIXES)
+    out = {}
+    with open(data_dir / "system_activity.csv", newline="",
+              encoding="utf-8") as fh:
+        for row in csv.DictReader(fh):
+            if row["event_type"] != "LINK_RESOURCE_IDENTITY":
+                continue
+            found = LINKED.search(row["details"])
+            if not found or not policy.prefix_of(found.group(1)):
+                continue
+            earlier = [pair for pair in screens
+                       if pair[0] <= row["event_time"]
+                       and pair[0][:10] == row["event_time"][:10]]
+            if not earlier:
+                continue
+            # The same row names the subject the catalog linked, and a
+            # console screen often prints no identifier of its own.
+            named = tuple(re.findall(r"[\w.+-]+@[\w.-]+|\buser_\d+\b",
+                                     row["details"]))
+            out.setdefault(max(earlier)[1], {})[found.group(2)] = (
+                found.group(1), named)
+    return out
+
+
+def vision_records(file_id, alias, captured, stem, directory):
+    """Transcribed records, each under the resource it really names.
+
+    The display key is tried first on the record's own identifier. Only a
+    file where that matched nothing falls back to searching the record
+    text, so one page's key can never claim another page's rows.
+    """
+    rows = vision.records_for(file_id)
+    read = []
+    for record in rows:
+        named = str(record.get("resource_id") or "")
+        entry = alias.get(named)
+        if entry is None and policy.prefix_of(named):
+            entry = (named, ())
+        read.append((record, entry))
+    if alias and not any(entry for _, entry in read):
+        read = [(record, next(
+            (e for key, e in alias.items()
+             if re.search(rf"(?<!\w){re.escape(key)}(?!\w)",
+                          json.dumps(record, ensure_ascii=False))), None))
+            for record, _ in read]
+    out = []
+    for record, entry in read:
+        if not entry:
+            continue
+        resource, named = entry
+        values = record.get("fields")
+        if not isinstance(values, dict):
+            continue
+        stated = set()
+        for value in named:
+            stated |= directory.owners_of(value)
+        out.append((str(record.get("source") or stem), resource,
+                    str(record.get("observed_at") or captured),
+                    scalars(values),
+                    json.dumps(record, ensure_ascii=False)[:400],
+                    frozenset(stated)))
+    return out
+
+
 def build(directory=None, data_dir=DATA):
     directory = directory or identity.load()
     index = Index()
     with open(data_dir / "evidence_files.csv", newline="",
               encoding="utf-8") as fh:
         index.manifest = {r["file_id"]: r for r in csv.DictReader(fh)}
+    aliases = vision_aliases(index.manifest, data_dir)
 
     for file_id, meta in index.manifest.items():
         path = data_dir / meta["file_path"]
         captured = meta["captured_at"]
         systems, records = {}, []
 
+        swept = True
         if path.suffix == ".sql":
             declared, rows = parse_sql(path)
             for name, when in declared.items():
@@ -309,8 +394,14 @@ def build(directory=None, data_dir=DATA):
                                 sorted(fields.items()), raw[:400],
                                 frozenset(trace_owners.get(trace, ()))))
         else:
-            index.coverage[file_id] = {}
-            continue  # images and PDFs arrive through the vision cache
+            # Screenshots and PDFs arrive already transcribed, and a cached
+            # record reads exactly like a JSON record. A console screen is
+            # filtered to one subject, so it proves nothing about anybody
+            # else and never counts as a sweep of its system.
+            records.extend(vision_records(file_id,
+                                          aliases.get(file_id, {}),
+                                          captured, path.stem, directory))
+            swept = False
 
         for source, resource, observed, fields, raw, extra in records:
             if not resource or not policy.prefix_of(str(resource)):
@@ -326,7 +417,7 @@ def build(directory=None, data_dir=DATA):
             for owner in obs.owners:
                 index.by_user.setdefault(owner, []).append(obs)
             systems.setdefault(system_id, observed)
-        index.coverage[file_id] = systems
+        index.coverage[file_id] = systems if swept else {}
 
     link_through_references(index)
     return index

@@ -102,12 +102,12 @@ def write_cache(cache):
                                 ensure_ascii=False), encoding="utf-8")
 
 
-def record_usage(response, calls=1):
+def record_usage(response, calls=1, stage="intent", model=MODEL):
     USAGE.parent.mkdir(parents=True, exist_ok=True)
     row = {
         "at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
-        "stage": "intent",
-        "model": MODEL,
+        "stage": stage,
+        "model": model,
         "calls": calls,
         "input_tokens": response.usage.input_tokens,
         "output_tokens": response.usage.output_tokens,
