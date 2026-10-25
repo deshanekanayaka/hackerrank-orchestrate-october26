@@ -2,6 +2,7 @@
 
     python3 code/main.py                 # all 518 cases, output.csv at root
     python3 code/main.py --sample        # the 32 sample cases
+    python3 code/main.py --requests PATH # any request file in the same shape
     python3 code/main.py --out PATH      # write somewhere else
     python3 code/main.py --limit N       # first N cases, for a quick look
 
@@ -75,6 +76,8 @@ def main(argv):
     sample = "--sample" in argv
     requests = DATA / ("sample_deletion_requests.csv" if sample
                        else "deletion_requests.csv")
+    if "--requests" in argv:
+        requests = Path(argv[argv.index("--requests") + 1])
     out = ROOT / "output.csv"
     if "--out" in argv:
         out = Path(argv[argv.index("--out") + 1])
