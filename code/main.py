@@ -20,6 +20,7 @@ from pathlib import Path
 import identity
 import evidence
 import intent
+import policy
 import status
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -29,6 +30,7 @@ DATA = ROOT / "dataset"
 def run(requests_path, out_path, limit=None):
     directory = identity.load()
     index = evidence.build(directory)
+    tables = policy.conditions()
 
     with open(requests_path, newline="", encoding="utf-8") as fh:
         requests = list(csv.DictReader(fh))
@@ -51,7 +53,7 @@ def run(requests_path, out_path, limit=None):
             continue
         case_status, steps = status.plan(index, directory, user_id,
                                          request["audit_at"],
-                                         request["requested_at"])
+                                         request["requested_at"], tables)
         rows.append((case_id, case_status, steps))
 
     with open(out_path, "w", newline="", encoding="utf-8") as fh:
