@@ -999,3 +999,37 @@ branch=feat/evaluation-report
 repo_root=/Users/deshan/Documents/hackerrank-orchestrate-october26
 worktree=main
 parent_agent=none
+
+## [2026-10-25T10:35:00Z] Ticket 3: review fixes
+
+Agent Response Summary:
+The background review returned ten findings. Verified each one. Five were
+real and are fixed: --requests reused dataset case ids and so could overwrite
+a dataset entry in the shared intent cache; --requests without --out replaced
+the 518-row deliverable; the five extra cases were verbatim dataset rows and
+so added no input coverage while the report claimed more than they prove; the
+experiment harness skipped the intent stage, so its baseline row was not the
+shipped pipeline; and candidate 2's surname pattern reached only part of the
+directory, making its blast radius a floor. intent.classify now accepts hand
+labels, the cases carry their own ids and texts, and the surname figure rose
+from 18 resources across 13 cases to 21 across 16. The ceiling tool also now
+models the retained-record exception and fails loudly on an unresolved
+subject. Every published metric is unchanged. Committed as d07ca0c.
+
+Actions:
+* Edited code/intent.py: classify takes hand labels
+* Edited code/main.py: labels file, --requests needs --out, path guard
+* Rewrote evaluation/cases/requests.csv with our own ids and texts
+* Added evaluation/cases/requests.csv.labels.json
+* Edited code/evaluation/experiments.py and code/evaluation/ceiling.py
+* Updated evaluation/evaluation_report.md and the ticket
+* Confirmed the committed caches are untouched by a custom run
+* Reran every selftest, both tools, the full run, and both checks
+
+Context:
+tool=Claude Code
+model=claude-opus-5
+branch=feat/evaluation-report
+repo_root=/Users/deshan/Documents/hackerrank-orchestrate-october26
+worktree=main
+parent_agent=none
