@@ -107,6 +107,7 @@ def ask(client, path):
     )
     intent.record_usage(response, stage="vision", model=MODEL)
     # The model may think first, so the answer is the last text block.
+    blocks = [b.text for b in response.content if b.type == "text"]
     text = blocks[-1].strip()
     if text.startswith("```"):
         text = text.split("```")[1].removeprefix("json").strip()
