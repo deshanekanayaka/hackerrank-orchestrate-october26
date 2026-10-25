@@ -102,10 +102,17 @@ def write_cache(cache):
                                 ensure_ascii=False), encoding="utf-8")
 
 
+# One id per process, so the usage log can separate one rebuild from the
+# next. The log is append-only and spans every rebuild ever run, and without
+# this field the rows of several rebuilds look like one run.
+RUN = time.strftime("%Y%m%dT%H%M%SZ", time.gmtime())
+
+
 def record_usage(response, calls=1, stage="intent", model=MODEL):
     USAGE.parent.mkdir(parents=True, exist_ok=True)
     row = {
         "at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+        "run": RUN,
         "stage": stage,
         "model": model,
         "calls": calls,
