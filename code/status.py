@@ -134,6 +134,42 @@ def state_of(obs, prefix, directory, user_id):
     return "PRESENT"
 
 
+def held_until(obs):
+    """The cutoff a record states on itself, if it states one.
+
+    A legal hold row in a database or snapshot carries its own
+    retained_until, and the row is the strongest statement of the hold.
+    """
+    if obs is None:
+        return None
+    cutoffs = [policy.parse_date(value) for key, value in obs.fields
+               if "retain" in key.lower()]
+    cutoffs = [c for c in cutoffs if c]
+    return min(cutoffs) if cutoffs else None
+
+
+def action_for(resource, user_id, obs, audit_at, tables):
+    """The action policy requires for this record at audit_at.
+
+    Three rules in deletion_rules.csv hold only while a condition holds.
+    rule_12 keeps a security audit log inside the supplied retention
+    period, and rule_13 keeps a legal hold record while the hold is
+    active: a record past its cutoff loses the basis that kept it, so the
+    deletion the person asked for applies. rule_05 and rule_06 split the
+    support prefix, and the record itself says which half it is.
+    """
+    windows, holds = tables
+    prefix = policy.prefix_of(resource)
+    action = policy.resolve_category(prefix, obs.fields if obs else [])[1]
+    if prefix == "audit_record":
+        cutoff = windows.get(resource) or held_until(obs)
+        return "DELETE" if cutoff and cutoff < audit_at else action
+    if prefix == "legal_hold":
+        cutoff = held_until(obs) or holds.get(user_id)
+        return "DELETE" if cutoff and cutoff < audit_at else action
+    return action
+
+
 def retained(resource):
     """A record policy keeps is never re-observed after the request, so the
     case window must not hide it."""
@@ -162,6 +198,16 @@ def resource_states(index, directory, user_id, audit_at,
     for obs in usable:
         if obs.captured_at == newest[obs.resource_id]:
             groups.setdefault(obs.resource_id, []).append(obs)
+    for resource, group in groups.items():
+        # An attachment panel sits beside the message it belongs to and
+        # names no subject of its own, so it reaches no subject by itself
+        # and only the pair states the whole truth. Adding it needs the
+        # same file and the same resource_id, and the group it joins was
+        # already reached by an identifier, so this only ever adds.
+        files = {o.file_id for o in group}
+        group.extend(o for o in index.by_resource.get(resource, [])
+                     if o.file_id in files and not o.owners
+                     and o not in group)
     seen = {}
     for resource, group in groups.items():
         merged = dict()
@@ -204,8 +250,10 @@ def cite(index, resource, state, obs, files, audit_at, since=None):
     return max(usable)[1] if usable else ""
 
 
-def plan(index, directory, user_id, audit_at, since=None):
+def plan(index, directory, user_id, audit_at, since=None, tables=None):
     """Build the ordered steps for one audited case."""
+    if tables is None:
+        tables = policy.conditions()
     states = resource_states(index, directory, user_id, audit_at,
                              since)
     findings, fixes, proofs = [], [], []
@@ -213,7 +261,7 @@ def plan(index, directory, user_id, audit_at, since=None):
     for resource, (state, obs, files) in states.items():
         prefix = policy.prefix_of(resource)
         system = policy.TABLE[prefix][0]
-        action = policy.TABLE[prefix][2]
+        action = action_for(resource, user_id, obs, audit_at, tables)
         evidence_id = cite(index, resource, state, obs, files,
                            audit_at, since)
         here = (system, resource, evidence_id)
@@ -303,6 +351,34 @@ def selftest():
             and s["resource_id"] == "audit_record_3753"]
     assert held, "the window dropped a retained record"
     assert len(kept) < len(steps), "the window hid nothing at all"
+    # Each conditional rule, against a lookup table written here, so the
+    # path is tested and not merely built. The dataset never flips either
+    # condition; code/evaluation/cases.py runs them through the pipeline.
+    tables = ({"audit_record_1": "2026-01-01T00:00:00Z"},
+              {"user_1": "2026-01-01T00:00:00Z"})
+    obs = evidence.Observation("f", "", "", "security_service",
+                               "audit_record_1", "s", (), frozenset(), "")
+    assert action_for("audit_record_1", "user_1", obs,
+                      "2025-06-01T00:00:00Z", tables) == "RETAIN"
+    assert action_for("audit_record_1", "user_1", obs,
+                      "2026-06-01T00:00:00Z", tables) == "DELETE"
+    assert action_for("audit_record_2", "user_1", obs,
+                      "2026-06-01T00:00:00Z", tables) == "RETAIN"
+    # The register reaches a legal hold record through the subject it names.
+    assert action_for("legal_hold_1", "user_1", None,
+                      "2025-06-01T00:00:00Z", tables) == "RETAIN"
+    assert action_for("legal_hold_1", "user_1", None,
+                      "2026-06-01T00:00:00Z", tables) == "DELETE"
+    assert action_for("legal_hold_1", "user_2", None,
+                      "2026-06-01T00:00:00Z", tables) == "RETAIN"
+    # A row that states its own cutoff beats the register.
+    own = evidence.Observation("f", "", "", "legal_service", "legal_hold_1",
+                               "s", (("retained_until",
+                                      "2033-12-31T23:59:59Z"),),
+                               frozenset(), "")
+    assert action_for("legal_hold_1", "user_1", own,
+                      "2026-06-01T00:00:00Z", tables) == "RETAIN"
+
     print("selftest: PASS")
     return 0
 

@@ -38,3 +38,6 @@ code.zip
 scratch/
 tmp/
 *.log.local
+
+# Private notes - not part of the submission
+bugs.md
