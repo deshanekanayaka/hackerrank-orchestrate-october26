@@ -963,3 +963,39 @@ branch=main
 repo_root=/Users/deshan/Documents/hackerrank-orchestrate-october26
 worktree=main
 parent_agent=none
+
+## [2026-10-25T10:05:00Z] Ticket 3: measure the pipeline and write the evaluation report
+
+User Prompt (verbatim, secrets redacted):
+/mattpocock-skills:implement ticket 3
+
+Agent Response Summary:
+Built the evaluation report from real scorer output on branch
+feat/evaluation-report. Added ceiling.py, which measures the recall limit
+the evidence index imposes: 159 of 193 sample truth steps are reachable, so
+the limit is 0.824 against a measured 0.793, and all 34 unreachable steps
+are verification steps rather than findings. Added experiments.py, which
+runs five candidate rules and rejects all five with measured numbers.
+Candidate 5 raises status accuracy to 32 of 32 while adding two wrong steps
+to case_10, so it was not shipped. Added five extra cases as a request file
+and a hand-written expected-answer file, covering shapes the samples never
+show, and all five pass. Gave code/main.py a --requests flag so the shipped
+entry point runs them.
+
+Actions:
+* Added code/evaluation/ceiling.py and code/evaluation/experiments.py
+* Added evaluation/cases/requests.csv and evaluation/cases/expected.csv
+* Added evaluation/evaluation_report.md
+* Edited code/main.py: --requests PATH
+* Updated .scratch/ghost-data-finish/issues/03-evaluation-report.md
+* Verified each expected answer by reading the evidence directly
+* Ran every selftest, both new tools, the full run, and the checker
+* git commit 409dc46 on feat/evaluation-report
+
+Context:
+tool=Claude Code
+model=claude-opus-5
+branch=feat/evaluation-report
+repo_root=/Users/deshan/Documents/hackerrank-orchestrate-october26
+worktree=main
+parent_agent=none
