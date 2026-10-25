@@ -900,3 +900,39 @@ branch=feat/read-images-and-pdfs
 repo_root=/Users/deshan/Documents/hackerrank-orchestrate-october26
 worktree=main
 parent_agent=none
+
+## [2026-10-25T09:05:00Z] Write bugs.md, split the branches, open the pull requests
+
+User Prompt (verbatim, secrets redacted):
+create a bugs.md file, make it gitignored, Add those bugs and explanations
+and also how to prevent the same bugs from happening in the future. Then
+open and push prs
+
+Agent Response Summary:
+Wrote bugs.md at the repository root with the three defects, the reason the
+existing tests missed each one, the fix, and the habit that prevents a
+repeat. Added bugs.md to .gitignore so the private notes never reach
+code.zip. Split the single ticket 2 commit: the vision.py fix became its own
+commit cf656cb on feat/read-images-and-pdfs, and the policy work moved to a
+new branch feat/conditional-policy-rules rebased on top. Pull request #2 had
+already been merged before cf656cb was pushed, so main lacks that fix, and
+pull request #3 was retargeted to main to carry it together with the policy
+work.
+
+Actions:
+* Created bugs.md (gitignored, not committed)
+* Edited .gitignore: ignore bugs.md
+* git reset and re-commit: cf656cb vision fix on feat/read-images-and-pdfs
+* git rebase --onto cf656cb: feat/conditional-policy-rules, 4 commits
+* Pushed both branches
+* gh pr create -> pull request #3, then retargeted its base to main
+* gh pr edit 2: recorded the vision fix in the description
+* Reran every selftest, the hand-built cases, and the contract check
+
+Context:
+tool=Claude Code
+model=claude-opus-5
+branch=feat/conditional-policy-rules
+repo_root=/Users/deshan/Documents/hackerrank-orchestrate-october26
+worktree=main
+parent_agent=none
