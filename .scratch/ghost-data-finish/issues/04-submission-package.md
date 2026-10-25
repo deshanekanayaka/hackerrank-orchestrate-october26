@@ -44,6 +44,33 @@ fails on an excluded directory, an excluded file, a nested archive, a
 missing required file, or a credential in any text file. The archive holds
 30 files: `README.md`, `code/`, `evaluation/`, and `docs/`.
 
+## What the review caught
+
+A review of the commit found four real defects, all fixed here.
+
+- The report presented the whole usage log as one run. The log is
+  append-only and holds every rebuild, so the published 85 calls and $0.7039
+  were roughly double one run. The report now states two figures apart: one
+  full run over the 518 requests is 36 calls, 122,907 tokens and $0.4469,
+  and the cumulative log is 85 calls and $0.7039. `record_usage` writes a
+  run id now, so a later rebuild is attributable exactly.
+- Average tokens per request divided a numerator that included the 32
+  sample classifications by the 518 evaluation requests. The one-run
+  derivation counts only the 21 intent calls the 518 requests need, and the
+  report says that the transcription is a one-time cost.
+- `money()` printed four decimals, so a small cost rendered as `$0.0000`,
+  which is the one thing the report promises can never appear. It switches
+  to scientific notation below $0.0001.
+- `code/package.py` scanned only an allowlist of file extensions for a
+  credential, so a key in a `Makefile` or an extensionless script would
+  ship with a `PASS`. It now scans every member that decodes as text.
+
+Two smaller fixes came from the same review. `--check` compared the archive
+against nothing, so an edit after a build passed; it compares every member
+against the working tree now. A failed check also left the rejected archive
+on disk, and it deletes it instead. The README said the archive holds three
+directories when it holds four.
+
 ## One ambiguity the user must decide
 
 The contract says to sort `output.csv` by `case_id`. Two readings differ.

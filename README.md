@@ -147,9 +147,11 @@ python3 code/package.py
 ```
 
 The script writes `code.zip` at the repository root and then checks it. It
-includes `README.md`, `code/`, and `evaluation/`. It excludes `dataset/`,
-`.env`, every dependency cache, and every nested archive. If any excluded
-item reaches the archive, the script fails and reports it.
+includes `README.md`, `code/`, `evaluation/`, and `docs/`. It excludes
+`dataset/`, `.env`, every dependency cache, and every nested archive. It
+scans every text file for a credential, and it compares the archive against
+the working tree. If any check fails, the script says why and deletes the
+archive.
 
 ## Repository layout
 

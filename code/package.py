@@ -37,8 +37,6 @@ SECRETS = [
     re.compile(r"ANTHROPIC_API_KEY\s*=\s*['\"]?[A-Za-z0-9_-]{8,}"),
     re.compile(r"-----BEGIN [A-Z ]*PRIVATE KEY-----"),
 ]
-TEXT_SUFFIXES = {".py", ".md", ".txt", ".json", ".jsonl", ".csv", ".cfg",
-                 ".toml", ".yml", ".yaml", ".sh"}
 
 
 def wanted(path):
@@ -107,9 +105,10 @@ def check():
                 problems.append(f"excluded file in the archive: {name}")
             if Path(name).suffix.lower() in ARCHIVE_SUFFIXES:
                 problems.append(f"nested archive: {name}")
+        # Every member that decodes as text is scanned. An allowlist of
+        # extensions would miss a key in a Makefile or an unnamed script.
         for name in names:
-            if Path(name).suffix.lower() in TEXT_SUFFIXES:
-                problems.extend(secrets_in(zf.read(name), name))
+            problems.extend(secrets_in(zf.read(name), name))
         required = ["README.md",
                     "code/main.py",
                     "code/cache/intent.json",
@@ -123,9 +122,26 @@ def check():
         if zf.testzip() is not None:
             problems.append("the archive is corrupt")
 
+        # An archive that no longer matches the tree is worse than none: it
+        # submits code nobody reviewed. Size is enough to catch an edit.
+        tree = {p.relative_to(ROOT).as_posix(): p.stat().st_size
+                for p in members()}
+        stored = {i.filename: i.file_size for i in zf.infolist()}
+        for name in sorted(set(tree) | set(stored)):
+            if name not in stored:
+                problems.append(f"in the tree but not the archive: {name}")
+            elif name not in tree:
+                problems.append(f"in the archive but not the tree: {name}")
+            elif tree[name] != stored[name]:
+                problems.append(f"changed since the archive was built: "
+                                f"{name}")
+
     for line in problems:
         print("FAIL", line)
     if problems:
+        # Remove it, so nobody submits the archive these lines rejected.
+        ARCHIVE.unlink(missing_ok=True)
+        print("removed code.zip")
         return 1
     print(f"PASS: {len(names)} files, no excluded item, no nested archive, "
           f"no credential")

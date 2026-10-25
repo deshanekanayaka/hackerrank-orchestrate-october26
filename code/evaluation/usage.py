@@ -16,14 +16,21 @@ the run fail rather than report a cost of zero.
 
 import csv
 import json
+import math
 import sys
+import textwrap
 from collections import defaultdict
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 USAGE = ROOT / "code" / "cache" / "usage.jsonl"
 REQUESTS = ROOT / "dataset" / "deletion_requests.csv"
+SAMPLE = ROOT / "dataset" / "sample_deletion_requests.csv"
+VISION_CACHE = ROOT / "code" / "cache" / "vision.json"
 REPORT = ROOT / "evaluation" / "usage_report.md"
+
+# intent.py sends this many request texts per call.
+INTENT_BATCH = 25
 
 PROVIDER = "Anthropic"
 # model id -> (input dollars per million, output dollars per million)
@@ -87,9 +94,59 @@ def count_requests(path=REQUESTS):
         return sum(1 for _ in csv.DictReader(fh))
 
 
+def count_documents(path=VISION_CACHE):
+    """Files the vision stage transcribes, one call each."""
+    if not path.exists():
+        return 0
+    return len(json.loads(path.read_text(encoding="utf-8")))
+
+
 def money(value):
-    """A cost small enough to read, without pretending to false precision."""
-    return f"${value:.4f}" if value < 1 else f"${value:.2f}"
+    """A cost small enough to read, and never rounded away to zero."""
+    if value >= 1:
+        return f"${value:.2f}"
+    if value >= 0.0001:
+        return f"${value:.4f}"
+    if value > 0:
+        return f"${value:.2e}"
+    return "$0"
+
+
+def mean_call(rows, stage):
+    """Average input and output tokens of one call of this stage."""
+    calls = [r for r in rows if r["stage"] == stage]
+    if not calls:
+        return 0.0, 0.0
+    return (sum(r["input_tokens"] for r in calls) / len(calls),
+            sum(r["output_tokens"] for r in calls) / len(calls))
+
+
+def full_run(rows, requests, documents):
+    """What one full rebuild of the caches costs, for the 518 requests.
+
+    The usage log is append-only and holds every rebuild ever run, so its
+    totals are cumulative and not the cost of one run. A full rebuild makes
+    a known number of calls: the request texts go out in batches of
+    INTENT_BATCH, and each document is transcribed once. The token cost of
+    each call comes from the average logged call of that stage, so these
+    figures are derived and not measured.
+    """
+    out = {}
+    for stage, calls in (("intent", math.ceil(requests / INTENT_BATCH)),
+                         ("vision", documents)):
+        rate_in, rate_out = mean_call(rows, stage)
+        model = next(r["model"] for r in rows if r["stage"] == stage)
+        tokens_in = round(rate_in * calls)
+        tokens_out = round(rate_out * calls)
+        out[stage] = {
+            "model": model,
+            "calls": calls,
+            "input": tokens_in,
+            "output": tokens_out,
+            "tokens": tokens_in + tokens_out,
+            "cost": cost(model, tokens_in, tokens_out),
+        }
+    return out
 
 
 def selftest():
@@ -107,9 +164,21 @@ def selftest():
     assert per_model["claude-sonnet-5"]["cost"] == 10.00
     assert totals(rows, "stage")["intent"]["tokens"] == 1_000_000
 
+    # A small cost must never round away to zero, because the report
+    # promises that a zero cost cannot appear.
+    assert money(0.0000029) != "$0.0000", money(0.0000029)
+    assert money(0) == "$0"
+
+    # One full run must be smaller than the cumulative log, which holds
+    # several rebuilds.
+    real = read_usage()
+    run = full_run(real, count_requests(), count_documents())
+    assert sum(b["calls"] for b in run.values()) \
+        < sum(int(r.get("calls", 1)) for r in real), "one run is not smaller"
+
     # A real report must name every model it charges for.
     text = build()
-    for model in totals(read_usage(), "model"):
+    for model in totals(real, "model"):
         assert model in text, model
     assert "Model provider | Anthropic" in text
     print("selftest: PASS")
@@ -117,10 +186,16 @@ def selftest():
 
 
 def build():
+    def para(text):
+        """One paragraph, wrapped, so the file reads as prose."""
+        return textwrap.fill(" ".join(text.split()), width=76)
+
     rows = read_usage()
     requests = count_requests()
+    documents = count_documents()
     per_model = totals(rows, "model", priced=True)
     per_stage = totals(rows, "stage")
+    runs = totals([r for r in rows if r.get("run")], "run")
 
     calls = sum(b["calls"] for b in per_model.values())
     tokens_in = sum(b["input"] for b in per_model.values())
@@ -130,37 +205,89 @@ def build():
     first = min(r["at"] for r in rows)
     last = max(r["at"] for r in rows)
 
+    run = full_run(rows, requests, documents)
+    run_calls = sum(b["calls"] for b in run.values())
+    run_in = sum(b["input"] for b in run.values())
+    run_out = sum(b["output"] for b in run.values())
+    run_tokens = run_in + run_out
+    run_spend = sum(b["cost"] for b in run.values())
+
     out = []
     add = out.append
     add("# Usage report: Ghost Data Still Exists")
     add("")
-    add("This file is generated. Run `python3 code/evaluation/usage.py` to")
-    add("rewrite it. The source is `code/cache/usage.jsonl`, which gains one")
-    add("line for every model call.")
+    add(para(
+        "This file is generated. Run `python3 code/evaluation/usage.py` to "
+        "rewrite it. The source is `code/cache/usage.jsonl`, which gains "
+        "one line for every model call."))
     add("")
-    add(f"Calls recorded from {first} to {last}.")
+    add(para(
+        f"The log is append-only and holds every cache rebuild ever run, "
+        f"from {first} to {last}. It is therefore cumulative. This report "
+        f"states the cost of one full run and the cumulative cost apart, "
+        f"because only the first answers the question a grader asks."))
     add("")
-    add("## The run that produced output.csv")
+    add("## One full run over the 518 requests")
     add("")
-    add("The caches in `code/cache/` are committed. A clean checkout")
-    add("therefore reproduces `output.csv` with no API key and no model")
-    add(f"call. The figures below cover the {calls} calls that built those")
-    add("caches.")
+    add(para(
+        "A clean checkout needs no model call, because the caches in "
+        "`code/cache/` are committed. These are the figures for rebuilding "
+        "them from nothing."))
+    add("")
+    add(para(
+        f"The call count is exact. The request texts go out in batches of "
+        f"{INTENT_BATCH}, so {requests} requests need "
+        f"{run['intent']['calls']} calls. Each of the {documents} "
+        f"screenshots and PDF documents is transcribed once. The token "
+        f"figures are derived. Each call is charged at the average logged "
+        f"call of its stage."))
     add("")
     add("| Quantity | Value |")
     add("| --- | --- |")
     add(f"| Model provider | {PROVIDER} |")
-    add(f"| Models used | {len(per_model)} |")
+    add(f"| Models used | {len(run)} |")
+    add(f"| Model calls | {run_calls} |")
+    add(f"| Input tokens | {run_in:,} |")
+    add(f"| Output tokens | {run_out:,} |")
+    add(f"| Total tokens | {run_tokens:,} |")
+    add(f"| Evaluation requests | {requests} |")
+    add(f"| Average tokens per request | {run_tokens / requests:.1f} |")
+    add(f"| Estimated total cost | {money(run_spend)} |")
+    add(f"| Estimated cost per request | {money(run_spend / requests)} |")
+    add("")
+    add("Per model and per stage, for that one run:")
+    add("")
+    add("| Stage | Model | Calls | Input tokens | Output tokens | Cost |")
+    add("| --- | --- | --- | --- | --- | --- |")
+    for stage in sorted(run):
+        bucket = run[stage]
+        add(f"| `{stage}` | `{bucket['model']}` | {bucket['calls']} "
+            f"| {bucket['input']:,} | {bucket['output']:,} "
+            f"| {money(bucket['cost'])} |")
+    add(f"| **Overall** | | {run_calls} | {run_in:,} | {run_out:,} "
+        f"| {money(run_spend)} |")
+    add("")
+    add(para(
+        f"The average tokens per request divides the whole run by the "
+        f"{requests} requests. The transcription is a one-time cost and "
+        f"does not grow with the request count, so a larger request set "
+        f"lowers that average."))
+    add("")
+    add("## Cumulative cost of every rebuild")
+    add("")
+    add(para(
+        f"These are the exact totals in the log. They exceed one run, "
+        f"because the caches were rebuilt several times while the solution "
+        f"was built. They also include the 32 sample requests, which are "
+        f"classified alongside the {requests}."))
+    add("")
+    add("| Quantity | Value |")
+    add("| --- | --- |")
     add(f"| Model calls | {calls} |")
     add(f"| Input tokens | {tokens_in:,} |")
     add(f"| Output tokens | {tokens_out:,} |")
     add(f"| Total tokens | {tokens:,} |")
-    add(f"| Evaluation requests | {requests} |")
-    add(f"| Average tokens per request | {tokens / requests:.1f} |")
-    add(f"| Estimated total cost | {money(spend)} |")
-    add(f"| Estimated cost per request | {money(spend / requests)} |")
-    add("")
-    add("## Per model")
+    add(f"| Estimated cost | {money(spend)} |")
     add("")
     add("| Model | Calls | Input tokens | Output tokens | Total tokens "
         "| Input $/MTok | Output $/MTok | Cost |")
@@ -175,8 +302,6 @@ def build():
     add(f"| **Overall** | {calls} | {tokens_in:,} | {tokens_out:,} "
         f"| {tokens:,} | | | {money(spend)} |")
     add("")
-    add("## Per stage")
-    add("")
     add("| Stage | What it does | Calls | Total tokens |")
     add("| --- | --- | --- | --- |")
     for stage in sorted(per_stage):
@@ -184,18 +309,37 @@ def build():
         add(f"| `{stage}` | {STAGES.get(stage, '')} | {bucket['calls']} "
             f"| {bucket['tokens']:,} |")
     add("")
+    if runs:
+        add(para(
+            "Calls carry a run id from 2026-10-25 onward, so a later "
+            "rebuild is attributable exactly:"))
+        add("")
+        add("| Run | Calls | Total tokens |")
+        add("| --- | --- | --- |")
+        for name in sorted(runs):
+            add(f"| `{name}` | {runs[name]['calls']} "
+                f"| {runs[name]['tokens']:,} |")
+    else:
+        add(para(
+            f"None of the {calls} logged calls carries a run id. The field "
+            f"was added on 2026-10-25, after these calls were made, so the "
+            f"log cannot separate them into runs. The one-run figures above "
+            f"are derived instead of measured for that reason."))
+    add("")
     add("## How the cost is derived")
     add("")
-    add("Prices are United States dollars per million tokens, from the")
-    add("Anthropic price list on 2026-10-25. The table sits in")
-    add("`PRICES` in `code/evaluation/usage.py`. A model the table does not")
-    add("carry makes the run fail, so a missing price can never appear as a")
-    add("cost of zero.")
+    add(para(
+        "Prices are United States dollars per million tokens, from the "
+        "Anthropic price list on 2026-10-25. The table sits in `PRICES` in "
+        "`code/evaluation/usage.py`. A model the table does not carry makes "
+        "the run fail, so a missing price can never appear as a cost of "
+        "zero."))
     add("")
-    add("The cost of one call is the input tokens times the input rate plus")
-    add("the output tokens times the output rate, divided by one million.")
-    add("The figures are an estimate. They do not include prompt caching")
-    add("discounts, and the pipeline does not use the Batch API.")
+    add(para(
+        "The cost of one call is the input tokens times the input rate plus "
+        "the output tokens times the output rate, divided by one million. "
+        "The figures are an estimate. They do not include prompt caching "
+        "discounts, and the pipeline does not use the Batch API."))
     add("")
     add("## What the model does, and what it never does")
     add("")
@@ -204,9 +348,10 @@ def build():
     for stage in sorted(per_stage):
         add(f"1. `{stage}`: {STAGES.get(stage, '')}")
     add("")
-    add("The model never decides a case status, never chooses an operation,")
-    add("and never reads the policy. It reads a request text, and it")
-    add("transcribes a page. Policy, state, and step order are code.")
+    add(para(
+        "The model never decides a case status, never chooses an operation, "
+        "and never reads the policy. It reads a request text, and it "
+        "transcribes a page. Policy, state, and step order are code."))
     add("")
     return "\n".join(out) + "\n"
 
